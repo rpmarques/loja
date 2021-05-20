@@ -9,21 +9,21 @@ require_once './header.php';
               <!-- breadcrumb-->
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li aria-current="page" class="breadcrumb-item active">New account / Sign in</li>
+                  <li class="breadcrumb-item"><a href="./index.php">Home</a></li>
+                  <li aria-current="page" class="breadcrumb-item active">Nova conta / Entrar</li>
                 </ol>
               </nav>
             </div>
             <div class="col-lg-6">
               <div class="box">
-                <h1>New account</h1>
-                <p class="lead">Not our registered customer yet?</p>
-                <p>With registration with us new world of fashion, fantastic discounts and much more opens to you! The whole process will not take you more than a minute!</p>
-                <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
+                <h1>Nova conta</h1>
+                <p class="lead">Ainda não é nosso cliente registrado?</p>
+                <p>Com o registro você terá acesso a descontos excluisos e muito mais! Todo o processo não levará mais de um minuto!</p>
+                <p class="text-muted">Se você tiver alguma dúvida, sinta-se à vontade, nosso centro de atendimento ao cliente está trabalhando para você 24 horas por dia, 7 dias por semana.</p>
                 <hr>
                 <form action="customer-orders.html" method="post">
                   <div class="form-group">
-                    <label for="name">Name</label>
+                    <label for="name">Nome</label>
                     <input id="name" type="text" class="form-control">
                   </div>
                   <div class="form-group">
@@ -31,11 +31,11 @@ require_once './header.php';
                     <input id="email" type="text" class="form-control">
                   </div>
                   <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password">Senha</label>
                     <input id="password" type="password" class="form-control">
                   </div>
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i> Register</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i> Registrar</button>
                   </div>
                 </form>
               </div>
@@ -43,8 +43,8 @@ require_once './header.php';
             <div class="col-lg-6">
               <div class="box">
                 <h1>Login</h1>
-                <p class="lead">Already our customer?</p>
-                <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                <p class="lead">Já é nosso cliente?</p>
+                <p class="text-muted"></p>
                 <hr>
                 <form action="customer-orders.html" method="post">
                   <div class="form-group">
@@ -52,11 +52,11 @@ require_once './header.php';
                     <input id="email" type="text" class="form-control">
                   </div>
                   <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password">Senha</label>
                     <input id="password" type="password" class="form-control">
-                  </div>
+                  </div><br><br><br><br><br><br><br><br><br><br>
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Entrar</button>
                   </div>
                 </form>
               </div>
