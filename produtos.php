@@ -157,9 +157,9 @@ require_once './header.php';
                     <div class="text">
                       <h3><a href="produto.php">Fur coat with very but very very long name</a></h3>
                       <p class="price"> 
-                        <del></del>$143.00
+                        <del></del>R$143.00
                       </p>
-                      <p class="buttons"><a href="produto.php" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
+                      <p class="buttons"><a href="produto.php" class="btn btn-outline-secondary">Visualizar</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Adicionar</a></p>
                     </div>
                     <!-- /.text-->
                   </div>
@@ -176,9 +176,9 @@ require_once './header.php';
                     <div class="text">
                       <h3><a href="produto.php">White Blouse Armani</a></h3>
                       <p class="price"> 
-                        <del>$280</del>$143.00
+                        <del>R$280</del> R$143.00
                       </p>
-                      <p class="buttons"><a href="produto.php" class="btn btn-outline-secondary">Mais</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
+                      <p class="buttons"><a href="produto.php" class="btn btn-outline-secondary">Visualizar</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Adicionar</a></p>
                     </div>
                     <!-- /.text-->
                     <div class="ribbon sale">
@@ -210,9 +210,9 @@ require_once './header.php';
                     <div class="text">
                       <h3><a href="produto.php">Black Blouse Versace</a></h3>
                       <p class="price"> 
-                        <del></del>$143.00
+                        <del></del>R$143.00
                       </p>
-                      <p class="buttons"><a href="produto.php" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
+                      <p class="buttons"><a href="produto.php" class="btn btn-outline-secondary">Visualizar</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Adicionar</a></p>
                     </div>
                     <!-- /.text-->
                   </div>
@@ -229,9 +229,9 @@ require_once './header.php';
                     <div class="text">
                       <h3><a href="produto.php">Black Blouse Versace</a></h3>
                       <p class="price"> 
-                        <del></del>$143.00
+                        <del></del>R$143.00
                       </p>
-                      <p class="buttons"><a href="produto.php" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
+                      <p class="buttons"><a href="produto.php" class="btn btn-outline-secondary">Visualizar</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Adicionar</a></p>
                     </div>
                     <!-- /.text-->
                   </div>
@@ -248,9 +248,9 @@ require_once './header.php';
                     <div class="text">
                       <h3><a href="produto.php">White Blouse Versace</a></h3>
                       <p class="price"> 
-                        <del></del>$143.00
+                        <del></del>R$143.00
                       </p>
-                      <p class="buttons"><a href="produto.php" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
+                      <p class="buttons"><a href="produto.php" class="btn btn-outline-secondary">Visualizar</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Adicionar</a></p>
                     </div>
                     <!-- /.text-->
                     <div class="ribbon new">
@@ -272,9 +272,9 @@ require_once './header.php';
                     <div class="text">
                       <h3><a href="produto.php">Fur coat</a></h3>
                       <p class="price"> 
-                        <del></del>$143.00
+                        <del></del>R$143.00
                       </p>
-                      <p class="buttons"><a href="produto.php" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
+                      <p class="buttons"><a href="produto.php" class="btn btn-outline-secondary">Visualizar</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Adicionar</a></p>
                     </div>
                     <!-- /.text-->
                     <div class="ribbon gift">
