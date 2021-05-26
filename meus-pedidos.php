@@ -56,7 +56,7 @@ require_once './header.php';
                         <th># 1735</th>
                         <td>22/06/2013</td>
                         <td>R$ 150,00</td>
-                        <td><span class="badge badge-info">Being prepared</span></td>
+                        <td><span class="badge badge-info">Pedido Recebido</span></td>
                         <td><a href="customer-order.html" class="btn btn-primary btn-sm">Visualizar</a></td>
                       </tr>
                       <tr>
@@ -70,7 +70,7 @@ require_once './header.php';
                         <th># 1735</th>
                         <td>22/06/2013</td>
                         <td>R$ 150,00</td>
-                        <td><span class="badge badge-success">Recebido</span></td>
+                        <td><span class="badge badge-success">Pedido Entregue</span></td>
                         <td><a href="customer-order.html" class="btn btn-primary btn-sm">Visualizar</a></td>
                       </tr>
                       <tr>
@@ -84,7 +84,7 @@ require_once './header.php';
                         <th># 1735</th>
                         <td>22/06/2013</td>
                         <td>R$ 150,00</td>
-                        <td><span class="badge badge-warning">On hold</span></td>
+                        <td><span class="badge badge-warning">Em espera</span></td>
                         <td><a href="customer-order.html" class="btn btn-primary btn-sm">Visualizar</a></td>
                       </tr>
                     </tbody>

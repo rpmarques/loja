@@ -46,7 +46,7 @@ require_once './header.php';
                 <p class="lead">Já é nosso cliente?</p>
                 <p class="text-muted"></p>
                 <hr>
-                <form action="customer-orders.html" method="post">
+                <form action="./minha-conta.php" method="post">
                   <div class="form-group">
                     <label for="email">Email</label>
                     <input id="email" type="text" class="form-control">
