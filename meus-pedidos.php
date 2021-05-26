@@ -57,35 +57,35 @@ require_once './header.php';
                         <td>22/06/2013</td>
                         <td>R$ 150,00</td>
                         <td><span class="badge badge-info">Pedido Recebido</span></td>
-                        <td><a href="customer-order.html" class="btn btn-primary btn-sm">Visualizar</a></td>
+                        <td><a href="./carrinho.php" class="btn btn-primary btn-sm">Visualizar</a></td>
                       </tr>
                       <tr>
                         <th># 1735</th>
                         <td>22/06/2013</td>
                         <td>R$ 150,00</td>
                         <td><span class="badge badge-info">Em Processamento</span></td>
-                        <td><a href="customer-order.html" class="btn btn-primary btn-sm">Visualizar</a></td>
+                        <td><a href="./carrinho.php" class="btn btn-primary btn-sm">Visualizar</a></td>
                       </tr>
                       <tr>
                         <th># 1735</th>
                         <td>22/06/2013</td>
                         <td>R$ 150,00</td>
                         <td><span class="badge badge-success">Pedido Entregue</span></td>
-                        <td><a href="customer-order.html" class="btn btn-primary btn-sm">Visualizar</a></td>
+                        <td><a href="./carrinho.php" class="btn btn-primary btn-sm">Visualizar</a></td>
                       </tr>
                       <tr>
                         <th># 1735</th>
                         <td>22/06/2013</td>
                         <td>R$ 150,00</td>
                         <td><span class="badge badge-danger">Cancelado</span></td>
-                        <td><a href="customer-order.html" class="btn btn-primary btn-sm">Visualizar</a></td>
+                        <td><a href="./carrinho.php" class="btn btn-primary btn-sm">Visualizar</a></td>
                       </tr>
                       <tr>
                         <th># 1735</th>
                         <td>22/06/2013</td>
                         <td>R$ 150,00</td>
                         <td><span class="badge badge-warning">Em espera</span></td>
-                        <td><a href="customer-order.html" class="btn btn-primary btn-sm">Visualizar</a></td>
+                        <td><a href="./carrinho.php" class="btn btn-primary btn-sm">Visualizar</a></td>
                       </tr>
                     </tbody>
                   </table>
