@@ -14,7 +14,7 @@
             </div>
             <div id="basket" class="col-lg-9">
               <div class="box">
-                <form method="post" action="./carrinho-frete.php">
+                <form method="post" action="./carrinho-endereco.php">
                   <h1>Carrinho de compras</h1>
                   <p class="text-muted">No momento, você tem 3 item(s) em seu caRinho.</p>
                   <div class="table-responsive">

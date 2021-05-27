@@ -39,12 +39,6 @@
                     </div>
                     <!-- /.row-->
                     <div class="row">
-                      <!-- <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="company">Company</label>
-                          <input id="company" type="text" class="form-control">
-                        </div>
-                      </div> -->
                       <div class="col-md-12">
                         <div class="form-group">
                           <label for="street">Endereço</label>
@@ -56,35 +50,35 @@
                     <div class="row">
                       <div class="col-md-6 col-lg-3">
                         <div class="form-group">
-                          <label for="city">Company</label>
+                          <label for="city">Bairro</label>
                           <input id="city" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-md-6 col-lg-3">
                         <div class="form-group">
-                          <label for="zip">ZIP</label>
+                          <label for="zip">CEP</label>
                           <input id="zip" type="text" class="form-control">
                         </div>
                       </div>
                       <div class="col-md-6 col-lg-3">
                         <div class="form-group">
-                          <label for="state">State</label>
+                          <label for="state">Estado</label>
                           <select id="state" class="form-control"></select>
                         </div>
                       </div>
                       <div class="col-md-6 col-lg-3">
                         <div class="form-group">
-                          <label for="country">Country</label>
+                          <label for="country">Cidade</label>
                           <select id="country" class="form-control"></select>
                         </div>
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-md-3">
                         <div class="form-group">
-                          <label for="phone">Telephone</label>
+                          <label for="phone">Telefone</label>
                           <input id="phone" type="text" class="form-control">
                         </div>
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-md-9">
                         <div class="form-group">
                           <label for="email">Email</label>
                           <input id="email" type="text" class="form-control">
@@ -104,28 +98,28 @@
             <div class="col-lg-3">
               <div id="order-summary" class="card">
                 <div class="card-header">
-                  <h3 class="mt-4 mb-4">Order summary</h3>
+                  <h3 class="mt-4 mb-4">Resumo do pedido</h3>
                 </div>
                 <div class="card-body">
-                  <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+                  <p class="text-muted">Frete e custos adicionais são calculados com base nos valores que você inseriu.</p>
                   <div class="table-responsive">
                     <table class="table">
                       <tbody>
                         <tr>
-                          <td>Order subtotal</td>
-                          <th>$446.00</th>
+                          <td>Sub Total</td>
+                          <th>R$446.00</th>
                         </tr>
                         <tr>
-                          <td>Shipping and handling</td>
-                          <th>$10.00</th>
+                          <td>frete</td>
+                          <th>R$10.00</th>
                         </tr>
                         <tr>
-                          <td>Tax</td>
-                          <th>$0.00</th>
+                          <td><br></td>
+                          <th></th>
                         </tr>
                         <tr class="total">
                           <td>Total</td>
-                          <th>$456.00</th>
+                          <th>R$456.00</th>
                         </tr>
                       </tbody>
                     </table>
