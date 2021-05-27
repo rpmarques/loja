@@ -14,7 +14,7 @@
             </div>
             <div id="checkout" class="col-lg-9">
               <div class="box">
-                <form method="get" action="checkout2.html">
+                <form method="get" action="./carrinho-tipo-entrega.php">
                   <h1>Carrinho - Endereço de Entrega</h1>
                   <div class="nav flex-column flex-md-row nav-pills text-center">
                         <a href="checkout1.html" class="nav-link flex-sm-fill text-sm-center active"> <i class="fa fa-map-marker"></i>Endereço </a>
@@ -98,7 +98,7 @@
             <div class="col-lg-3">
               <div id="order-summary" class="card">
                 <div class="card-header">
-                  <h3 class="mt-4 mb-4">Resumo do pedido</h3>
+                  <h3 class="mt-4 mb-4">Resumo do Pedido</h3>
                 </div>
                 <div class="card-body">
                   <p class="text-muted">Frete e custos adicionais são calculados com base nos valores que você inseriu.</p>
@@ -110,7 +110,7 @@
                           <th>R$446.00</th>
                         </tr>
                         <tr>
-                          <td>frete</td>
+                          <td>Frete</td>
                           <th>R$10.00</th>
                         </tr>
                         <tr>
