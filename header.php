@@ -33,7 +33,7 @@
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Customer login</h5>
+            <h5 class="modal-title">Login do cliente</h5>
             <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
           </div>
           <div class="modal-body">
