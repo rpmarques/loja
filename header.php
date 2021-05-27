@@ -37,7 +37,7 @@
             <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
           </div>
           <div class="modal-body">
-            <form action="customer-orders.html" method="post">
+            <form action="./meus-pedidos.php" method="post">
               <div class="form-group">
                 <input id="email-modal" type="text" placeholder="exemplo@exemplo.com" class="form-control">
               </div>

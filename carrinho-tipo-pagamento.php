@@ -14,7 +14,7 @@
             </div>
             <div id="checkout" class="col-lg-9">
               <div class="box">
-                <form method="get" action="checkout4.html">
+                <form method="get" action="./carrinho-finalizar.php">
                   <h1>Carrinho - Tipo de Pagamento</h1>
                   <div class="nav flex-column flex-sm-row nav-pills">
                     <a href="./carrinho-endereco.php" class="nav-link flex-sm-fill text-sm-center"> <i class="fa fa-map-marker"></i>Endereço</a>
@@ -56,8 +56,8 @@
                   </div>
                   <!-- /.content-->
                   <div class="box-footer d-flex justify-content-between">
-                  <a href="checkout2.html" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i>Voltar para Tipo de Entrega</a>
-                    <button type="submit" class="btn btn-primary">Finalizar o Pedido<i class="fa fa-chevron-right"></i></button>
+                  <a href="./carrinho-tipo-entrega.php" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i>Voltar para Tipo de Entrega</a>
+                    <button type="submit" class="btn btn-primary">Resumo do Pedido<i class="fa fa-chevron-right"></i></button>
                   </div>
                 </form>
                 <!-- /.box-->
