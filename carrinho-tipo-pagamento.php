@@ -15,7 +15,7 @@
             <div id="checkout" class="col-lg-9">
               <div class="box">
                 <form method="get" action="checkout4.html">
-                  <h1>Checkout - Payment method</h1>
+                  <h1>Carrinho - Tipo de Pagamento</h1>
                   <div class="nav flex-column flex-sm-row nav-pills">
                     <a href="./carrinho-endereco.php" class="nav-link flex-sm-fill text-sm-center"> <i class="fa fa-map-marker"></i>Endereço</a>
                     <a href="./carrinho-tipo-entrega.php" class="nav-link flex-sm-fill text-sm-center "> <i class="fa fa-truck"></i>Tipo de Entrega</a>
@@ -26,8 +26,8 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="box payment-method">
-                          <h4>Paypal</h4>
-                          <p>We like it all.</p>
+                          <h4>Boleto Bancário</h4>
+                          <p>Liberado após compensação do pagamento.</p>
                           <div class="box-footer text-center">
                             <input type="radio" name="payment" value="payment1">
                           </div>
@@ -35,8 +35,8 @@
                       </div>
                       <div class="col-md-6">
                         <div class="box payment-method">
-                          <h4>Payment gateway</h4>
-                          <p>VISA and Mastercard only.</p>
+                          <h4>Cartão / Boleto</h4>
+                          <p>VISA ou Mastercard.</p>
                           <div class="box-footer text-center">
                             <input type="radio" name="payment" value="payment2">
                           </div>
@@ -44,8 +44,8 @@
                       </div>
                       <div class="col-md-6">
                         <div class="box payment-method">
-                          <h4>Cash on delivery</h4>
-                          <p>You pay when you get it.</p>
+                          <h4>Pagamento na entrega</h4>
+                          <p>Você paga quando recebe.</p>
                           <div class="box-footer text-center">
                             <input type="radio" name="payment" value="payment3">
                           </div>
@@ -55,39 +55,40 @@
                     <!-- /.row-->
                   </div>
                   <!-- /.content-->
-                  <div class="box-footer d-flex justify-content-between"><a href="checkout2.html" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i>Back to Shipping Method</a>
-                    <button type="submit" class="btn btn-primary">Continue to Order Review<i class="fa fa-chevron-right"></i></button>
+                  <div class="box-footer d-flex justify-content-between">
+                  <a href="checkout2.html" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i>Voltar para Tipo de Entrega</a>
+                    <button type="submit" class="btn btn-primary">Finalizar o Pedido<i class="fa fa-chevron-right"></i></button>
                   </div>
                 </form>
                 <!-- /.box-->
               </div>
             </div>
             <!-- /.col-lg-9-->
-            <div class="col-lg-3">
+            <div class="col-md-3">
               <div id="order-summary" class="card">
                 <div class="card-header">
-                  <h3 class="mt-4 mb-4">Order summary</h3>
+                  <h3 class="mt-4 mb-4">Resumo do Pedido</h3>
                 </div>
                 <div class="card-body">
-                  <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+                  <p class="text-muted">Frete e custos adicionais são calculados com base nos valores que você inseriu.</p>
                   <div class="table-responsive">
                     <table class="table">
                       <tbody>
                         <tr>
-                          <td>Order subtotal</td>
-                          <th>$446.00</th>
+                          <td>Sub Total</td>
+                          <th>R$446.00</th>
                         </tr>
                         <tr>
-                          <td>Shipping and handling</td>
-                          <th>$10.00</th>
+                          <td>Frete</td>
+                          <th>R$10.00</th>
                         </tr>
                         <tr>
-                          <td>Tax</td>
-                          <th>$0.00</th>
+                          <td><br></td>
+                          <th></th>
                         </tr>
                         <tr class="total">
                           <td>Total</td>
-                          <th>$456.00</th>
+                          <th>R$456.00</th>
                         </tr>
                       </tbody>
                     </table>
