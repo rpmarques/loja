@@ -90,12 +90,24 @@
                 <!-- /.table-responsive-->
                 <div class="row addresses">
                   <div class="col-lg-6">
-                    <h2>Invoice address</h2>
-                    <p>John Brown<br>13/25 New Avenue<br>New Heaven<br>45Y 73J<br>England<br>Great Britain</p>
+                    <h2>Endereço de Cobrança</h2>
+                    <p>Nome<br>
+                        Endereço<br>
+                        Baiiro<br>
+                        Número<br>
+                        Brasil<br>
+                        Cidade-UF
+                      </p>
                   </div>
                   <div class="col-lg-6">
-                    <h2>Shipping address</h2>
-                    <p>John Brown<br>13/25 New Avenue<br>New Heaven<br>45Y 73J<br>England<br>Great Britain</p>
+                    <h2>Endereço de Entrega</h2>
+                    <p>Nome<br>
+                        Endereço<br>
+                        Baiiro<br>
+                        Número<br>
+                        Brasil<br>
+                        Cidade-UF
+                      </p>
                   </div>
                 </div>
               </div>

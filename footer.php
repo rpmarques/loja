@@ -11,7 +11,7 @@
               <li><a href="text.html">Link 1</a></li>
               <li><a href="text.html">Link 2</a></li>
               <li><a href="faq.html">Link 3</a></li>
-              <li><a href="contact.html">Link 4</a></li>
+              <li><a href="./contato.php">Link 4</a></li>
             </ul>
           </div>
           <!-- /.col-lg-3-->
@@ -30,7 +30,7 @@
           <!-- /.col-lg-3-->
           <div class="col-lg-3 col-md-6">
             <h4 class="mb-3">Onde nos encontrar</h4>
-            <p><strong>NOME.</strong><br>Nome da rua<br>Bairro<br>Sala 13<br>Brasil<br><strong>Santana do Livramento</strong></p><a href="contact.html">Entre em contato</a>
+            <p><strong>NOME.</strong><br>Nome da rua<br>Bairro<br>Sala 13<br>Brasil<br><strong>Santana do Livramento</strong></p><a href="./contato.php">Entre em contato</a>
             <hr class="d-block d-md-none">
           </div>
           <!-- /.col-lg-3-->
@@ -46,7 +46,13 @@
             </form>
             <hr>
             <h4 class="mb-3">Siga nossas redes sociais</h4>
-            <p class="social"><a href="#" class="facebook external"><i class="fa fa-facebook"></i></a><a href="#" class="twitter external"><i class="fa fa-twitter"></i></a><a href="#" class="instagram external"><i class="fa fa-instagram"></i></a><a href="#" class="gplus external"><i class="fa fa-google-plus"></i></a><a href="#" class="email external"><i class="fa fa-envelope"></i></a></p>
+              <p class="social">
+                  <a href="#" class="facebook external"><i class="fa fa-facebook"></i></a>
+                  <a href="#" class="twitter external"><i class="fa fa-twitter"></i></a>
+                  <a href="#" class="instagram external"><i class="fa fa-instagram"></i></a>
+                  <a href="#" class="gplus external"><i class="fa fa-google-plus"></i></a>
+                  <a href="#" class="email external"><i class="fa fa-envelope"></i></a>
+                </p>
           </div>
           <!-- /.col-lg-3-->
         </div>
@@ -83,5 +89,7 @@
     <script src="vendor/owl.carousel/owl.carousel.min.js"></script>
     <script src="vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.js"></script>
     <script src="js/front.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.4.0/leaflet.js"> </script>
+    <script src="js/map.js"></script>    
   </body>
 </html>

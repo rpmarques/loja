@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="vendor/owl.carousel/assets/owl.theme.default.css">
     <!-- tema-->
     <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+        <!-- Leaflet CSS - For the map-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.4.0/leaflet.css">
     <!-- outras alterações-->
     <link rel="stylesheet" href="css/custom.css">
     <!-- icone-->
@@ -61,7 +63,7 @@
           <div class="navbar-buttons">            
             <button type="button" data-toggle="collapse" data-target="#navigation" class="btn btn-outline-secondary navbar-toggler"><span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
             <button type="button" data-toggle="modal"  data-target="#login-modal" class="btn btn-outline-secondary navbar-toggler"><span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
-            <button type="button" data-toggle="collapse" data-target="#search" class="btn btn-outline-secondary navbar-toggler"><span class="sr-only">Toggle search</span><i class="fa fa-search"></i></button><a href="basket.html" class="btn btn-outline-secondary navbar-toggler"><i class="fa fa-shopping-cart"></i></a>
+            <button type="button" data-toggle="collapse" data-target="#search" class="btn btn-outline-secondary navbar-toggler"><span class="sr-only">Toggle search</span><i class="fa fa-search"></i></button><a href="./pedido.php" class="btn btn-outline-secondary navbar-toggler"><i class="fa fa-shopping-cart"></i></a>
           </div>
           <div id="navigation" class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
@@ -169,7 +171,7 @@
               <!-- /.nav-collapse-->              
               <div id="search-not-mobile" class="navbar-collapse collapse"></div><a href="#" class="btn navbar-btn btn-primary d-none d-lg-inline-block" data-toggle="modal" data-target="#login-modal">Login</a>
               <div id="search-not-mobile" class="navbar-collapse collapse"></div><a data-toggle="collapse" href="#search" class="btn navbar-btn btn-primary d-none d-lg-inline-block"><span class="sr-only">Toggle search</span><i class="fa fa-search"></i></a>
-              <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block"><a href="basket.html" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span>X Itens </span></a></div>
+              <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block"><a href="./pedido.php" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span>X Itens </span></a></div>
             </div>
           </div>
         </div>
