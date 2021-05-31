@@ -16,7 +16,7 @@
               <div class="box">
                 <form method="post" action="./carrinho-endereco.php">
                   <h1>Carrinho de compras</h1>
-                  <p class="text-muted">No momento, você tem 3 item(s) em seu caRinho.</p>
+                  <p class="text-muted">No momento, você tem 3 item(s) em seu carrsinho.</p>
                   <div class="table-responsive">
                     <table class="table">
                       <thead>
