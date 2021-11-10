@@ -77,10 +77,30 @@ class Produtos
          }
       endif;
    }
-   public function selectProduto($rWhere = '')
-   {
+   public function selectProduto($rCampos="",$rWhere="",$rLimit="",$rLeft="",$rOrderBy="",$rGroupBy="") {
       try {
-         $rSql = "SELECT * FROM produtos " . $rWhere;
+
+         if(empty($rCampos)){
+            $rCampos="*";
+         }
+         if(empty($rLeft)){
+            $rLeft="";
+         }
+         if(!empty($rOrderBy)){
+            $rOrderBy=" ORDER BY $rOrderBy ";
+         }
+         if(!empty($rGroupBy)){
+            $rGroupBy=" GROUP BY $rGroupBy";
+         }
+         if(!empty($rWhere)){
+            $rWhere = " WHERE $rWhere";
+         }
+         if (!empty($rLimit)){
+            $rLimit = " LIMIT $rLimit";
+         }
+         
+
+         $rSql = " SELECT $rCampos FROM produto $rLeft $rWhere $rGroupBy $rOrderBy $rLimit ";
          $stm = $this->pdo->prepare($rSql);
          $stm->execute();
          $dados = $stm->fetchAll(PDO::FETCH_OBJ);

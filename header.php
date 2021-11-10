@@ -48,7 +48,6 @@ require_once './modal.php';
         <script src="vendor/jquery/jquery.min.js"></script>
   </head>
   <body>
-    <!-- MODAL LOGIN / REGISTRAR -->
     <header class="header mb-5">
     <!-- navbar-->
       <nav class="navbar navbar-expand-lg ">
