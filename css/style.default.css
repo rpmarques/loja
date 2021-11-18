@@ -539,8 +539,8 @@ h1 {
 }
 
 .ribbon .theribbon {
-  position: relative;
-  width: 85px;
+  position: relative;  
+  /* width: 85px;  RETIREI PRA PODER FICAR O TEXTO EM UMA LINHA*/
   padding: 6px 20px 6px 20px;
   margin: 30px 10px 10px -71px;
   color: #fff;
