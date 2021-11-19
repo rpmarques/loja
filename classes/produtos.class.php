@@ -28,8 +28,8 @@ class Produtos
          $stm->bindValue(':nome', $rNome);
          $stm->bindValue(':codigo', $rCodigo);
          $stm->bindValue(':prateleira', $rPrateleira);
-         $stm->bindValue(':preco_ven', gravaMoeda($rPrecoVen)?gravaMoeda($rPrecoVen):'0');
-         $stm->bindValue(':custo_ult', gravaMoeda($rCustoUlt)?gravaMoeda($rCustoUlt):'0');
+         $stm->bindValue(':preco_ven', gravaMoeda($rPrecoVen) ? gravaMoeda($rPrecoVen) : '0');
+         $stm->bindValue(':custo_ult', gravaMoeda($rCustoUlt) ? gravaMoeda($rCustoUlt) : '0');
          $stm->execute();
          if ($stm) {
             Logger('Usuario:[' . $_SESSION['login'] . '] - INSERIU PRODUTO');
@@ -77,28 +77,29 @@ class Produtos
          }
       endif;
    }
-   public function selectProduto($rCampos="",$rWhere="",$rLimit="",$rLeft="",$rOrderBy="",$rGroupBy="") {
+   public function selectProduto($rCampos = "", $rWhere = "", $rLimit = "", $rLeft = "", $rOrderBy = "", $rGroupBy = "")
+   {
       try {
 
-         if(empty($rCampos)){
-            $rCampos="*";
+         if (empty($rCampos)) {
+            $rCampos = "*";
          }
-         if(empty($rLeft)){
-            $rLeft="";
+         if (empty($rLeft)) {
+            $rLeft = "";
          }
-         if(!empty($rOrderBy)){
-            $rOrderBy=" ORDER BY $rOrderBy ";
+         if (!empty($rOrderBy)) {
+            $rOrderBy = " ORDER BY $rOrderBy ";
          }
-         if(!empty($rGroupBy)){
-            $rGroupBy=" GROUP BY $rGroupBy";
+         if (!empty($rGroupBy)) {
+            $rGroupBy = " GROUP BY $rGroupBy";
          }
-         if(!empty($rWhere)){
+         if (!empty($rWhere)) {
             $rWhere = " WHERE $rWhere";
          }
-         if (!empty($rLimit)){
+         if (!empty($rLimit)) {
             $rLimit = " LIMIT $rLimit";
          }
-         
+
 
          $rSql = " SELECT $rCampos FROM produto $rLeft $rWhere $rGroupBy $rOrderBy $rLimit ";
          $stm = $this->pdo->prepare($rSql);
@@ -163,7 +164,7 @@ class Produtos
          switch ($rTipoMovimento) {
             case 'E': //ENTRADA
                $auxTpMov = 'ENTRADA';
-               $auxOP = '+'; 
+               $auxOP = '+';
                break;
             case 'S':
                $auxTpMov = 'SAIDA';
@@ -171,27 +172,27 @@ class Produtos
                break;
          }
 
-         
-          $rrSql = "INSERT INTO produto_movimentos (nronf,serie,datac,qtde,tipo_movimento,produto_id,cliente_id,fornecedor_id)
+
+         $rrSql = "INSERT INTO produto_movimentos (nronf,serie,datac,qtde,tipo_movimento,produto_id,cliente_id,fornecedor_id)
           VALUES (:nronf,:serie,:datac,:qtde,:tipo_movimento,:produto_id,:cliente_id,:fornecedor_id);";
 
          $stm = $this->pdo->prepare($rrSql);
          $stm->bindValue(':nronf', $rNroNF);
          $stm->bindValue(':serie', $rSerie);
-          $stm->bindValue(':datac', $rDataC);
-          $stm->bindValue(':qtde', gravaMoeda($rQtdeMov));
-          $stm->bindValue(':tipo_movimento', $rTipoMovimento);
-          $stm->bindValue(':produto_id', $rProdutoID);
-          if ($rClienteID == '0') {
-             $stm->bindValue(':cliente_id', null);
-          }else{
+         $stm->bindValue(':datac', $rDataC);
+         $stm->bindValue(':qtde', gravaMoeda($rQtdeMov));
+         $stm->bindValue(':tipo_movimento', $rTipoMovimento);
+         $stm->bindValue(':produto_id', $rProdutoID);
+         if ($rClienteID == '0') {
+            $stm->bindValue(':cliente_id', null);
+         } else {
             $stm->bindValue(':cliente_id', $rClienteID);
-          }
-          if ($rFornecedorID == '0') {
-             $stm->bindValue(':fornecedor_id', null);
-          }else{
+         }
+         if ($rFornecedorID == '0') {
+            $stm->bindValue(':fornecedor_id', null);
+         } else {
             $stm->bindValue(':fornecedor_id', $rFornecedorID);
-          }
+         }
 
 
          $stm->execute();
@@ -264,7 +265,8 @@ class Produtos
    //    }
    // }
 
-   public function insert($rNome,$rCodigo,$rPrateleira,$rPrecoVen,$rCustoUlt) {
+   public function insert($rNome, $rCodigo, $rPrateleira, $rPrecoVen, $rCustoUlt)
+   {
       try {
          $rSql = "INSERT INTO produtos (nome,codigo,prateleira,preco_ven,custo_ult) VALUES (:nome,:codigo,:prateleira,:preco_ven,:custo_ult);";
          $stm = $this->pdo->prepare($rSql);
@@ -279,27 +281,28 @@ class Produtos
          }
          return $stm;
       } catch (PDOException $erro) {
-         Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:['.$erro->getFile().'] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage().']');  
+         Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
       }
    }
-   public function update($rNome,$rID) {
+   public function update($rNome, $rID)
+   {
       try {
          $rSql = "UPDATE base_categoria SET nome=:nome WHERE id = :id;";
          $stm = $this->pdo->prepare($rSql);
          $stm->bindValue(':nome', $rNome);
          $stm->bindValue(':id', $rID);
-         $stm->execute();         
+         $stm->execute();
          if ($stm) {
             Logger('Usuario:[' . $_SESSION['login'] . '] - ALTEROU CATEGORIA - ID:[' . $rID . ']');
          }
          return $stm;
       } catch (PDOException $erro) {
-      Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:['.$erro->getFile().'] - LINHA:[' . $erro->getLine() . '] - MENSAGEM:[' . $erro->getMessage().']');
-      
+         Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - MENSAGEM:[' . $erro->getMessage() . ']');
       }
    }
-   public function delete($rId) {
-      if (!empty($rId)):
+   public function delete($rId)
+   {
+      if (!empty($rId)) :
          try {
             $rSql = "DELETE FROM base_categoria WHERE id=:id";
             $stm = $this->pdo->prepare($rSql);
@@ -310,30 +313,31 @@ class Produtos
             }
             return $stm;
          } catch (PDOException $erro) {
-            Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:['.$erro->getFile().'] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage().']'); 
+            Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
          }
       endif;
    }
 
-   public function selectCategorias($rCampos="",$rWhere="",$rLimit="",$rLeft="",$rOrderBy="",$rGroupBy="") {
+   public function selectCategorias($rCampos = "", $rWhere = "", $rLimit = "", $rLeft = "", $rOrderBy = "", $rGroupBy = "")
+   {
       try {
 
-         if(empty($rCampos)){
-            $rCampos="*";
+         if (empty($rCampos)) {
+            $rCampos = "*";
          }
-         if(empty($rLeft)){
-            $rLeft="";
+         if (empty($rLeft)) {
+            $rLeft = "";
          }
-         if(!empty($rOrderBy)){
-            $rOrderBy=" ORDER BY $rOrderBy ";
+         if (!empty($rOrderBy)) {
+            $rOrderBy = " ORDER BY $rOrderBy ";
          }
-         if(!empty($rGroupBy)){
-            $rGroupBy=" GROUP BY $rGroupBy";
+         if (!empty($rGroupBy)) {
+            $rGroupBy = " GROUP BY $rGroupBy";
          }
-         if(!empty($rWhere)){
+         if (!empty($rWhere)) {
             $rWhere = " WHERE $rWhere";
          }
-         if (!empty($rLimit)){
+         if (!empty($rLimit)) {
             $rLimit = " LIMIT $rLimit";
          }
 
@@ -347,28 +351,29 @@ class Produtos
       }
    }
 
-   public function selectSubCategorias($rCampos="",$rWhere="",$rLimit="",$rLeft="",$rOrderBy="",$rGroupBy="") {
+   public function selectSubCategorias($rCampos = "", $rWhere = "", $rLimit = "", $rLeft = "", $rOrderBy = "", $rGroupBy = "")
+   {
       try {
 
-         if(empty($rCampos)){
-            $rCampos="*";
+         if (empty($rCampos)) {
+            $rCampos = "*";
          }
-         if(empty($rLeft)){
-            $rLeft="";
+         if (empty($rLeft)) {
+            $rLeft = "";
          }
-         if(!empty($rOrderBy)){
-            $rOrderBy=" ORDER BY $rOrderBy ";
+         if (!empty($rOrderBy)) {
+            $rOrderBy = " ORDER BY $rOrderBy ";
          }
-         if(!empty($rGroupBy)){
-            $rGroupBy=" GROUP BY $rGroupBy";
+         if (!empty($rGroupBy)) {
+            $rGroupBy = " GROUP BY $rGroupBy";
          }
-         if(!empty($rWhere)){
+         if (!empty($rWhere)) {
             $rWhere = " WHERE $rWhere";
          }
-         if (!empty($rLimit)){
+         if (!empty($rLimit)) {
             $rLimit = " LIMIT $rLimit";
          }
-         
+
 
          $rSql = "SELECT $rCampos FROM sub_categoria $rLeft $rWhere $rGroupBy $rOrderBy $rLimit";
          $stm = $this->pdo->prepare($rSql);
@@ -380,25 +385,26 @@ class Produtos
       }
    }
 
-   public function selectMarcas($rCampos="",$rWhere="",$rLimit="",$rLeft="",$rOrderBy="",$rGroupBy="") {
+   public function selectMarcas($rCampos = "", $rWhere = "", $rLimit = "", $rLeft = "", $rOrderBy = "", $rGroupBy = "")
+   {
       try {
 
-         if(empty($rCampos)){
-            $rCampos="*";
+         if (empty($rCampos)) {
+            $rCampos = "*";
          }
-         if(empty($rLeft)){
-            $rLeft="";
+         if (empty($rLeft)) {
+            $rLeft = "";
          }
-         if(!empty($rOrderBy)){
-            $rOrderBy=" ORDER BY $rOrderBy ";
+         if (!empty($rOrderBy)) {
+            $rOrderBy = " ORDER BY $rOrderBy ";
          }
-         if(!empty($rGroupBy)){
-            $rGroupBy=" GROUP BY $rGroupBy";
+         if (!empty($rGroupBy)) {
+            $rGroupBy = " GROUP BY $rGroupBy";
          }
-         if(!empty($rWhere)){
+         if (!empty($rWhere)) {
             $rWhere = " WHERE $rWhere";
          }
-         if (!empty($rLimit)){
+         if (!empty($rLimit)) {
             $rLimit = " LIMIT $rLimit";
          }
 
@@ -412,16 +418,17 @@ class Produtos
       }
    }
 
-   public function pegaCategoria($rID){
+   public function pegaCategoria($rID)
+   {
       try {
-         $rSql = "SELECT * FROM categoria WHERE id='".$rID."'";
+         $rSql = "SELECT * FROM categoria WHERE id='" . $rID . "'";
          $stm = $this->pdo->prepare($rSql);
          $stm->execute();
          $dados = $stm->fetch(PDO::FETCH_OBJ);
          return $dados;
-     } catch (PDOException $erro) {
+      } catch (PDOException $erro) {
          Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . '] - SQL:[' . $rSql . ']');
-     }
+      }
    }
 
    // public function selectUM($rWhere) {
@@ -435,51 +442,66 @@ class Produtos
    //       Logger('Usuario:[' . $_SESSION['login'] . '] - Arquivo:' . $erro->getFile() . ' Erro na linha:' . $erro->getLine() . ' - Mensagem:' . $erro->getMessage());
    //    }
    // }
-   public function montaSelect($rNome = 'categoria_id', $rSelecionado = null) {
+   public function montaSelect($rNome = 'categoria_id', $rSelecionado = null)
+   {
       try {
          $objCategorias = Categorias::getInstance(Conexao::getInstance());
-         $dados = $objCategorias ->select();
+         $dados = $objCategorias->select();
          $select = '';
          $select = '<select class="select2" name="' . $rNome . '" id="' . $rNome . '" data-placeholder="Escolha uma categoria..."  style="width: 100%;">'
-                 . '<option value="">&nbsp;</option>';
+            . '<option value="">&nbsp;</option>';
          foreach ($dados as $linhaDB) {
-            if (!empty($rSelecionado) && $rSelecionado === $linhaDB->id) {$sAdd = 'selected';} else {$sAdd = '';}
-            $select.='<option value="' . $linhaDB->id . '"' . $sAdd . '>' . $linhaDB->nome. '</option>';
+            if (!empty($rSelecionado) && $rSelecionado === $linhaDB->id) {
+               $sAdd = 'selected';
+            } else {
+               $sAdd = '';
+            }
+            $select .= '<option value="' . $linhaDB->id . '"' . $sAdd . '>' . $linhaDB->nome . '</option>';
          }
-         $select.= '</select>';
+         $select .= '</select>';
          return $select;
       } catch (PDOException $erro) {
          Logger('Usuario:[' . $_SESSION['login'] . '] - Arquivo:' . $erro->getFile() . ' Erro na linha:' . $erro->getLine() . ' - Mensagem:' . $erro->getMessage());
       }
    }
-   public function montaSelect2($rNome = 'categoria_id', $rSelecionado = null) {
+   public function montaSelect2($rNome = 'categoria_id', $rSelecionado = null)
+   {
       try {
          $objCategorias = Categorias::getInstance(Conexao::getInstance());
-         $dados = $objCategorias ->select(" ORDER BY nome");
+         $dados = $objCategorias->select(" ORDER BY nome");
          $select = '';
          $select = '<select class="select2" name="' . $rNome . '" id="' . $rNome . '" data-placeholder="Escolha uma categoria..." style="width: 100%;">'
-                 . '<option value="">&nbsp;</option>';
+            . '<option value="">&nbsp;</option>';
          foreach ($dados as $linhaDB) {
-            if (!empty($rSelecionado) && $rSelecionado === $linhaDB->id) {$sAdd = 'selected';} else {$sAdd = '';}
-            $select.='<option value="' . $linhaDB->id . '"' . $sAdd . '>' . $linhaDB->nome. '</option>';
+            if (!empty($rSelecionado) && $rSelecionado === $linhaDB->id) {
+               $sAdd = 'selected';
+            } else {
+               $sAdd = '';
+            }
+            $select .= '<option value="' . $linhaDB->id . '"' . $sAdd . '>' . $linhaDB->nome . '</option>';
          }
-         $select.= '</select>';
+         $select .= '</select>';
          return $select;
       } catch (PDOException $erro) {
          Logger('Usuario:[' . $_SESSION['login'] . '] - Arquivo:' . $erro->getFile() . ' Erro na linha:' . $erro->getLine() . ' - Mensagem:' . $erro->getMessage());
       }
    }
-      public function contaCategoria($rCondicao) {
-       try {
-            $rSql = "SELECT count(id) AS total FROM base_categoria " . $rCondicao;
-            $stm = $this->pdo->prepare($rSql);
-            $stm->execute();
-            $dados = $stm->fetch(PDO::FETCH_OBJ);
-            return $dados;
-        } catch (PDOException $erro) {
-            Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:['.$erro->getFile().'] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage().']');  
+
+   public function contaProduto($rCondicao)
+   {
+      try {
+         if (!empty($rCondicao)){
+            $rSql = "SELECT COUNT(produto.id) AS total FROM produto WHERE  " . $rCondicao;
+         }else{
+            $rSql = "SELECT count(id) AS total FROM produto ";
+         }
+         
+         $stm = $this->pdo->prepare($rSql);
+         $stm->execute();
+         $dados = $stm->fetch(PDO::FETCH_OBJ);
+         return $dados->total;
+      } catch (PDOException $erro) {
+         Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
       }
    }
-
-
 }
