@@ -2,9 +2,9 @@
 
 class Produtos
 {
-   // Atributo para conexão com o banco de dados   
+   // Atributo para conexão com o banco de dados
    private $pdo = null;
-   // Atributo estático para instância da própria classe    
+   // Atributo estático para instância da própria classe
    private static $produtos = null;
 
    private function __construct($conexao)
@@ -231,7 +231,7 @@ class Produtos
    //    try {
    //       if (empty($rCampos)){
    //          $rCampos = "*";
-   //       }         
+   //       }
 
    //       if (empty($rLeft)){
    //          $rLeft = "";
@@ -443,17 +443,17 @@ class Produtos
       }
    }
 
-   // public function selectUM($rWhere) {
-   //    try {
-   //       $rSql = "SELECT * FROM base_categoria " . $rWhere;
-   //       $stm = $this->pdo->prepare($rSql);
-   //       $stm->execute();
-   //       $dados = $stm->fetch(PDO::FETCH_OBJ);
-   //       return $dados;
-   //    } catch (PDOException $erro) {
-   //       Logger('Usuario:[' . $_SESSION['login'] . '] - Arquivo:' . $erro->getFile() . ' Erro na linha:' . $erro->getLine() . ' - Mensagem:' . $erro->getMessage());
-   //    }
-   // }
+    public function pegaProduto($rID) {
+       try {
+          $rSql = "SELECT * FROM produto WHERE id=$rID ";
+          $stm = $this->pdo->prepare($rSql);
+          $stm->execute();
+          $dados = $stm->fetch(PDO::FETCH_OBJ);
+          return $dados;
+       } catch (PDOException $erro) {
+          Logger('Usuario:[' . $_SESSION['login'] . '] - Arquivo:' . $erro->getFile() . ' Erro na linha:' . $erro->getLine() . ' - Mensagem:' . $erro->getMessage());
+       }
+    }
    public function montaSelect($rNome = 'categoria_id', $rSelecionado = null)
    {
       try {

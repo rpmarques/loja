@@ -12,6 +12,15 @@ $_SESSION['mensagem']="";
 require_once './verificaLogin.php';
 require_once './modal.php';
 
+if (isset($_GET['categoria_id'])) {
+  $categoria = $objProdutos->pegaCategoria($_GET['categoria_id']);
+  $subCategoriaNome = '';
+  if (isset($_GET['sub_categoria_id'])) {
+    $subCategoria = $objProdutos->pegaSubCategoria($_GET['sub_categoria_id']);
+    $subCategoriaNome = ' / ' . $subCategoria->nome;
+  }
+}
+
 //LOGIN
 
 

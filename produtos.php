@@ -1,16 +1,6 @@
 <?php
 require_once './header.php';
 
-if (isset($_GET['categoria_id'])) {
-  $categoria = $objProdutos->pegaCategoria($_GET['categoria_id']);
-  $subCategoriaNome = '';
-  if (isset($_GET['sub_categoria_id'])) {
-    $subCategoria = $objProdutos->pegaSubCategoria($_GET['sub_categoria_id']);
-    $subCategoriaNome = ' / ' . $subCategoria->nome;
-  }
-
-}
-
 ?>
 <div id="all">
   <div id="content">
@@ -26,7 +16,7 @@ if (isset($_GET['categoria_id'])) {
           </nav>
         </div>
         <?php require_once './menu-categoria.php';?> 
-        </div>
+
         <div class="col-lg-9">
           <div class="box">
             <?php
@@ -82,7 +72,7 @@ if (isset($_GET['categoria_id'])) {
                     <p class="price">
                       <del><?= $itemPro->preco_antigo > 0 ? 'R$' . $itemPro->preco_antigo : ''; ?></del> R$<?= $itemPro->preco_ven; ?>
                     </p>
-                    <p class="buttons"><a href="produto.php" class="btn btn-outline-secondary">Visualizar</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Adicionar</a></p>
+                    <p class="buttons"><a href="produto.php?produto_id=<?=$itemPro->id?>" class="btn btn-outline-secondary">Visualizar</a><a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Adicionar</a></p>
                   </div><!-- /.text-->
                   <!-- /.text-->
                   <?php
