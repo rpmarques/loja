@@ -100,7 +100,6 @@ class Produtos
             $rLimit = " LIMIT $rLimit";
          }
 
-
          $rSql = " SELECT $rCampos FROM produto $rLeft $rWhere $rGroupBy $rOrderBy $rLimit ";
          $stm = $this->pdo->prepare($rSql);
          $stm->execute();
@@ -431,6 +430,19 @@ class Produtos
       }
    }
 
+   public function pegaSubCategoria($rID)
+   {
+      try {
+         $rSql = "SELECT * FROM sub_categoria WHERE id='" . $rID . "'";
+         $stm = $this->pdo->prepare($rSql);
+         $stm->execute();
+         $dados = $stm->fetch(PDO::FETCH_OBJ);
+         return $dados;
+      } catch (PDOException $erro) {
+         Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . '] - SQL:[' . $rSql . ']');
+      }
+   }
+
    // public function selectUM($rWhere) {
    //    try {
    //       $rSql = "SELECT * FROM base_categoria " . $rWhere;
@@ -490,12 +502,12 @@ class Produtos
    public function contaProduto($rCondicao)
    {
       try {
-         if (!empty($rCondicao)){
+         if (!empty($rCondicao)) {
             $rSql = "SELECT COUNT(produto.id) AS total FROM produto WHERE  " . $rCondicao;
-         }else{
+         } else {
             $rSql = "SELECT count(id) AS total FROM produto ";
          }
-         
+
          $stm = $this->pdo->prepare($rSql);
          $stm->execute();
          $dados = $stm->fetch(PDO::FETCH_OBJ);

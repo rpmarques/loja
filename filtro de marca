@@ -1,0 +1,68 @@
+         <!-- MARCAS -->
+          <!-- TRAZER SOMENTE MARCAS QUE TEM NOS PRODUTOS MOSTRADOS -->
+          <div class="card sidebar-menu mb-4">
+            <div class="card-header">
+              <h3 class="h4 card-title">Marcas </h3>
+              <!-- <h3 class="h4 card-title">Marcas <a href="#" class="btn btn-sm btn-danger pull-right"><i class="fa fa-times-circle"></i> Limpar</a></h3> -->
+            </div>
+            <div class="card-body">
+            <?php
+            $wWhere = "id IN (SELECT marca_id FROM produto) ";
+            if (isset($categoria)){
+              $wWhere = "id IN (SELECT marca_id FROM produto WHERE categoria_id=$categoria->id) ";
+              if (isset($_GET['sub_categoria_id'])){
+                $subCategoria = $objProdutos->pegaSubCategoria($_GET['sub_categoria_id']);
+                $wWhere = "id IN (SELECT marca_id FROM produto WHERE categoria_id=$categoria->id AND sub_categoria_id=$subCategoria->id ) ";
+              }
+            }
+               $marcas = $objProdutos->selectMarcas($rCampos = "id,nome", $wWhere); ?>
+              <!-- <form method="GET">
+                <div class="form-group"> -->
+                  <?php
+                  foreach ($marcas as $itemMarca) { ?>
+                    <!-- <div class="checkbox"> <label> <input type="checkbox" name="marca_id" value="<?= $itemMarca->id; ?>"> <?= $itemMarca->nome; ?> </label> </div>
+                  <?php } ?>
+                </div>
+                <button class="btn btn-default btn-sm btn-primary"><i class="fa fa-pencil"></i> Aplicar</button>
+              </form>
+            </div>
+          </div> -->
+
+          <!-- <div class="card sidebar-menu mb-4">
+                <div class="card-header">
+                  <h3 class="h4 card-title">Opções <a href="#" class="btn btn-sm btn-danger pull-right"><i class="fa fa-times-circle"></i> Limpar</a></h3>
+                </div>
+                <div class="card-body">
+                  <form>
+                    <div class="form-group">
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox"><span class="colour white"></span> Opção 1 (14)
+                        </label>
+                      </div>
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox"><span class="colour blue"></span> Opção 2 (10)
+                        </label>
+                      </div>
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox"><span class="colour green"></span>  Opção 3 (20)
+                        </label>
+                      </div>
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox"><span class="colour yellow"></span>  Opção 4 (13)
+                        </label>
+                      </div>
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox"><span class="colour red"></span>  Opção 5 (10)
+                        </label>
+                      </div>
+                    </div>
+                    <button class="btn btn-default btn-sm btn-primary"><i class="fa fa-pencil"></i> Aplicar</button>
+                  </form>
+                </div>
+              </div> -->
+          <!-- *** MENUS AND FILTERS END ***-->

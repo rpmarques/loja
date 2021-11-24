@@ -1,5 +1,16 @@
 <?php
 require_once './header.php';
+
+if (isset($_GET['categoria_id'])) {
+  $categoria = $objProdutos->pegaCategoria($_GET['categoria_id']);
+  $subCategoriaNome = '';
+  if (isset($_GET['sub_categoria_id'])) {
+    $subCategoria = $objProdutos->pegaSubCategoria($_GET['sub_categoria_id']);
+    $subCategoriaNome = ' / ' . $subCategoria->nome;
+  }
+
+}
+
 ?>
 <div id="all">
   <div id="content">
@@ -14,107 +25,14 @@ require_once './header.php';
             </ol>
           </nav>
         </div>
-        <div class="col-lg-3">
-          <!--
-              *** MENUS AND FILTERS ***
-              -->
-          <div class="card sidebar-menu mb-4">
-            <div class="card-header">
-              <h3 class="h4 card-title">Categorias</h3>
-            </div>
-            <div class="card-body">
-              <ul class="nav nav-pills flex-column category-menu">
-                <?php
-                $categorias = $objProdutos->selectCategorias("id,nome", "", "4");
-                if (!empty($categorias)) {
-                  foreach ($categorias as $itemCat) { 
-                    $wWhere=" categoria_id=$itemCat->id"; ?>                  
-                    <li><a href="./produtos.php?categoria_id=<?= $itemCat->id; ?>" class="nav-link active"><?= $itemCat->nome; ?> <span class="badge badge-secondary"><?=$objProdutos->contaProduto($wWhere);?></span></a>
-                      <ul class="list-unstyled">
-                        <?php
-                        $subCategoria = $objProdutos->selectSubCategorias("id,nome", "categoria_id=$itemCat->id");
-                        if (!empty($subCategoria)) {
-                          foreach ($subCategoria as $itemSub) { 
-                            $wWhere1 = " AND sub_categoria_id=$itemSub->id";                            
-                            $wWhereFinal=$wWhere.$wWhere1;
-                            ?>
-                            <li><a href="./produtos.php?categoria_id=<?= $itemCat->id; ?>&sub_categoria_id=<?= $itemSub->id; ?>" class="nav-link"><?= $itemSub->nome; ?><span class="badge badge-secondary"><?=$objProdutos->contaProduto($wWhereFinal);?></span></a></li>
-                        <?php 
-                          $wWhereFinal=''; }
-                        }
-                        ?>
-                      </ul>
-                    </li>
-                <?php }
-                }
-                ?>
-              </ul>
-            </div>
-          </div>
-          <!-- MARCAS -->
-           <div class="card sidebar-menu mb-4">
-                <div class="card-header">
-                  <h3 class="h4 card-title">Marcas <a href="#" class="btn btn-sm btn-danger pull-right"><i class="fa fa-times-circle"></i> Limpar</a></h3>
-                </div>
-                <div class="card-body">
-                  <?php $marcas = $objProdutos->selectMarcas($rCampos = "id,nome"); ?>
-                  <form>
-                    <div class="form-group">
-                      <?php
-                      foreach ($marcas as $itemMarca) { ?>
-                        <div class="checkbox"> <label> <input type="checkbox" name="marca" value="<?= $itemMarca->id; ?>"> <?= $itemMarca->nome; ?> </label> </div>
-                      <?php }
-                      ?>
-                    </div>
-                    <button class="btn btn-default btn-sm btn-primary"><i class="fa fa-pencil"></i> Aplicar</button>
-                  </form>
-                </div>
-              </div> -->
-          <!-- <div class="card sidebar-menu mb-4">
-                <div class="card-header">
-                  <h3 class="h4 card-title">Opções <a href="#" class="btn btn-sm btn-danger pull-right"><i class="fa fa-times-circle"></i> Limpar</a></h3>
-                </div>
-                <div class="card-body">
-                  <form>
-                    <div class="form-group">
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox"><span class="colour white"></span> Opção 1 (14)
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox"><span class="colour blue"></span> Opção 2 (10)
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox"><span class="colour green"></span>  Opção 3 (20)
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox"><span class="colour yellow"></span>  Opção 4 (13)
-                        </label>
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox"><span class="colour red"></span>  Opção 5 (10)
-                        </label>
-                      </div>
-                    </div>
-                    <button class="btn btn-default btn-sm btn-primary"><i class="fa fa-pencil"></i> Aplicar</button>
-                  </form>
-                </div>
-              </div> -->
-          <!-- *** MENUS AND FILTERS END ***-->
+        <?php require_once './menu-categoria.php';?> 
         </div>
         <div class="col-lg-9">
           <div class="box">
             <?php
-            if (isset($_GET['categoria_id'])) {
-              $categoria = $objProdutos->pegaCategoria($_GET['categoria_id']); ?>
-              <h1> <?= $categoria->nome; ?></h1>
+            if (isset($categoria)) {
+            ?>
+              <h1> <?= $categoria->nome . $subCategoriaNome; ?></h1>
               <p>Em nosso departamento de <?= $categoria->nome; ?>, oferecemos uma ampla seleção dos melhores produtos que encontramos e cuidadosamente selecionados.</p>
             <?php } else { ?>
               <p>Em nossos departamentos oferecemos uma ampla seleção dos melhores produtos que encontramos e cuidadosamente selecionados.</p>
@@ -140,12 +58,16 @@ require_once './header.php';
               </div> -->
           <div class="row products">
             <?php
-            if (isset($categoria)){
-              $wWhere="categoria_id=$categoria->id";
-              $produtos = $objProdutos->selectProduto($rCampos = "*",$wWhere);
-            }else{
+            if (isset($categoria)) {
+              $wWhere = "categoria_id=$categoria->id";
+              if (isset($_GET['sub_categoria_id'])) {
+                $subCategoria = $objProdutos->pegaSubCategoria($_GET['sub_categoria_id']);
+                $wWhere = $wWhere . " AND sub_categoria_id=$subCategoria->id";
+              }
+              $produtos = $objProdutos->selectProduto($rCampos = "*", $wWhere);
+            } else {
               $produtos = $objProdutos->selectProduto($rCampos = "*");
-            }            
+            }
             foreach ($produtos as $itemPro) { ?>
               <div class="col-lg-4 col-md-6">
                 <div class="product">
@@ -158,7 +80,7 @@ require_once './header.php';
                   <div class="text">
                     <h3><a href="produto.php"><?= $itemPro->nome; ?></a></h3>
                     <p class="price">
-                      <del><?=$itemPro->preco_antigo>0? 'R$' . $itemPro->preco_antigo:''; ?></del> R$<?= $itemPro->preco_ven; ?>
+                      <del><?= $itemPro->preco_antigo > 0 ? 'R$' . $itemPro->preco_antigo : ''; ?></del> R$<?= $itemPro->preco_ven; ?>
                     </p>
                     <p class="buttons"><a href="produto.php" class="btn btn-outline-secondary">Visualizar</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Adicionar</a></p>
                   </div><!-- /.text-->
