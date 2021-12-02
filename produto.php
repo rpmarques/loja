@@ -77,7 +77,8 @@ if (isset($_GET['produto_id'])) {
           <div id="details" class="box">
             <p></p>
             <h4>Detalhes do produto</h4>
-            <p>Aqui vai HTML puro...sem frescuta sem nada, com as tags normais do HTML</p>
+            <?=$produto->descricao;?>
+            <!-- <p>Aqui vai HTML puro...sem frescuta sem nada, com as tags normais do HTML</p>
             <h4>Caracteristiscas </h4>
             <ul>
               <li>Caracteristisca 1</li>
@@ -87,7 +88,7 @@ if (isset($_GET['produto_id'])) {
             </ul>
             <blockquote>
               <p><em>Mais alguma coisa que pode ser importante pra saber deste produto.</em></p>
-            </blockquote>
+            </blockquote> -->
             <hr>
             <div class="social">
               <h4>Compartilhe com seus amigos</h4>
