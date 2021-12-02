@@ -443,17 +443,18 @@ class Produtos
       }
    }
 
-    public function pegaProduto($rID) {
-       try {
-          $rSql = "SELECT * FROM produto WHERE id=$rID ";
-          $stm = $this->pdo->prepare($rSql);
-          $stm->execute();
-          $dados = $stm->fetch(PDO::FETCH_OBJ);
-          return $dados;
-       } catch (PDOException $erro) {
-          Logger('Usuario:[' . $_SESSION['login'] . '] - Arquivo:' . $erro->getFile() . ' Erro na linha:' . $erro->getLine() . ' - Mensagem:' . $erro->getMessage());
-       }
-    }
+   public function pegaProduto($rID)
+   {
+      try {
+         $rSql = "SELECT * FROM produto WHERE id=$rID ";
+         $stm = $this->pdo->prepare($rSql);
+         $stm->execute();
+         $dados = $stm->fetch(PDO::FETCH_OBJ);
+         return $dados;
+      } catch (PDOException $erro) {
+         Logger('Usuario:[' . $_SESSION['login'] . '] - Arquivo:' . $erro->getFile() . ' Erro na linha:' . $erro->getLine() . ' - Mensagem:' . $erro->getMessage());
+      }
+   }
    public function montaSelect($rNome = 'categoria_id', $rSelecionado = null)
    {
       try {
@@ -512,6 +513,37 @@ class Produtos
          $stm->execute();
          $dados = $stm->fetch(PDO::FETCH_OBJ);
          return $dados->total;
+      } catch (PDOException $erro) {
+         Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
+      }
+   }
+   public function criaClick($rProdutoID)
+   {
+      try {
+         $rSql = "INSERT INTO produto_click (produto_id) VALUES (:produto_id);";
+         $stm = $this->pdo->prepare($rSql);
+         $stm->bindValue(':produto_id', $rProdutoID);
+         $stm->execute();
+         if ($stm) {
+            Logger('Usuario:[' . $_SESSION['login'] . '] - GEROU REGISTRO INICIAL DO CLICK');
+         }
+         return $stm;
+      } catch (PDOException $erro) {
+         Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
+      }
+   }
+
+   public function somaClick($rProdutoID)
+   {
+      try {
+         $rSql = "UPDATE produto_click  SET click=click+1,datac=now() WHERE produto_id=:produto_id";
+         $stm = $this->pdo->prepare($rSql);
+         $stm->bindValue(':produto_id', $rProdutoID);
+         $stm->execute();
+         if ($stm) {
+            Logger('Usuario:[' . $_SESSION['login'] . '] - SOMOU CLICK produto:[' . $rProdutoID . ']');
+         }
+         return $stm;
       } catch (PDOException $erro) {
          Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
       }

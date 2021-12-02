@@ -2001,7 +2001,8 @@ body {
 }
 
 a {
-  color: #83a6d2;
+  /* color: #83a6d2; 02/02/2021 - TROCAR COR DA FONTE DO LINK PRA $555*/
+  color: #555;
   text-decoration: none;
 }
 

@@ -1,4 +1,5 @@
 <?php
+ob_start();
 require_once './classes/funcoes.class.php';
 require_once './classes/logger.class.php';
 require_once './classes/conexao.class.php';
@@ -20,10 +21,6 @@ if (isset($_GET['categoria_id'])) {
     $subCategoriaNome = ' / ' . $subCategoria->nome;
   }
 }
-
-//LOGIN
-
-
 ?>
 <!DOCTYPE html>
 <html>

@@ -2,6 +2,13 @@
 require_once('./header.php');
 if (isset($_GET['produto_id'])) {
   $produto = $objProdutos->pegaProduto($_GET['produto_id']);
+  if (!empty($produto)) {
+    $categoria = $objProdutos->pegaCategoria($produto->categoria_id);
+    $subCategoria = $objProdutos->pegaSubCategoria($produto->sub_categoria_id);
+    $objProdutos->somaClick($produto->id);
+  }else{
+    vaiPraPagina('produtos');
+  }
 }
 
 ?>
@@ -14,8 +21,8 @@ if (isset($_GET['produto_id'])) {
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./index.php">Home</a></li>
-              <li class="breadcrumb-item"><a href="./produtos.php">Categoria</a></li>
-              <li class="breadcrumb-item"><a href="./produtos.php">Sub Cat</a></li>
+              <li class="breadcrumb-item"><a href="./produtos.php"><?= $categoria->nome; ?></a></li>
+              <li class="breadcrumb-item"><a href="./produtos.php"><?= $subCategoria->nome; ?></a></li>
               <li aria-current="page" class="breadcrumb-item active"><?= $produto->nome; ?></li>
             </ol>
           </nav>
@@ -57,7 +64,7 @@ if (isset($_GET['produto_id'])) {
               <div class="box">
                 <h1 class="text-center"><?= $produto->nome; ?></h1>
                 <p class="goToDescription"><a href="#details" class="scroll-to">Clique aqui para mais detalhes</a></p>
-                <p class="price"><?= $produto->preco_ven; ?></p>
+                <p class="price"><?= formataMoeda($produto->preco_ven); ?></p>
                 <p class="text-center buttons"><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Adicionar</a><a href="basket.html" class="btn btn-outline-primary"><i class="fa fa-heart"></i> Lista de Desejo</a></p>
               </div>
               <div data-slider-id="1" class="owl-thumbs">
@@ -85,115 +92,81 @@ if (isset($_GET['produto_id'])) {
             <div class="social">
               <h4>Compartilhe com seus amigos</h4>
               <p><a href="#" class="external facebook"><i class="fa fa-facebook"></i></a><a href="#" class="external gplus"><i class="fa fa-google-plus"></i></a><a href="#" class="external twitter"><i class="fa fa-twitter"></i></a><a href="#" class="email"><i class="fa fa-envelope"></i></a></p>
-
-              <a href="#">
+              <!-- <a href="#">
                 <h4>Todos os anúncios deste fornecedor</h4>
-              </a>
+              </a> -->
             </div>
           </div>
+          <!-- PRODUTOS DA MESMA CATEGORIA -->
+          <?php
+          $wCampos = "id,nome,preco_ven";
+          $wWhere = " categoria_id=$categoria->id ";
+          $produtos = $objProdutos->selectProduto($wCampos, $wWhere, "3");
+          ?>
           <div class="row same-height-row">
             <div class="col-md-3 col-sm-6">
               <div class="box same-height">
-                <h3>Mais produtos deste fornecedor</h3>
+                <h3>Mais produtos da categoria:<br> <b><?= $categoria->nome; ?></b> </h3>
               </div>
             </div>
-            <div class="col-md-3 col-sm-6">
-              <div class="product same-height">
-                <div class="flip-container">
-                  <div class="flipper">
-                    <div class="front"><a href="produto.php"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
-                    <div class="back"><a href="produto.php"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
+            <?php
+            foreach ($produtos as $pro) { ?>
+              <div class="col-md-3 col-sm-6">
+                <div class="product same-height">
+                  <div class="flip-container">
+                    <div class="flipper">
+                      <div class="front"><a href="produto.php?produto_id=<?= $pro->id ?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
+                      <div class="back"><a href="produto.php?produto_id=<?= $pro->id ?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
+                    </div>
+                  </div><a href="produto.php?produto_id=<?= $pro->id ?>" class="invisible"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a>
+                  <div class="text">
+                    <a href="produto.php?produto_id=<?= $pro->id ?>">
+                      <h3><?= $pro->nome; ?></h3>
+                    </a>
+                    <p class="price"><?= formataMoeda($pro->preco_ven); ?></p>
                   </div>
-                </div><a href="produto.php" class="invisible"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a>
-                <div class="text">
-                  <h3>Pro 1</h3>
-                  <p class="price">R$143</p>
                 </div>
+                <!-- /.product-->
               </div>
-              <!-- /.product-->
-            </div>
-            <div class="col-md-3 col-sm-6">
-              <div class="product same-height">
-                <div class="flip-container">
-                  <div class="flipper">
-                    <div class="front"><a href="produto.php"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
-                    <div class="back"><a href="produto.php"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
-                  </div>
-                </div><a href="produto.php" class="invisible"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a>
-                <div class="text">
-                  <h3>Pro 2</h3>
-                  <p class="price">R$143</p>
-                </div>
-              </div>
-              <!-- /.product-->
-            </div>
-            <div class="col-md-3 col-sm-6">
-              <div class="product same-height">
-                <div class="flip-container">
-                  <div class="flipper">
-                    <div class="front"><a href="produto.php"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
-                    <div class="back"><a href="produto.php"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
-                  </div>
-                </div><a href="produto.php" class="invisible"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a>
-                <div class="text">
-                  <h3>Pro 3</h3>
-                  <p class="price">R$143</p>
-                </div>
-              </div>
-              <!-- /.product-->
-            </div>
+            <?php
+            }
+            ?>
           </div>
+          <!-- PRODUTOS NOVO -->
+          <?php
+          $wCampos = "id,nome,preco_ven";
+          $wOrder = "id DESC";
+          $produtos = $objProdutos->selectProduto($wCampos, "", "3", "", $wOrder);
+          ?>
           <div class="row same-height-row">
             <div class="col-md-3 col-sm-6">
               <div class="box same-height">
-                <h3>Produtos vistos recentemente</h3>
+                <h3>Produtos Novos</h3>
               </div>
             </div>
-            <div class="col-md-3 col-sm-6">
-              <div class="product same-height">
-                <div class="flip-container">
-                  <div class="flipper">
-                    <div class="front"><a href="produto.php"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
-                    <div class="back"><a href="produto.php"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
+            <?php
+            foreach ($produtos as $pro) { ?>
+              <div class="col-md-3 col-sm-6">
+                <div class="product same-height">
+                  <div class="flip-container">
+                    <div class="flipper">
+                      <div class="front"><a href="produto.php?produto_id=<?= $pro->id ?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
+                      <div class="back"><a href="produto.php?produto_id=<?= $pro->id ?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
+                    </div>
+                  </div><a href="produto.php?produto_id=<?= $pro->id ?>" class="invisible"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a>
+                  <div class="text">
+                    <a href="produto.php?produto_id=<?= $pro->id ?>">
+                      <h3><?= $pro->nome; ?></h3>
+                    </a>
+                    <p class="price"><?= formataMoeda($pro->preco_ven); ?></p>
                   </div>
-                </div><a href="produto.php" class="invisible"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a>
-                <div class="text">
-                  <h3>Pro 1</h3>
-                  <p class="price">R$143</p>
                 </div>
+                <!-- /.product-->
               </div>
-              <!-- /.product-->
-            </div>
-            <div class="col-md-3 col-sm-6">
-              <div class="product same-height">
-                <div class="flip-container">
-                  <div class="flipper">
-                    <div class="front"><a href="produto.php"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
-                    <div class="back"><a href="produto.php"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
-                  </div>
-                </div><a href="produto.php" class="invisible"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a>
-                <div class="text">
-                  <h3>Pro 2</h3>
-                  <p class="price">R$143</p>
-                </div>
-              </div>
-              <!-- /.product-->
-            </div>
-            <div class="col-md-3 col-sm-6">
-              <div class="product same-height">
-                <div class="flip-container">
-                  <div class="flipper">
-                    <div class="front"><a href="produto.php"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
-                    <div class="back"><a href="produto.php"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
-                  </div>
-                </div><a href="produto.php" class="invisible"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a>
-                <div class="text">
-                  <h3>Pro 3</h3>
-                  <p class="price">R$143</p>
-                </div>
-              </div>
-              <!-- /.product-->
-            </div>
+            <?php
+            }
+            ?>
+
           </div>
         </div>
         <!-- /.col-md-9-->
