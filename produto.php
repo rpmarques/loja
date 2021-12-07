@@ -5,12 +5,12 @@ if (isset($_GET['produto_id'])) {
   if (!empty($produto)) {
     $categoria = $objProdutos->pegaCategoria($produto->categoria_id);
     $subCategoria = $objProdutos->pegaSubCategoria($produto->sub_categoria_id);
+    $fotos = $objProdutos->pegaFotos($produto->id);
     $objProdutos->somaClick($produto->id);
-  }else{
+  } else {
     vaiPraPagina('produtos');
   }
 }
-
 ?>
 <div id="all">
   <div id="content">
@@ -32,9 +32,29 @@ if (isset($_GET['produto_id'])) {
           <div id="productMain" class="row">
             <div class="col-md-6">
               <div data-slider-id="1" class="owl-carousel shop-detail-carousel">
+                <?php
+                if (isset($fotos->foto_1)) { ?>
+                  <div class="item"> <img src="./img/pro/<?= $fotos->foto_1 ?>" alt="" class="img-fluid"></div>
+                <?php }
+                if (isset($fotos->foto_2)) { ?>
+                  <div class="item"> <img src="./img/pro/<?= $fotos->foto_2 ?>" alt="" class="img-fluid"></div>
+                <?php }
+                if (isset($fotos->foto_3)) { ?>
+                  <div class="item"> <img src="./img/pro/<?= $fotos->foto_3 ?>" alt="" class="img-fluid"></div>
+                <?php }
+                if (isset($fotos->foto_4)) { ?>
+                  <div class="item"> <img src="./img/pro/<?= $fotos->foto_4 ?>" alt="" class="img-fluid"></div>
+                <?php }
+                if (isset($fotos->foto_5)) { ?>
+                  <div class="item"> <img src="./img/pro/<?= $fotos->foto_5 ?>" alt="" class="img-fluid"></div>
+                <?php }
+                if (isset($fotos->foto_6)) { ?>
+                  <div class="item"> <img src="./img/pro/<?= $fotos->foto_6 ?>" alt="" class="img-fluid"></div>
+                <?php }
+                ?>
+                <!-- <div class="item"> <img src="https://via.placeholder.com/450x678" alt="" class="img-fluid"></div>
                 <div class="item"> <img src="https://via.placeholder.com/450x678" alt="" class="img-fluid"></div>
-                <div class="item"> <img src="https://via.placeholder.com/450x678" alt="" class="img-fluid"></div>
-                <div class="item"> <img src="https://via.placeholder.com/450x678" alt="" class="img-fluid"></div>
+                <div class="item"> <img src="https://via.placeholder.com/450x678" alt="" class="img-fluid"></div> -->
               </div>
               <?php
               if ($produto->mais_vendido) { ?>
@@ -68,16 +88,36 @@ if (isset($_GET['produto_id'])) {
                 <p class="text-center buttons"><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Adicionar</a><a href="basket.html" class="btn btn-outline-primary"><i class="fa fa-heart"></i> Lista de Desejo</a></p>
               </div>
               <div data-slider-id="1" class="owl-thumbs">
+                <?php
+                if (isset($fotos->foto_1)) { ?>
+                  <button class="owl-thumb-item"><img src="./img/pro/<?= $fotos->foto_1 ?>" alt="" class="img-fluid"></button>
+                <?php }
+                if (isset($fotos->foto_2)) { ?>
+                  <button class="owl-thumb-item"><img src="./img/pro/<?= $fotos->foto_2 ?>" alt="" class="img-fluid"></button>
+                <?php }
+                if (isset($fotos->foto_3)) { ?>
+                  <button class="owl-thumb-item"><img src="./img/pro/<?= $fotos->foto_3 ?>" alt="" class="img-fluid"></button>
+                <?php }
+                if (isset($fotos->foto_4)) { ?>
+                  <button class="owl-thumb-item"><img src="./img/pro/<?= $fotos->foto_4 ?>" alt="" class="img-fluid"></button>
+                <?php }
+                if (isset($fotos->foto_5)) { ?>
+                  <button class="owl-thumb-item"><img src="./img/pro/<?= $fotos->foto_5 ?>" alt="" class="img-fluid"></button>
+                <?php }
+                if (isset($fotos->foto_6)) { ?>
+                  <button class="owl-thumb-item"><img src="./img/pro/<?= $fotos->foto_6 ?>" alt="" class="img-fluid"></button>
+                <?php }
+                ?>
+                <!-- <button class="owl-thumb-item"><img src="https://via.placeholder.com/500x500" alt="" class="img-fluid"></button>
                 <button class="owl-thumb-item"><img src="https://via.placeholder.com/500x500" alt="" class="img-fluid"></button>
-                <button class="owl-thumb-item"><img src="https://via.placeholder.com/500x500" alt="" class="img-fluid"></button>
-                <button class="owl-thumb-item"><img src="https://via.placeholder.com/500x500" alt="" class="img-fluid"></button>
+                <button class="owl-thumb-item"><img src="https://via.placeholder.com/500x500" alt="" class="img-fluid"></button> -->
               </div>
             </div>
           </div>
           <div id="details" class="box">
             <p></p>
             <h4>Detalhes do produto</h4>
-            <?=$produto->descricao;?>
+            <?= $produto->descricao; ?>
             <!-- <p>Aqui vai HTML puro...sem frescuta sem nada, com as tags normais do HTML</p>
             <h4>Caracteristiscas </h4>
             <ul>
