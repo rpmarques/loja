@@ -501,10 +501,15 @@ class Produtos
       }
    }
 
-   public function pegaFotos($rID)
+   public function pegaFotos($rID,$PrimeiraFoto="")
    {
       try {
-         $rSql = "SELECT * FROM produto_foto WHERE id=$rID ";
+         if ($PrimeiraFoto){
+            $rSql = "SELECT foto_1 FROM produto_foto WHERE produto_id=$rID ";   
+         }else{
+            $rSql = "SELECT * FROM produto_foto WHERE produto_id=$rID ";
+         }
+         
          $stm = $this->pdo->prepare($rSql);
          $stm->execute();
          $dados = $stm->fetch(PDO::FETCH_OBJ);

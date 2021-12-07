@@ -15,7 +15,7 @@ require_once './header.php';
             </ol>
           </nav>
         </div>
-        <?php require_once './menu-categoria.php';?> 
+        <?php require_once './menu-categoria.php'; ?>
 
         <div class="col-lg-9">
           <div class="box">
@@ -63,16 +63,23 @@ require_once './header.php';
                 <div class="product">
                   <div class="flip-container">
                     <div class="flipper">
-                      <div class="front"><a href="produto.php?produto_id=<?=$itemPro->id?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
-                      <div class="back"><a href="produto.php?produto_id=<?=$itemPro->id?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
+                      <?php
+                      $foto = $objProdutos->pegaFotos($itemPro->id, true);
+                      if (isset($foto->foto_1)) { ?>
+                        <div class="front"><a href="produto.php?produto_id=<?= $itemPro->id ?>"><img src="./img/pro/<?= $foto->foto_1 ?>" alt="" class="img-fluid"></a></div>
+                        <div class="back"><a href="produto.php?produto_id=<?= $itemPro->id ?>"><img src="./img/pro/<?= $foto->foto_1 ?>" alt="" class="img-fluid"></a></div>
+                      <?php } else { ?>
+                        <div class="front"><a href="produto.php?produto_id=<?= $itemPro->id ?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
+                        <div class="back"><a href="produto.php?produto_id=<?= $itemPro->id ?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
+                      <?php }  ?>
                     </div>
-                  </div><a href="produto.php?produto_id=<?=$itemPro->id?>" class="invisible"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a>
+                  </div><a href="produto.php?produto_id=<?= $itemPro->id ?>" class="invisible"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a>
                   <div class="text">
-                    <h3><a href="produto.php?produto_id=<?=$itemPro->id?>"><?= $itemPro->nome; ?></a></h3>
+                    <h3><a href="produto.php?produto_id=<?= $itemPro->id ?>"><?= $itemPro->nome; ?></a></h3>
                     <p class="price">
                       <del><?= $itemPro->preco_antigo > 0 ? 'R$' . formataMoeda($itemPro->preco_antigo) : ''; ?></del> R$<?= formataMoeda($itemPro->preco_ven); ?>
                     </p>
-                    <p class="buttons"><a href="produto.php?produto_id=<?=$itemPro->id?>" class="btn btn-outline-secondary">Visualizar</a><a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Adicionar</a></p>
+                    <p class="buttons"><a href="produto.php?produto_id=<?= $itemPro->id ?>" class="btn btn-outline-secondary">Visualizar</a><a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Adicionar</a></p>
                   </div><!-- /.text-->
                   <!-- /.text-->
                   <?php

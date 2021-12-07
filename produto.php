@@ -85,7 +85,10 @@ if (isset($_GET['produto_id'])) {
                 <h1 class="text-center"><?= $produto->nome; ?></h1>
                 <p class="goToDescription"><a href="#details" class="scroll-to">Clique aqui para mais detalhes</a></p>
                 <p class="price"><?= formataMoeda($produto->preco_ven); ?></p>
-                <p class="text-center buttons"><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Adicionar</a><a href="basket.html" class="btn btn-outline-primary"><i class="fa fa-heart"></i> Lista de Desejo</a></p>
+                <p class="text-center buttons">
+                  <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Adicionar</a>
+                  <a href="#" class="btn btn-outline-primary"><i class="fa fa-heart"></i> Lista de Desejo</a>
+                </p>
               </div>
               <div data-slider-id="1" class="owl-thumbs">
                 <?php
