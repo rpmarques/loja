@@ -144,18 +144,6 @@ class Produtos
          Logger('Usuario:[' . $_SESSION['login'] . '] - Arquivo:' . $erro->getFile() . ' Erro na linha:' . $erro->getLine() . ' - Mensagem:' . $erro->getMessage());
       }
    }
-   // public function contaCategoria($rCondicao)
-   // {
-   //    try {
-   //       $rSql = "SELECT count(id) AS total FROM base_categoria " . $rCondicao;
-   //       $stm = $this->pdo->prepare($rSql);
-   //       $stm->execute();
-   //       $dados = $stm->fetch(PDO::FETCH_OBJ);
-   //       return $dados;
-   //    } catch (PDOException $erro) {
-   //       Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
-   //    }
-   // }
 
    public function geraMov($rNroNF, $rSerie, $rDataC, $rQtdeMov, $rTipoMovimento, $rProdutoID, $rClienteID, $rFornecedorID)
    {
@@ -209,60 +197,23 @@ class Produtos
          Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . '] - rSql:[' . $rrSql . ']');
       }
    }
-   // public function alteraQtde($rProdutoID, $rOperacao, $rQtde)
-   // {
-   //    try {
-   //       $rrSql = "UPDATE produtos SET qtde=qtde $rOperacao :qtde WHERE id=:produto_id";
-   //       $stm = $this->pdo->prepare($rrSql);
-   //       $stm->bindValue(':qtde', gravaMoeda($rQtde));
-   //       $stm->bindValue(':produto_id', $rProdutoID);
-   //       $stm->execute();
-   //       if ($stm) {
-   //          Logger('USUARIO:[' . $_SESSION['login'] . '] - ALTEROU QTDE PRODUTO ID:[' . $rProdutoID . '] - QTDE:+ [' . $rQtde . '] - OPERAÇÃO:[' . $rOperacao . ']');
-   //       }
-   //       return $stm;
-   //    } catch (PDOException $erro) {
-   //       Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . '] - rSql:[' . $rrSql . ']');
-   //    }
-   // }
 
-   // public function selectMov($rCampos='*',$rLeft, $rWhere = '')
-   // {
-   //    try {
-   //       if (empty($rCampos)){
-   //          $rCampos = "*";
-   //       }
-
-   //       if (empty($rLeft)){
-   //          $rLeft = "";
-   //       }
-
-   //       if (empty($rWhere)){
-   //          $rWhere ="";
-   //       }
-   //       $rSql = "SELECT $rCampos FROM produto_movimentos $rLeft $rWhere" ;
-
-
-   //       $stm = $this->pdo->prepare($rSql);
-   //       $stm->execute();
-   //       $dados = $stm->fetchAll(PDO::FETCH_OBJ);
-   //       return $dados;
-   //    } catch (PDOException $erro) {
-   //       Logger('Usuario:[' . $_SESSION['login'] . '] - Arquivo:' . $erro->getFile() . ' Erro na linha:' . $erro->getLine() . ' - Mensagem:' . $erro->getMessage(). '] - rSql:[' . $rSql . ']');
-   //    }
-   // }
-   // public function movimentoSelectUM($rWhere)
-   // {
-   //    try {
-   //       $rSql = "SELECT * FROM produto_movimentos " . $rWhere;
-   //       $stm = $this->pdo->prepare($rSql);
-   //       $stm->execute();
-   //       $dados = $stm->fetch(PDO::FETCH_OBJ);
-   //       return $dados;
-   //    } catch (PDOException $erro) {
-   //       Logger('Usuario:[' . $_SESSION['login'] . '] - Arquivo:' . $erro->getFile() . ' Erro na linha:' . $erro->getLine() . ' - Mensagem:' . $erro->getMessage());
-   //    }
-   // }
+    public function alteraQtde($rProdutoID, $rOperacao, $rQtde)
+    {
+       try {
+          $rrSql = "UPDATE produtos SET qtde=qtde $rOperacao :qtde WHERE id=:produto_id";
+          $stm = $this->pdo->prepare($rrSql);
+          $stm->bindValue(':qtde', gravaMoeda($rQtde));
+          $stm->bindValue(':produto_id', $rProdutoID);
+          $stm->execute();
+          if ($stm) {
+             Logger('USUARIO:[' . $_SESSION['login'] . '] - ALTEROU QTDE PRODUTO ID:[' . $rProdutoID . '] - QTDE:+ [' . $rQtde . '] - OPERAÇÃO:[' . $rOperacao . ']');
+          }
+          return $stm;
+       } catch (PDOException $erro) {
+          Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . '] - rSql:[' . $rrSql . ']');
+       }
+    }
 
    public function insert($rNome, $rCodigo, $rPrateleira, $rPrecoVen, $rCustoUlt)
    {
@@ -455,6 +406,7 @@ class Produtos
          Logger('Usuario:[' . $_SESSION['login'] . '] - Arquivo:' . $erro->getFile() . ' Erro na linha:' . $erro->getLine() . ' - Mensagem:' . $erro->getMessage());
       }
    }
+
    public function montaSelect($rNome = 'categoria_id', $rSelecionado = null)
    {
       try {
@@ -548,4 +500,18 @@ class Produtos
          Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
       }
    }
+
+   public function pegaFotos($rID)
+   {
+      try {
+         $rSql = "SELECT * FROM produto_foto WHERE id=$rID ";
+         $stm = $this->pdo->prepare($rSql);
+         $stm->execute();
+         $dados = $stm->fetch(PDO::FETCH_OBJ);
+         return $dados;
+      } catch (PDOException $erro) {
+         Logger('Usuario:[' . $_SESSION['login'] . '] - Arquivo:' . $erro->getFile() . ' Erro na linha:' . $erro->getLine() . ' - Mensagem:' . $erro->getMessage());
+      }
+   }
+   
 }
