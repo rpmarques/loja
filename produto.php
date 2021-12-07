@@ -172,9 +172,7 @@ if (isset($_GET['produto_id'])) {
                 </div>
                 <!-- /.product-->
               </div>
-            <?php
-            }
-            ?>
+            <?php }  ?>
           </div>
           <!-- PRODUTOS NOVO -->
           <?php
@@ -207,10 +205,7 @@ if (isset($_GET['produto_id'])) {
                 </div>
                 <!-- /.product-->
               </div>
-            <?php
-            }
-            ?>
-
+            <?php } ?>
           </div>
         </div>
         <!-- /.col-md-9-->

@@ -1,6 +1,5 @@
 <?php
 require_once './header.php';
-
 ?>
 <div id="all">
   <div id="content">
@@ -16,18 +15,14 @@ require_once './header.php';
           </nav>
         </div>
         <?php require_once './menu-categoria.php'; ?>
-
         <div class="col-lg-9">
           <div class="box">
-            <?php
-            if (isset($categoria)) {
-            ?>
+            <?php if (isset($categoria)) {  ?>
               <h1> <?= $categoria->nome . $subCategoriaNome; ?></h1>
               <p>Em nosso departamento de <?= $categoria->nome; ?>, oferecemos uma ampla seleção dos melhores produtos que encontramos e cuidadosamente selecionados.</p>
             <?php } else { ?>
               <p>Em nossos departamentos oferecemos uma ampla seleção dos melhores produtos que encontramos e cuidadosamente selecionados.</p>
-            <?php }
-            ?>
+            <?php } ?>
           </div>
           <!-- <div class="box info-bar">
                 <div class="row">
@@ -73,7 +68,13 @@ require_once './header.php';
                         <div class="back"><a href="produto.php?produto_id=<?= $itemPro->id ?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
                       <?php }  ?>
                     </div>
-                  </div><a href="produto.php?produto_id=<?= $itemPro->id ?>" class="invisible"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a>
+                  </div>
+                  <?php
+                  if (isset($foto->foto_1)) { ?>
+                    <a href="produto.php?produto_id=<?= $itemPro->id ?>" class="invisible"><img src="./img/pro/<?= $foto->foto_1 ?>" alt="" class="img-fluid"></a>
+                  <?php } else { ?>
+                    <a href="produto.php?produto_id=<?= $itemPro->id ?>" class="invisible"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a>
+                  <?php } ?>
                   <div class="text">
                     <h3><a href="produto.php?produto_id=<?= $itemPro->id ?>"><?= $itemPro->nome; ?></a></h3>
                     <p class="price">
@@ -106,9 +107,7 @@ require_once './header.php';
                 </div>
               </div> <!-- /.product -->
             <?php } ?>
-
           </div> <!-- /.products-->
-
           <!-- AQUI É PAGINAÇÃO -->
           <!-- <div class="pages">
                 <p class="loadMore"><a href="#" class="btn btn-primary btn-lg"><i class="fa fa-chevron-down"></i> Mostrar Mais</a></p>
