@@ -6,12 +6,12 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-3 col-md-6">
-            <h4 class="mb-3">Top 5 Produtos</h4>
+            <h4 class="mb-3">Seções</h4>
             <ul class="list-unstyled">
-              <li><a href="text.html">Link 1</a></li>
-              <li><a href="text.html">Link 2</a></li>
-              <li><a href="faq.html">Link 3</a></li>
-              <li><a href="./contato.php">Link 4</a></li>
+              <li><a href="./registrar.php">Criar conta</a></li>
+              <li><a href="./contato.php">Contato</a></li>
+              <!-- <li><a href="text.html">Contato</a></li>
+              <li><a href="faq.html">Link 3</a></li> -->              
             </ul>
           </div>
           <!-- /.col-lg-3-->
@@ -30,7 +30,8 @@
           <!-- /.col-lg-3-->
           <div class="col-lg-3 col-md-6">
             <h4 class="mb-3">Onde nos encontrar</h4>
-            <p><strong>NOME.</strong><br>Nome da rua<br>Bairro<br>Sala 13<br>Brasil<br><strong>Santana do Livramento</strong></p><a href="./contato.php">Entre em contato</a>
+            <p><strong>NOME.</strong><br>Nome da rua<br>Bairro<br>Sala 13<br>Brasil<br><strong>Santana do Livramento</strong></p>
+            <!-- <a href="./contato.php">Entre em contato</a> -->
             <hr class="d-block d-md-none">
           </div>
 
