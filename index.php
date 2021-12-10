@@ -40,50 +40,57 @@ require_once('./header.php');
           $wLimit = "8";
           $wOrderBy = " id DESC";
           $produtos = $objProdutos->selectProduto($wCampos, $wWhere, $wLimit, "", $wOrderBy);
-          foreach ($produtos as $pro) { 
+          foreach ($produtos as $pro) {
             $foto = $objProdutos->pegaFotos($pro->id, true);
-            ?>
+          ?>
             <div class="item">
               <div class="product">
                 <div class="flip-container">
                   <div class="flipper">
-                      <?php if (isset($foto->foto_1)) { ?>
-                        <div class="front"><a href="produto.php?produto_id=<?= $pro->id ?>"><img src="./img/pro/<?= $foto->foto_1 ?>" alt="" class="img-fluid"></a></div>
-                        <div class="back"><a href="produto.php?produto_id=<?= $pro->id ?>"><img src="./img/pro/<?= $foto->foto_1 ?>" alt="" class="img-fluid"></a></div>
-                      <?php } else { ?>
-                        <div class="front"><a href="produto.php?produto_id=<?= $pro->id ?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
-                        <div class="back"><a href="produto.php?produto_id=<?= $pro->id ?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
-                      <?php }  ?>
+                    <?php if (isset($foto->foto_1)) { ?>
+                      <div class="front"><a href="produto.php?produto_id=<?= $pro->id ?>"><img src="./img/pro/<?= $foto->foto_1 ?>" alt="" class="img-fluid"></a></div>
+                      <div class="back"><a href="produto.php?produto_id=<?= $pro->id ?>"><img src="./img/pro/<?= $foto->foto_1 ?>" alt="" class="img-fluid"></a></div>
+                    <?php } else { ?>
+                      <div class="front"><a href="produto.php?produto_id=<?= $pro->id ?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
+                      <div class="back"><a href="produto.php?produto_id=<?= $pro->id ?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
+                    <?php }  ?>
                   </div>
-                </div><a href="produto.php?produto_id=<?= $pro->id ?>" class="invisible"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a>
+                </div>
+                <?php
+                if (isset($foto->foto_1)) { ?>
+                  <a href="produto.php?produto_id=<?= $pro->id ?>" class="invisible"><img src="./img/pro/<?= $foto->foto_1 ?>" alt="" class="img-fluid"></a>
+                <?php } else { ?>
+                  <a href="produto.php?produto_id=<?= $pro->id ?>" class="invisible"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a>
+                <?php } ?>
+
                 <div class="text">
-                  <h3><a href="produto.php?produto_id=<?= $pro->id ?>"><?=$pro->nome;?></a></h3>
+                  <h3><a href="produto.php?produto_id=<?= $pro->id ?>"><?= $pro->nome; ?></a></h3>
                   <p class="price">
-                  <del><?= $pro->preco_antigo > 0 ? 'R$' . formataMoeda($pro->preco_antigo) : ''; ?></del> R$<?= formataMoeda($pro->preco_ven); ?>
+                    <del><?= $pro->preco_antigo > 0 ? 'R$' . formataMoeda($pro->preco_antigo) : ''; ?></del> R$<?= formataMoeda($pro->preco_ven); ?>
                   </p>
                 </div>
 
                 <?php
-                  if ($pro->mais_vendido) { ?>
-                    <div class="ribbon sale">
-                      <div class="theribbon">MAIS VENDIDO</div>
-                      <div class="ribbon-background"></div>
-                    </div>
-                  <?php }
-                  if ($pro->novidade) { ?>
-                    <!-- /.ribbon-->
-                    <div class="ribbon new">
-                      <div class="theribbon">NOVIDADE</div>
-                      <div class="ribbon-background"></div>
-                    </div>
-                  <?php }
-                  if ($pro->promocao) { ?>
-                    <!-- /.ribbon-->
-                    <div class="ribbon gift">
-                      <div class="theribbon">PROMOÇÃO</div>
-                      <div class="ribbon-background"></div>
-                    </div>
-                  <?php } ?>
+                if ($pro->mais_vendido) { ?>
+                  <div class="ribbon sale">
+                    <div class="theribbon">MAIS VENDIDO</div>
+                    <div class="ribbon-background"></div>
+                  </div>
+                <?php }
+                if ($pro->novidade) { ?>
+                  <!-- /.ribbon-->
+                  <div class="ribbon new">
+                    <div class="theribbon">NOVIDADE</div>
+                    <div class="ribbon-background"></div>
+                  </div>
+                <?php }
+                if ($pro->promocao) { ?>
+                  <!-- /.ribbon-->
+                  <div class="ribbon gift">
+                    <div class="theribbon">PROMOÇÃO</div>
+                    <div class="ribbon-background"></div>
+                  </div>
+                <?php } ?>
 
               </div> <!-- /.product-->
             </div> <!-- /.product-slider-->
