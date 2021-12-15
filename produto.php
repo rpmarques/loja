@@ -158,11 +158,24 @@ if (isset($_GET['produto_id'])) {
               <div class="col-md-3 col-sm-6">
                 <div class="product same-height">
                   <div class="flip-container">
-                    <div class="flipper">
-                      <div class="front"><a href="produto.php?produto_id=<?= $pro->id ?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
-                      <div class="back"><a href="produto.php?produto_id=<?= $pro->id ?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
+                  <div class="flipper">
+                      <?php
+                      $foto = $objProdutos->pegaFotos($pro->id, true);
+                      if (isset($foto->foto_1)) { ?>
+                        <div class="front"><a href="produto.php?produto_id=<?= $pro->id ?>"><img src="./img/pro/<?= $foto->foto_1 ?>" alt="" class="img-fluid"></a></div>
+                        <div class="back"><a href="produto.php?produto_id=<?= $pro->id ?>"><img src="./img/pro/<?= $foto->foto_1 ?>" alt="" class="img-fluid"></a></div>
+                      <?php } else { ?>
+                        <div class="front"><a href="produto.php?produto_id=<?= $pro->id ?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
+                        <div class="back"><a href="produto.php?produto_id=<?= $pro->id ?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
+                      <?php }  ?>
                     </div>
-                  </div><a href="produto.php?produto_id=<?= $pro->id ?>" class="invisible"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a>
+                  </div>
+                  <?php
+                  if (isset($foto->foto_1)) { ?>
+                    <a href="produto.php?produto_id=<?= $pro->id ?>" class="invisible"><img src="./img/pro/<?= $foto->foto_1 ?>" alt="" class="img-fluid"></a>
+                  <?php } else { ?>
+                    <a href="produto.php?produto_id=<?= $pro->id ?>" class="invisible"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a>
+                  <?php } ?>
                   <div class="text">
                     <a href="produto.php?produto_id=<?= $pro->id ?>">
                       <h3><?= $pro->nome; ?></h3>
@@ -191,11 +204,24 @@ if (isset($_GET['produto_id'])) {
               <div class="col-md-3 col-sm-6">
                 <div class="product same-height">
                   <div class="flip-container">
-                    <div class="flipper">
-                      <div class="front"><a href="produto.php?produto_id=<?= $pro->id ?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
-                      <div class="back"><a href="produto.php?produto_id=<?= $pro->id ?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
+                  <div class="flipper">
+                      <?php
+                      $foto = $objProdutos->pegaFotos($pro->id, true);
+                      if (isset($foto->foto_1)) { ?>
+                        <div class="front"><a href="produto.php?produto_id=<?= $pro->id ?>"><img src="./img/pro/<?= $foto->foto_1 ?>" alt="" class="img-fluid"></a></div>
+                        <div class="back"><a href="produto.php?produto_id=<?= $pro->id ?>"><img src="./img/pro/<?= $foto->foto_1 ?>" alt="" class="img-fluid"></a></div>
+                      <?php } else { ?>
+                        <div class="front"><a href="produto.php?produto_id=<?= $pro->id ?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
+                        <div class="back"><a href="produto.php?produto_id=<?= $pro->id ?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
+                      <?php }  ?>
                     </div>
-                  </div><a href="produto.php?produto_id=<?= $pro->id ?>" class="invisible"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a>
+                  </div>
+                  <?php
+                  if (isset($foto->foto_1)) { ?>
+                    <a href="produto.php?produto_id=<?= $pro->id ?>" class="invisible"><img src="./img/pro/<?= $foto->foto_1 ?>" alt="" class="img-fluid"></a>
+                  <?php } else { ?>
+                    <a href="produto.php?produto_id=<?= $pro->id ?>" class="invisible"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a>
+                  <?php } ?>
                   <div class="text">
                     <a href="produto.php?produto_id=<?= $pro->id ?>">
                       <h3><?= $pro->nome; ?></h3>
