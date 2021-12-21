@@ -104,8 +104,7 @@ if (isset($_GET['categoria_id'])) {
                  <div id="search-not-mobile" class="navbar-collapse collapse"></div><a href="#" class="btn navbar-btn btn-primary d-none d-lg-inline-block" data-toggle="modal" data-target="#login-modal">Login</a>
               <?php } else { ?>
                 <div id="search-not-mobile" class="navbar-collapse collapse"></div><a href="./minha-conta.php" class="btn navbar-btn btn-primary d-none d-lg-inline-block"> Minha Conta </a>
-              <?php } ?>
-              
+              <?php } ?>              
               <div id="search-not-mobile" class="navbar-collapse collapse"></div><a data-toggle="collapse" href="#search" class="btn navbar-btn btn-primary d-none d-lg-inline-block"><span class="sr-only">Toggle search</span><i class="fa fa-search"></i></a>
               <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block"><a href="./pedido.php" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span>X Itens </span></a></div>
             </div>
@@ -114,11 +113,11 @@ if (isset($_GET['categoria_id'])) {
       </nav>
       <div id="search" class="collapse">
         <div class="container">
-          <form role="search" class="ml-auto">
+          <form role="search" class="ml-auto" method="get" action="./produtos.php">
             <div class="input-group">
-              <input type="text" placeholder="Procurar" class="form-control">
+              <input type="text" placeholder="Procurar" name="buscar" class="form-control">
               <div class="input-group-append">
-                <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
               </div>
             </div>
           </form>

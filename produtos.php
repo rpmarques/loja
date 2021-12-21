@@ -1,5 +1,10 @@
 <?php
 require_once './header.php';
+if ($_GET){
+  if (isset($_GET['buscar'])){
+
+  }
+}
 ?>
 <div id="all">
   <div id="content">
@@ -44,14 +49,14 @@ require_once './header.php';
           <div class="row products">
             <?php
             if (isset($categoria)) {
-              $wWhere = "categoria_id=$categoria->id";
+              $wWhere = "produto.categoria_id=$categoria->id";
               if (isset($_GET['sub_categoria_id'])) {
                 $subCategoria = $objProdutos->pegaSubCategoria($_GET['sub_categoria_id']);
-                $wWhere = $wWhere . " AND sub_categoria_id=$subCategoria->id";
+                $wWhere = $wWhere . " AND produto.sub_categoria_id=$subCategoria->id";
               }
-              $produtos = $objProdutos->selectProduto($rCampos = "*", $wWhere);
+              $produtos = $objProdutos->selectProduto($rCampos = "produto.*", $wWhere);
             } else {
-              $produtos = $objProdutos->selectProduto($rCampos = "*");
+              $produtos = $objProdutos->selectProduto($rCampos = "produto.*");
             }
             foreach ($produtos as $itemPro) { ?>
               <div class="col-lg-4 col-md-6">

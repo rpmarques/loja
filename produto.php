@@ -84,7 +84,7 @@ if (isset($_GET['produto_id'])) {
               <div class="box">
                 <h1 class="text-center"><?= $produto->nome; ?></h1>
                 <p class="goToDescription"><a href="#details" class="scroll-to">Clique aqui para mais detalhes</a></p>
-                <p class="price"><?= formataMoeda($produto->preco_ven); ?></p>
+                <p class="price"><?='R$'.formataMoeda($produto->preco_ven); ?></p>
                 <p class="text-center buttons">
                   <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Adicionar</a>
                   <a href="#" class="btn btn-outline-primary"><i class="fa fa-heart"></i> Lista de Desejo</a>
@@ -180,7 +180,7 @@ if (isset($_GET['produto_id'])) {
                     <a href="produto.php?produto_id=<?= $pro->id ?>">
                       <h3><?= $pro->nome; ?></h3>
                     </a>
-                    <p class="price"><?= formataMoeda($pro->preco_ven); ?></p>
+                    <p class="price"><?='R$'.formataMoeda($pro->preco_ven); ?></p>
                   </div>
                 </div>
                 <!-- /.product-->
@@ -226,7 +226,7 @@ if (isset($_GET['produto_id'])) {
                     <a href="produto.php?produto_id=<?= $pro->id ?>">
                       <h3><?= $pro->nome; ?></h3>
                     </a>
-                    <p class="price"><?= formataMoeda($pro->preco_ven); ?></p>
+                    <p class="price"><?='R$'.formataMoeda($pro->preco_ven); ?></p>
                   </div>
                 </div>
                 <!-- /.product-->
