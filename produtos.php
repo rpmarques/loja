@@ -1,8 +1,20 @@
 <?php
 require_once './header.php';
+$wLeft="";
+$wBuscar="";
+$complementaBusca="";
 if ($_GET){
   if (isset($_GET['buscar'])){
+    $wLeft="LEFT JOIN categoria ON categoria.id=produto.categoria_id
+            LEFT JOIN marca ON marca.id=produto.marca_id
+            LEFT JOIN sub_categoria ON sub_categoria.id=produto.categoria_id";
+            $wBuscar = explode(" ",$_GET['buscar']);
 
+            foreach($wBuscar as $aux){
+              $complementaBusca.=" LOWER(produto.nome) LIKE '%$aux%' OR LOWER(marca.nome) LIKE '%$aux%' OR LOWER(categoria.nome) LIKE '%$aux%' OR LOWER(sub_categoria.nome) LIKE '%$aux%' OR LOWER(produto.descricao) LIKE '%$aux%' OR LOWER(produto.palavra_chave) LIKE '%$aux%' OR";
+            }
+            //REMOVE O ULTIMO OR DA STRING
+            $complementaBusca = rtrim($complementaBusca,"OR");
   }
 }
 ?>
@@ -48,15 +60,18 @@ if ($_GET){
               </div> -->
           <div class="row products">
             <?php
+            $wWhere="";
             if (isset($categoria)) {
-              $wWhere = "produto.categoria_id=$categoria->id";
+              $wWhere = " produto.categoria_id=$categoria->id ";
               if (isset($_GET['sub_categoria_id'])) {
                 $subCategoria = $objProdutos->pegaSubCategoria($_GET['sub_categoria_id']);
-                $wWhere = $wWhere . " AND produto.sub_categoria_id=$subCategoria->id";
+                $wWhere = $wWhere . " AND produto.sub_categoria_id=$subCategoria->id ";
               }
-              $produtos = $objProdutos->selectProduto($rCampos = "produto.*", $wWhere);
+              //selectProduto($rCampos = "", $rWhere = "", $rLimit = "", $rLeft = "", $rOrderBy = "", $rGroupBy = "")
+              $produtos = $objProdutos->selectProduto($rCampos = "produto.*", $wWhere,"",$wLeft);
             } else {
-              $produtos = $objProdutos->selectProduto($rCampos = "produto.*");
+              $wWhere = $complementaBusca;
+              $produtos = $objProdutos->selectProduto($rCampos = "produto.*", $wWhere,"",$wLeft);
             }
             foreach ($produtos as $itemPro) { ?>
               <div class="col-lg-4 col-md-6">

@@ -101,6 +101,7 @@ class Produtos
          }
 
          $rSql = " SELECT $rCampos FROM produto $rLeft $rWhere $rGroupBy $rOrderBy $rLimit ";
+         LoggerSQL($rSql);
          $stm = $this->pdo->prepare($rSql);
          $stm->execute();
          $dados = $stm->fetchAll(PDO::FETCH_OBJ);

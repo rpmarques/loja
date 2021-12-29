@@ -54,7 +54,7 @@ function LoggerSQL($msg) {
     $arquivo = "logs/LoggerSQL_$data.txt";
 
     //TEXTO A SER IMPRESSO
-    $texto = "[$hora][$ip]-> " . strtoupper($msg) . " \n";
+    $texto = "[$hora][$ip]-> " . trim($msg) . " \n";
     $manipular = fopen("$arquivo", "a+b");
     fwrite($manipular, $texto);
     fclose($manipular);
