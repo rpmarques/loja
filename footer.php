@@ -21,7 +21,7 @@
             <?php $categorias = $objProdutos->selectCategorias("id,nome","", "6","","nome"); 
             if (!empty($categorias)){
               foreach($categorias as $itemCat){ ?>
-                <li><a href="#"><?=$itemCat->nome;?></a></li>  
+                <li><a href="./produtos.php?categoria_id=<?=$itemCat->id;?>"><?=$itemCat->nome;?></a></li>  
               <?php } 
             } ?>
             </ul>            

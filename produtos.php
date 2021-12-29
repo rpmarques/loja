@@ -7,7 +7,7 @@ if ($_GET){
   if (isset($_GET['buscar'])){
     $wLeft="LEFT JOIN categoria ON categoria.id=produto.categoria_id
             LEFT JOIN marca ON marca.id=produto.marca_id
-            LEFT JOIN sub_categoria ON sub_categoria.id=produto.categoria_id";
+            LEFT JOIN sub_categoria ON sub_categoria.id=produto.sub_categoria_id";
             $wBuscar = explode(" ",$_GET['buscar']);
 
             foreach($wBuscar as $aux){
