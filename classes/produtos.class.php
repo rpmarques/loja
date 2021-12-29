@@ -23,8 +23,8 @@ class Produtos
    public function insereProduto($rNome, $rCodigo, $rPrateleira, $rPrecoVen, $rCustoUlt)
    {
       try {
-         $rrSql = "INSERT INTO produtos (nome,codigo,prateleira,preco_ven,custo_ult) VALUES (:nome,:codigo,:prateleira,:preco_ven,:custo_ult);";
-         $stm = $this->pdo->prepare($rrSql);
+         $rSql = "INSERT INTO produtos (nome,codigo,prateleira,preco_ven,custo_ult) VALUES (:nome,:codigo,:prateleira,:preco_ven,:custo_ult);";
+         $stm = $this->pdo->prepare($rSql);
          $stm->bindValue(':nome', $rNome);
          $stm->bindValue(':codigo', $rCodigo);
          $stm->bindValue(':prateleira', $rPrateleira);
@@ -161,10 +161,10 @@ class Produtos
          }
 
 
-         $rrSql = "INSERT INTO produto_movimentos (nronf,serie,datac,qtde,tipo_movimento,produto_id,cliente_id,fornecedor_id)
+         $rSql = "INSERT INTO produto_movimentos (nronf,serie,datac,qtde,tipo_movimento,produto_id,cliente_id,fornecedor_id)
           VALUES (:nronf,:serie,:datac,:qtde,:tipo_movimento,:produto_id,:cliente_id,:fornecedor_id);";
 
-         $stm = $this->pdo->prepare($rrSql);
+         $stm = $this->pdo->prepare($rSql);
          $stm->bindValue(':nronf', $rNroNF);
          $stm->bindValue(':serie', $rSerie);
          $stm->bindValue(':datac', $rDataC);
@@ -195,15 +195,15 @@ class Produtos
          }
          return $stm;
       } catch (PDOException $erro) {
-         Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . '] - rSql:[' . $rrSql . ']');
+         Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . '] - rSql:[' . $rSql . ']');
       }
    }
 
     public function alteraQtde($rProdutoID, $rOperacao, $rQtde)
     {
        try {
-          $rrSql = "UPDATE produtos SET qtde=qtde $rOperacao :qtde WHERE id=:produto_id";
-          $stm = $this->pdo->prepare($rrSql);
+          $rSql = "UPDATE produtos SET qtde=qtde $rOperacao :qtde WHERE id=:produto_id";
+          $stm = $this->pdo->prepare($rSql);
           $stm->bindValue(':qtde', gravaMoeda($rQtde));
           $stm->bindValue(':produto_id', $rProdutoID);
           $stm->execute();
@@ -212,7 +212,7 @@ class Produtos
           }
           return $stm;
        } catch (PDOException $erro) {
-          Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . '] - rSql:[' . $rrSql . ']');
+          Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . '] - rSql:[' . $rSql . ']');
        }
     }
 
@@ -520,4 +520,34 @@ class Produtos
       }
    }
    
+   public function insereListaDesejos($rClienteId,$rProdutoID){
+      try {
+         $rSql = "INSERT INTO lista_desejo (cliente_id,produto_id,datac) VALUES (:cliente_id,:produto_id,:datac);";
+         $stm = $this->pdo->prepare($rSql);
+         $stm->bindValue(':cliente_id', $rClienteId);
+         $stm->bindValue(':produto_id', $rProdutoID);
+         $stm->execute();
+         if ($stm) {
+            Logger('Usuario:[' . $_SESSION['login'] . '] - INSERIU LISTA DE DESEJO ');
+         }
+         return $stm;
+      } catch (PDOException $erro) {
+         Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
+      }
+   }
+
+   
+   public function pegaListaDesejo($rClienteId,$rProdutoID)
+   {
+      try {
+         $rSql = "SELECT * FROM lista_desejo WHERE cliente_id=$rClienteId AND produto_id=$rProdutoID ";
+         $stm = $this->pdo->prepare($rSql);
+         $stm->execute();
+         $dados = $stm->fetch(PDO::FETCH_OBJ);
+         return $dados;
+      } catch (PDOException $erro) {
+         Logger('Usuario:[' . $_SESSION['login'] . '] - Arquivo:' . $erro->getFile() . ' Erro na linha:' . $erro->getLine() . ' - Mensagem:' . $erro->getMessage());
+      }
+   }
+
 }

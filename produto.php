@@ -1,16 +1,19 @@
 <?php
 require_once('./header.php');
-if (isset($_GET['produto_id'])) {
-  $produto = $objProdutos->pegaProduto($_GET['produto_id']);
-  if (!empty($produto)) {
-    $categoria = $objProdutos->pegaCategoria($produto->categoria_id);
-    $subCategoria = $objProdutos->pegaSubCategoria($produto->sub_categoria_id);
-    $fotos = $objProdutos->pegaFotos($produto->id);
-    $objProdutos->somaClick($produto->id);
-  } else {
-    vaiPraPagina('produtos');
+if (isset($_GET)){
+  if (isset($_GET['produto_id'])) {
+    $produto = $objProdutos->pegaProduto($_GET['produto_id']);
+    if (!empty($produto)) {
+      $categoria = $objProdutos->pegaCategoria($produto->categoria_id);
+      $subCategoria = $objProdutos->pegaSubCategoria($produto->sub_categoria_id);
+      $fotos = $objProdutos->pegaFotos($produto->id);
+      $objProdutos->somaClick($produto->id);
+    } else {
+      vaiPraPagina('produtos');
+    }
   }
 }
+
 ?>
 <div id="all">
   <div id="content">
@@ -84,10 +87,20 @@ if (isset($_GET['produto_id'])) {
               <div class="box">
                 <h1 class="text-center"><?= $produto->nome; ?></h1>
                 <p class="goToDescription"><a href="#details" class="scroll-to">Clique aqui para mais detalhes</a></p>
-                <p class="price"><?='R$'.formataMoeda($produto->preco_ven); ?></p>
+                <p class="price"><?= 'R$' . formataMoeda($produto->preco_ven); ?></p>
                 <p class="text-center buttons">
                   <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Adicionar</a>
-                  <a href="#" class="btn btn-outline-primary"><i class="fa fa-heart"></i> Lista de Desejo</a>
+                  <?php if (isset($_SESSION['cliente_id'])) : 
+                  Logger("VAMOS PROCURAR SE NA LISTA DE DESEJO");
+                  $ret = $objProdutos->pegaListaDesejo($_SESSION['cliente_id'],$produto->id);
+                  if (!empty($ret)){
+                    escreve("TEM");
+                    Logger("VAMOS PROCURAR SE NA LISTA DE DESEJO - ACHAMOS");
+                  }
+                    //pegaListaDesejo($rClienteId,$rProdutoID)
+                    ?>
+                    <a href="#" class="btn btn-outline-primary"><i class="fa fa-heart"></i> Lista de Desejo</a>
+                  <?php endif ?>
                 </p>
               </div>
               <div data-slider-id="1" class="owl-thumbs">
@@ -158,7 +171,7 @@ if (isset($_GET['produto_id'])) {
               <div class="col-md-3 col-sm-6">
                 <div class="product same-height">
                   <div class="flip-container">
-                  <div class="flipper">
+                    <div class="flipper">
                       <?php
                       $foto = $objProdutos->pegaFotos($pro->id, true);
                       if (isset($foto->foto_1)) { ?>
@@ -180,7 +193,7 @@ if (isset($_GET['produto_id'])) {
                     <a href="produto.php?produto_id=<?= $pro->id ?>">
                       <h3><?= $pro->nome; ?></h3>
                     </a>
-                    <p class="price"><?='R$'.formataMoeda($pro->preco_ven); ?></p>
+                    <p class="price"><?= 'R$' . formataMoeda($pro->preco_ven); ?></p>
                   </div>
                 </div>
                 <!-- /.product-->
@@ -204,7 +217,7 @@ if (isset($_GET['produto_id'])) {
               <div class="col-md-3 col-sm-6">
                 <div class="product same-height">
                   <div class="flip-container">
-                  <div class="flipper">
+                    <div class="flipper">
                       <?php
                       $foto = $objProdutos->pegaFotos($pro->id, true);
                       if (isset($foto->foto_1)) { ?>
@@ -226,7 +239,7 @@ if (isset($_GET['produto_id'])) {
                     <a href="produto.php?produto_id=<?= $pro->id ?>">
                       <h3><?= $pro->nome; ?></h3>
                     </a>
-                    <p class="price"><?='R$'.formataMoeda($pro->preco_ven); ?></p>
+                    <p class="price"><?= 'R$' . formataMoeda($pro->preco_ven); ?></p>
                   </div>
                 </div>
                 <!-- /.product-->

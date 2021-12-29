@@ -1,44 +1,15 @@
-[19:58:50][127.0.0.1]-> SELECT produto.* FROM produto LEFT JOIN categoria ON categoria.id=produto.categoria_id
-            LEFT JOIN marca ON marca.id=produto.marca_id
-            LEFT JOIN sub_categoria ON sub_categoria.id=produto.categoria_id  WHERE  LOWER(produto.nome) LIKE '%informática%' OR LOWER(marca.nome) LIKE '%informática%' OR LOWER(categoria.nome) LIKE '%informática%' OR LOWER(sub_categoria.nome) LIKE '%informática%' OR LOWER(produto.descricao) LIKE '%informática%' OR LOWER(produto.palavra_chave) LIKE '%informática%' LOWER(produto.nome) LIKE '%teclado%' OR LOWER(marca.nome) LIKE '%teclado%' OR LOWER(categoria.nome) LIKE '%teclado%' OR LOWER(sub_categoria.nome) LIKE '%teclado%' OR LOWER(produto.descricao) LIKE '%teclado%' OR LOWER(produto.palavra_chave) LIKE '%teclado%' 
-[20:00:20][127.0.0.1]-> SELECT produto.* FROM produto LEFT JOIN categoria ON categoria.id=produto.categoria_id
-            LEFT JOIN marca ON marca.id=produto.marca_id
-            LEFT JOIN sub_categoria ON sub_categoria.id=produto.categoria_id  WHERE  LOWER(produto.nome) LIKE '%informática%' OR LOWER(marca.nome) LIKE '%informática%' OR LOWER(categoria.nome) LIKE '%informática%' OR LOWER(sub_categoria.nome) LIKE '%informática%' OR LOWER(produto.descricao) LIKE '%informática%' OR LOWER(produto.palavra_chave) LIKE '%informática%' OR LOWER(produto.nome) LIKE '%teclado%' OR LOWER(marca.nome) LIKE '%teclado%' OR LOWER(categoria.nome) LIKE '%teclado%' OR LOWER(sub_categoria.nome) LIKE '%teclado%' OR LOWER(produto.descricao) LIKE '%teclado%' OR LOWER(produto.palavra_chave) LIKE '%teclado%' 
-[20:06:31][127.0.0.1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=1     LIMIT 3 
-[20:06:31][127.0.0.1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
-[20:06:39][127.0.0.1]-> SELECT produto.* FROM produto LEFT JOIN categoria ON categoria.id=produto.categoria_id
-            LEFT JOIN marca ON marca.id=produto.marca_id
-            LEFT JOIN sub_categoria ON sub_categoria.id=produto.categoria_id  WHERE  LOWER(produto.nome) LIKE '%teste%' OR LOWER(marca.nome) LIKE '%teste%' OR LOWER(categoria.nome) LIKE '%teste%' OR LOWER(sub_categoria.nome) LIKE '%teste%' OR LOWER(produto.descricao) LIKE '%teste%' OR LOWER(produto.palavra_chave) LIKE '%teste%' OR LOWER(produto.nome) LIKE '%do%' OR LOWER(marca.nome) LIKE '%do%' OR LOWER(categoria.nome) LIKE '%do%' OR LOWER(sub_categoria.nome) LIKE '%do%' OR LOWER(produto.descricao) LIKE '%do%' OR LOWER(produto.palavra_chave) LIKE '%do%' OR LOWER(produto.nome) LIKE '%que%' OR LOWER(marca.nome) LIKE '%que%' OR LOWER(categoria.nome) LIKE '%que%' OR LOWER(sub_categoria.nome) LIKE '%que%' OR LOWER(produto.descricao) LIKE '%que%' OR LOWER(produto.palavra_chave) LIKE '%que%' OR LOWER(produto.nome) LIKE '%procurar%' OR LOWER(marca.nome) LIKE '%procurar%' OR LOWER(categoria.nome) LIKE '%procurar%' OR LOWER(sub_categoria.nome) LIKE '%procurar%' OR LOWER(produto.descricao) LIKE '%procurar%' OR LOWER(produto.palavra_chave) LIKE '%procurar%' 
-[20:10:50][127.0.0.1]-> SELECT produto.* FROM produto LEFT JOIN categoria ON categoria.id=produto.categoria_id
-            LEFT JOIN marca ON marca.id=produto.marca_id
-            LEFT JOIN sub_categoria ON sub_categoria.id=produto.categoria_id  WHERE  LOWER(produto.nome) LIKE '%cozinha%' OR LOWER(marca.nome) LIKE '%cozinha%' OR LOWER(categoria.nome) LIKE '%cozinha%' OR LOWER(sub_categoria.nome) LIKE '%cozinha%' OR LOWER(produto.descricao) LIKE '%cozinha%' OR LOWER(produto.palavra_chave) LIKE '%cozinha%' 
-[20:10:57][127.0.0.1]-> SELECT produto.* FROM produto LEFT JOIN categoria ON categoria.id=produto.categoria_id
-            LEFT JOIN marca ON marca.id=produto.marca_id
-            LEFT JOIN sub_categoria ON sub_categoria.id=produto.categoria_id  WHERE  LOWER(produto.nome) LIKE '%Cozinha%' OR LOWER(marca.nome) LIKE '%Cozinha%' OR LOWER(categoria.nome) LIKE '%Cozinha%' OR LOWER(sub_categoria.nome) LIKE '%Cozinha%' OR LOWER(produto.descricao) LIKE '%Cozinha%' OR LOWER(produto.palavra_chave) LIKE '%Cozinha%' 
-[20:16:16][127.0.0.1]-> SELECT produto.* FROM produto   WHERE  produto.categoria_id=8  AND produto.sub_categoria_id=14 
-[20:16:21][127.0.0.1]-> SELECT produto.* FROM produto LEFT JOIN categoria ON categoria.id=produto.categoria_id
-            LEFT JOIN marca ON marca.id=produto.marca_id
-            LEFT JOIN sub_categoria ON sub_categoria.id=produto.categoria_id  WHERE  LOWER(produto.nome) LIKE '%cafeteira%' OR LOWER(marca.nome) LIKE '%cafeteira%' OR LOWER(categoria.nome) LIKE '%cafeteira%' OR LOWER(sub_categoria.nome) LIKE '%cafeteira%' OR LOWER(produto.descricao) LIKE '%cafeteira%' OR LOWER(produto.palavra_chave) LIKE '%cafeteira%' 
-[20:16:29][127.0.0.1]-> SELECT produto.* FROM produto LEFT JOIN categoria ON categoria.id=produto.categoria_id
-            LEFT JOIN marca ON marca.id=produto.marca_id
-            LEFT JOIN sub_categoria ON sub_categoria.id=produto.categoria_id  WHERE  LOWER(produto.nome) LIKE '%casa%' OR LOWER(marca.nome) LIKE '%casa%' OR LOWER(categoria.nome) LIKE '%casa%' OR LOWER(sub_categoria.nome) LIKE '%casa%' OR LOWER(produto.descricao) LIKE '%casa%' OR LOWER(produto.palavra_chave) LIKE '%casa%' 
-[20:16:34][127.0.0.1]-> SELECT produto.* FROM produto LEFT JOIN categoria ON categoria.id=produto.categoria_id
-            LEFT JOIN marca ON marca.id=produto.marca_id
-            LEFT JOIN sub_categoria ON sub_categoria.id=produto.categoria_id  WHERE  LOWER(produto.nome) LIKE '%cozinha%' OR LOWER(marca.nome) LIKE '%cozinha%' OR LOWER(categoria.nome) LIKE '%cozinha%' OR LOWER(sub_categoria.nome) LIKE '%cozinha%' OR LOWER(produto.descricao) LIKE '%cozinha%' OR LOWER(produto.palavra_chave) LIKE '%cozinha%' 
-[20:16:46][127.0.0.1]-> SELECT id,nome,preco_ven,preco_antigo,mais_vendido,promocao,novidade FROM produto     ORDER BY  id DESC   LIMIT 8 
-[20:23:27][127.0.0.1]-> SELECT produto.* FROM produto LEFT JOIN categoria ON categoria.id=produto.categoria_id
-            LEFT JOIN marca ON marca.id=produto.marca_id
-            LEFT JOIN sub_categoria ON sub_categoria.id=produto.sub_categoria_id  WHERE  LOWER(produto.nome) LIKE '%cozinha%' OR LOWER(marca.nome) LIKE '%cozinha%' OR LOWER(categoria.nome) LIKE '%cozinha%' OR LOWER(sub_categoria.nome) LIKE '%cozinha%' OR LOWER(produto.descricao) LIKE '%cozinha%' OR LOWER(produto.palavra_chave) LIKE '%cozinha%' 
-[20:23:38][127.0.0.1]-> SELECT produto.* FROM produto LEFT JOIN categoria ON categoria.id=produto.categoria_id
-            LEFT JOIN marca ON marca.id=produto.marca_id
-            LEFT JOIN sub_categoria ON sub_categoria.id=produto.sub_categoria_id  WHERE  LOWER(produto.nome) LIKE '%calças%' OR LOWER(marca.nome) LIKE '%calças%' OR LOWER(categoria.nome) LIKE '%calças%' OR LOWER(sub_categoria.nome) LIKE '%calças%' OR LOWER(produto.descricao) LIKE '%calças%' OR LOWER(produto.palavra_chave) LIKE '%calças%' 
-[20:23:46][127.0.0.1]-> SELECT produto.* FROM produto LEFT JOIN categoria ON categoria.id=produto.categoria_id
-            LEFT JOIN marca ON marca.id=produto.marca_id
-            LEFT JOIN sub_categoria ON sub_categoria.id=produto.sub_categoria_id  WHERE  LOWER(produto.nome) LIKE '%teclado%' OR LOWER(marca.nome) LIKE '%teclado%' OR LOWER(categoria.nome) LIKE '%teclado%' OR LOWER(sub_categoria.nome) LIKE '%teclado%' OR LOWER(produto.descricao) LIKE '%teclado%' OR LOWER(produto.palavra_chave) LIKE '%teclado%' 
-[21:09:29][127.0.0.1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=1     LIMIT 3 
-[21:09:29][127.0.0.1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
-[21:09:38][127.0.0.1]-> SELECT id,nome,preco_ven,preco_antigo,mais_vendido,promocao,novidade FROM produto     ORDER BY  id DESC   LIMIT 8 
-[21:16:35][127.0.0.1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=1     LIMIT 3 
-[21:16:35][127.0.0.1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
-[21:16:40][127.0.0.1]-> SELECT produto.* FROM produto   WHERE  produto.categoria_id=2 
-[21:18:27][127.0.0.1]-> SELECT produto.* FROM produto   WHERE  produto.categoria_id=2 
+[22:20:24][127.0.0.1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=1     LIMIT 3 
+[22:20:24][127.0.0.1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[22:20:51][127.0.0.1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=1     LIMIT 3 
+[22:20:51][127.0.0.1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[22:20:59][127.0.0.1]-> SELECT produto.* FROM produto   WHERE  produto.categoria_id=1  AND produto.sub_categoria_id=1 
+[22:21:01][127.0.0.1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=1     LIMIT 3 
+[22:21:01][127.0.0.1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[22:21:41][127.0.0.1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=1     LIMIT 3 
+[22:21:41][127.0.0.1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[22:21:52][127.0.0.1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=1     LIMIT 3 
+[22:21:52][127.0.0.1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[22:27:36][127.0.0.1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=1     LIMIT 3 
+[22:27:36][127.0.0.1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[22:27:37][127.0.0.1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=1     LIMIT 3 
+[22:27:37][127.0.0.1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 

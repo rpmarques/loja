@@ -11,7 +11,6 @@ session_start();
 $_SESSION['login']="site";
 $_SESSION['mensagem']="";
 require_once './verificaLogin.php';
-require_once './modal.php';
 
 if (isset($_GET['categoria_id'])) {
   $categoria = $objProdutos->pegaCategoria($_GET['categoria_id']);
@@ -54,6 +53,7 @@ if (isset($_GET['categoria_id'])) {
         <script src="vendor/jquery/jquery.min.js"></script>
   </head>
   <body>
+    <?php require_once './modal.php';?>
     <header class="header mb-5">
     <!-- navbar-->
       <nav class="navbar navbar-expand-lg ">

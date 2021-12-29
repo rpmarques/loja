@@ -37,7 +37,7 @@
 
           <!-- /.col-lg-3-->
           <div class="col-lg-3 col-md-6">
-            <h4 class="mb-3">Assine nossa newsletter</h4>
+            <h4 class="mb-3">Assine nossa NewsLetter</h4>
             <p class="text-muted">Deixe seu email aqui para receber novidades e promoções.</p>
             <form>
               <div class="input-group">
