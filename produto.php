@@ -20,11 +20,7 @@ if ($_POST){
   if (isset($_POST['adicionar_lista'])){
     $objProdutos->insereListaDesejos($_SESSION['cliente_id'],$produto->id);
   }
-  
-  
-
 }
-
 ?>
 <div id="all">
   <div id="content">
@@ -35,8 +31,8 @@ if ($_POST){
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./index.php">Home</a></li>
-              <li class="breadcrumb-item"><a href="./produtos.php"><?= $categoria->nome; ?></a></li>
-              <li class="breadcrumb-item"><a href="./produtos.php"><?= $subCategoria->nome; ?></a></li>
+              <li class="breadcrumb-item"><a href="./produtos.php?categoria_id=<?=$categoria->id;?>"><?= $categoria->nome; ?></a></li>
+              <li class="breadcrumb-item"><a href="./produtos.php?categoria_id=<?=$categoria->id;?>&sub_categoria_id=<?=$subCategoria->id;?>"><?= $subCategoria->nome; ?></a></li>
               <li aria-current="page" class="breadcrumb-item active"><?= $produto->nome; ?></li>
             </ol>
           </nav>
