@@ -1,6 +1,6 @@
 <?php
 require_once('./header.php');
-if (isset($_GET)){
+if ($_GET) {
   if (isset($_GET['produto_id'])) {
     $produto = $objProdutos->pegaProduto($_GET['produto_id']);
     if (!empty($produto)) {
@@ -12,6 +12,17 @@ if (isset($_GET)){
       vaiPraPagina('produtos');
     }
   }
+}
+if ($_POST){
+  if (isset($_POST['remover_lista'])){
+    $objProdutos->removeListaDesejo($_SESSION['cliente_id'],$produto->id);
+  }
+  if (isset($_POST['adicionar_lista'])){
+    $objProdutos->insereListaDesejos($_SESSION['cliente_id'],$produto->id);
+  }
+  
+  
+
 }
 
 ?>
@@ -84,25 +95,27 @@ if (isset($_GET)){
               <!-- /.ribbon-->
             </div>
             <div class="col-md-6">
-              <div class="box">
-                <h1 class="text-center"><?= $produto->nome; ?></h1>
-                <p class="goToDescription"><a href="#details" class="scroll-to">Clique aqui para mais detalhes</a></p>
-                <p class="price"><?= 'R$' . formataMoeda($produto->preco_ven); ?></p>
-                <p class="text-center buttons">
-                  <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Adicionar</a>
-                  <?php if (isset($_SESSION['cliente_id'])) : 
-                  Logger("VAMOS PROCURAR SE NA LISTA DE DESEJO");
-                  $ret = $objProdutos->pegaListaDesejo($_SESSION['cliente_id'],$produto->id);
-                  if (!empty($ret)){
-                    escreve("TEM");
-                    Logger("VAMOS PROCURAR SE NA LISTA DE DESEJO - ACHAMOS");
-                  }
-                    //pegaListaDesejo($rClienteId,$rProdutoID)
+              <form action="" method="post">
+                <div class="box">
+                  <h1 class="text-center"><?= $produto->nome; ?></h1>
+                  <p class="goToDescription"><a href="#details" class="scroll-to">Clique aqui para mais detalhes</a></p>
+                  <p class="price"><?= 'R$' . formataMoeda($produto->preco_ven); ?></p>
+                  <p class="text-center buttons">
+                    <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Adicionar</a>
+                    <?php if (isset($_SESSION['cliente_id'])) {
+                      Logger("VAMOS PROCURAR SE NA LISTA DE DESEJO");
+                      $ret = $objProdutos->pegaListaDesejo($_SESSION['cliente_id'], $produto->id);
+                      if (!empty($ret)) {
+                        Logger("VAMOS PROCURAR SE NA LISTA DE DESEJO - ACHAMOS"); ?>
+                        <button type="submit" name="remover_lista" class="btn btn-outline-primary"><i class="fa fa-heart"></i> Remover da lista</button>                        
+                      <?php } else { ?>
+                        <button type="submit" name="adicionar_lista" class="btn btn-outline-primary"><i class="fa fa-heart"></i> Adicionar na lista</button>                        
+                      <?php } ?>
+                    <?php } //if (isset($_SESSION['cliente_id'])) :
                     ?>
-                    <a href="#" class="btn btn-outline-primary"><i class="fa fa-heart"></i> Lista de Desejo</a>
-                  <?php endif ?>
-                </p>
-              </div>
+                  </p>
+                </div>
+              </form>
               <div data-slider-id="1" class="owl-thumbs">
                 <?php
                 if (isset($fotos->foto_1)) { ?>

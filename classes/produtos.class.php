@@ -526,6 +526,7 @@ class Produtos
          $stm = $this->pdo->prepare($rSql);
          $stm->bindValue(':cliente_id', $rClienteId);
          $stm->bindValue(':produto_id', $rProdutoID);
+         $stm->bindValue(':datac', date('d/m/Y'));
          $stm->execute();
          if ($stm) {
             Logger('Usuario:[' . $_SESSION['login'] . '] - INSERIU LISTA DE DESEJO ');
@@ -547,6 +548,23 @@ class Produtos
          return $dados;
       } catch (PDOException $erro) {
          Logger('Usuario:[' . $_SESSION['login'] . '] - Arquivo:' . $erro->getFile() . ' Erro na linha:' . $erro->getLine() . ' - Mensagem:' . $erro->getMessage());
+      }
+   }
+
+   public function removeListaDesejo($rClienteId,$rProdutoID)
+   {
+      try {
+         $rSql = "DELETE FROM lista_desejo WHERE cliente_id=:cliente_id AND produto_id=:produto_id;";
+         $stm = $this->pdo->prepare($rSql);
+         $stm->bindValue(':cliente_id', $rClienteId);
+         $stm->bindValue(':produto_id', $rProdutoID);
+         $stm->execute();
+         if ($stm) {
+            Logger('Usuario:[' . $_SESSION['login'] . '] - REMOVEU DAS LISTA DE DESEJO ');
+         }
+         return $stm;
+      } catch (PDOException $erro) {
+         Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
       }
    }
 
