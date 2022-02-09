@@ -1,20 +1,20 @@
 <?php
 require_once './header.php';
-$wLeft="";
-$wBuscar="";
-$complementaBusca="";
-if ($_GET){
-  if (isset($_GET['buscar'])){
-    $wLeft="LEFT JOIN categoria ON categoria.id=produto.categoria_id
+$wLeft = "";
+$wBuscar = "";
+$complementaBusca = "";
+if ($_GET) {
+  if (isset($_GET['buscar'])) {
+    $wLeft = "LEFT JOIN categoria ON categoria.id=produto.categoria_id
             LEFT JOIN marca ON marca.id=produto.marca_id
             LEFT JOIN sub_categoria ON sub_categoria.id=produto.sub_categoria_id";
-            $wBuscar = explode(" ",$_GET['buscar']);
+    $wBuscar = explode(" ", $_GET['buscar']);
 
-            foreach($wBuscar as $aux){
-              $complementaBusca.=" LOWER(produto.nome) LIKE '%$aux%' OR LOWER(marca.nome) LIKE '%$aux%' OR LOWER(categoria.nome) LIKE '%$aux%' OR LOWER(sub_categoria.nome) LIKE '%$aux%' OR LOWER(produto.descricao) LIKE '%$aux%' OR LOWER(produto.palavra_chave) LIKE '%$aux%' OR";
-            }
-            //REMOVE O ULTIMO OR DA STRING
-            $complementaBusca = rtrim($complementaBusca,"OR");
+    foreach ($wBuscar as $aux) {
+      $complementaBusca .= " LOWER(produto.nome) LIKE '%$aux%' OR LOWER(marca.nome) LIKE '%$aux%' OR LOWER(categoria.nome) LIKE '%$aux%' OR LOWER(sub_categoria.nome) LIKE '%$aux%' OR LOWER(produto.descricao) LIKE '%$aux%' OR LOWER(produto.palavra_chave) LIKE '%$aux%' OR";
+    }
+    //REMOVE O ULTIMO OR DA STRING
+    $complementaBusca = rtrim($complementaBusca, "OR");
   }
 }
 ?>
@@ -60,7 +60,7 @@ if ($_GET){
               </div> -->
           <div class="row products">
             <?php
-            $wWhere="";
+            $wWhere = "";
             if (isset($categoria)) {
               $wWhere = " produto.categoria_id=$categoria->id ";
               if (isset($_GET['sub_categoria_id'])) {
@@ -68,10 +68,10 @@ if ($_GET){
                 $wWhere = $wWhere . " AND produto.sub_categoria_id=$subCategoria->id ";
               }
               //selectProduto($rCampos = "", $rWhere = "", $rLimit = "", $rLeft = "", $rOrderBy = "", $rGroupBy = "")
-              $produtos = $objProdutos->selectProduto($rCampos = "produto.*", $wWhere,"",$wLeft);
+              $produtos = $objProdutos->selectProduto($rCampos = "produto.*", $wWhere, "", $wLeft);
             } else {
               $wWhere = $complementaBusca;
-              $produtos = $objProdutos->selectProduto($rCampos = "produto.*", $wWhere,"",$wLeft);
+              $produtos = $objProdutos->selectProduto($rCampos = "produto.*", $wWhere, "", $wLeft);
             }
             foreach ($produtos as $itemPro) { ?>
               <div class="col-lg-4 col-md-6">
@@ -81,27 +81,22 @@ if ($_GET){
                       <?php
                       $foto = $objProdutos->pegaFotos($itemPro->id, true);
                       if (isset($foto->foto_1)) { ?>
-                        <div class="front"><a href="produto.php?produto_id=<?= $itemPro->id ?>"><img src="./img/pro/<?= $foto->foto_1 ?>" alt="" class="img-fluid"></a></div>
-                        <div class="back"><a href="produto.php?produto_id=<?= $itemPro->id ?>"><img src="./img/pro/<?= $foto->foto_1 ?>" alt="" class="img-fluid"></a></div>
+                        <div class="front"><a href="./produto.php?produto_id=<?= $itemPro->id ?>"><img src="./img/pro/<?= $foto->foto_1 ?>" alt="" class="img-fluid"></a></div>
+                        <div class="back"><a href="./produto.php?produto_id=<?= $itemPro->id ?>"><img src="./img/pro/<?= $foto->foto_1 ?>" alt="" class="img-fluid"></a></div>
                       <?php } else { ?>
-                        <div class="front"><a href="produto.php?produto_id=<?= $itemPro->id ?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
-                        <div class="back"><a href="produto.php?produto_id=<?= $itemPro->id ?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
+                        <div class="front"><a href="./produto.php?produto_id=<?= $itemPro->id ?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
+                        <div class="back"><a href="./produto.php?produto_id=<?= $itemPro->id ?>"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a></div>
                       <?php }  ?>
                     </div>
                   </div>
-                  <?php
-                  if (isset($foto->foto_1)) { ?>
-                    <a href="produto.php?produto_id=<?= $itemPro->id ?>" class="invisible"><img src="./img/pro/<?= $foto->foto_1 ?>" alt="" class="img-fluid"></a>
-                  <?php } else { ?>
-                    <a href="produto.php?produto_id=<?= $itemPro->id ?>" class="invisible"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a>
-                  <?php } ?>
+                  <a href="./produto.php?produto_id=<?= $itemPro->id ?>" class="invisible"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a>
                   <div class="text">
-                    <h3><a href="produto.php?produto_id=<?= $itemPro->id ?>"><?= $itemPro->nome; ?></a></h3>
+                    <h3><a href="./produto.php?produto_id=<?= $itemPro->id ?>"><?= $itemPro->nome; ?></a></h3>
                     <p class="price">
                       <del><?= $itemPro->preco_antigo > 0 ? 'R$' . formataMoeda($itemPro->preco_antigo) : ''; ?></del> R$<?= formataMoeda($itemPro->preco_ven); ?>
                     </p>
-                    <p class="buttons"><a href="produto.php?produto_id=<?= $itemPro->id ?>" class="btn btn-outline-secondary">Visualizar</a><a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Adicionar</a></p>
-                  </div><!-- /.text-->
+                    <p class="buttons"><a href="./produto.php?produto_id=<?= $itemPro->id ?>" class="btn btn-outline-secondary">Visualizar</a><a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Adicionar</a></p>
+                  </div> <!-- /.text-->
                   <!-- /.text-->
                   <?php
                   if ($itemPro->mais_vendido) { ?>

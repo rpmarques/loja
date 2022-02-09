@@ -199,22 +199,22 @@ class Produtos
       }
    }
 
-    public function alteraQtde($rProdutoID, $rOperacao, $rQtde)
-    {
-       try {
-          $rSql = "UPDATE produtos SET qtde=qtde $rOperacao :qtde WHERE id=:produto_id";
-          $stm = $this->pdo->prepare($rSql);
-          $stm->bindValue(':qtde', gravaMoeda($rQtde));
-          $stm->bindValue(':produto_id', $rProdutoID);
-          $stm->execute();
-          if ($stm) {
-             Logger('USUARIO:[' . $_SESSION['login'] . '] - ALTEROU QTDE PRODUTO ID:[' . $rProdutoID . '] - QTDE:+ [' . $rQtde . '] - OPERAÇÃO:[' . $rOperacao . ']');
-          }
-          return $stm;
-       } catch (PDOException $erro) {
-          Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . '] - rSql:[' . $rSql . ']');
-       }
-    }
+   public function alteraQtde($rProdutoID, $rOperacao, $rQtde)
+   {
+      try {
+         $rSql = "UPDATE produtos SET qtde=qtde $rOperacao :qtde WHERE id=:produto_id";
+         $stm = $this->pdo->prepare($rSql);
+         $stm->bindValue(':qtde', gravaMoeda($rQtde));
+         $stm->bindValue(':produto_id', $rProdutoID);
+         $stm->execute();
+         if ($stm) {
+            Logger('USUARIO:[' . $_SESSION['login'] . '] - ALTEROU QTDE PRODUTO ID:[' . $rProdutoID . '] - QTDE:+ [' . $rQtde . '] - OPERAÇÃO:[' . $rOperacao . ']');
+         }
+         return $stm;
+      } catch (PDOException $erro) {
+         Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . '] - rSql:[' . $rSql . ']');
+      }
+   }
 
    public function insert($rNome, $rCodigo, $rPrateleira, $rPrecoVen, $rCustoUlt)
    {
@@ -502,15 +502,15 @@ class Produtos
       }
    }
 
-   public function pegaFotos($rID,$PrimeiraFoto="")
+   public function pegaFotos($rID, $PrimeiraFoto = "")
    {
       try {
-         if ($PrimeiraFoto){
-            $rSql = "SELECT foto_1 FROM produto_foto WHERE produto_id=$rID ";   
-         }else{
+         if ($PrimeiraFoto) {
+            $rSql = "SELECT foto_1 FROM produto_foto WHERE produto_id=$rID ";
+         } else {
             $rSql = "SELECT * FROM produto_foto WHERE produto_id=$rID ";
          }
-         
+
          $stm = $this->pdo->prepare($rSql);
          $stm->execute();
          $dados = $stm->fetch(PDO::FETCH_OBJ);
@@ -519,8 +519,9 @@ class Produtos
          Logger('Usuario:[' . $_SESSION['login'] . '] - Arquivo:' . $erro->getFile() . ' Erro na linha:' . $erro->getLine() . ' - Mensagem:' . $erro->getMessage());
       }
    }
-   
-   public function insereListaDesejos($rClienteId,$rProdutoID){
+
+   public function insereListaDesejos($rClienteId, $rProdutoID)
+   {
       try {
          $rSql = "INSERT INTO lista_desejo (cliente_id,produto_id,datac) VALUES (:cliente_id,:produto_id,:datac);";
          $stm = $this->pdo->prepare($rSql);
@@ -537,8 +538,8 @@ class Produtos
       }
    }
 
-   
-   public function pegaListaDesejo($rClienteId,$rProdutoID)
+
+   public function pegaListaDesejo($rClienteId, $rProdutoID)
    {
       try {
          $rSql = "SELECT * FROM lista_desejo WHERE cliente_id=$rClienteId AND produto_id=$rProdutoID ";
@@ -551,7 +552,7 @@ class Produtos
       }
    }
 
-   public function removeListaDesejo($rClienteId,$rProdutoID)
+   public function removeListaDesejo($rClienteId, $rProdutoID)
    {
       try {
          $rSql = "DELETE FROM lista_desejo WHERE cliente_id=:cliente_id AND produto_id=:produto_id;";
@@ -567,5 +568,4 @@ class Produtos
          Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
       }
    }
-
 }

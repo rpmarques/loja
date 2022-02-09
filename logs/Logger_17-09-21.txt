@@ -1,6 +1,0 @@
-[22:33:25][127.0.0.1]-> Usuario:[] - Arquivo:C:\xampp\htdocs\loja\classes\categorias.class.php Erro na linha:89 - Mensagem:SQLSTATE[42601]: Syntax error: 7 ERRO:  erro de sintaxe em ou próximo a "categoria"
-LINE 1: ...tegoria.id=sub.categoria_id WHERE categoria.id<>1 categoria....
-                                                             ^ 
-[22:35:51][127.0.0.1]-> Usuario:[] - Arquivo:C:\xampp\htdocs\loja\classes\categorias.class.php Erro na linha:92 - Mensagem:SQLSTATE[42601]: Syntax error: 7 ERRO:  erro de sintaxe em ou próximo a "WHERE"
-LINE 1: ...goria sub ON categoria.id=sub.categoria_id  WHERE WHERE cate...
-                                                             ^ 
