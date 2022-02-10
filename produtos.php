@@ -89,7 +89,7 @@ if ($_GET) {
                       <?php }  ?>
                     </div>
                   </div>
-                  <a href="./produto.php?produto_id=<?= $itemPro->id ?>" class="invisible"><img src="https://via.placeholder.com/450x600" alt="" class="img-fluid"></a>
+                  <a href="./produto.php?produto_id=<?= $itemPro->id ?>" class="invisible"><img src="https://via.placeholder.com/450x610" alt="" class="img-fluid"></a>
                   <div class="text">
                     <h3><a href="./produto.php?produto_id=<?= $itemPro->id ?>"><?= $itemPro->nome; ?></a></h3>
                     <p class="price">

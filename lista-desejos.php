@@ -9,7 +9,7 @@ require_once './header.php';
           <!-- breadcrumb-->
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="./index.php">Home</a></li>
               <li aria-current="page" class="breadcrumb-item active">Minha Lista de Desejos</li>
             </ol>
           </nav>
@@ -31,7 +31,6 @@ require_once './header.php';
           <!--MENU CLIENTE -->
         </div>
         <div id="wishlist" class="col-lg-9">
-
           <div class="box">
             <h1>Minha Lista de Desejos</h1>
             <!-- <p class="lead">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p> -->
@@ -67,23 +66,26 @@ require_once './header.php';
                     <p class="buttons"><a href="produto.php?produto_id=<?= $pro->id ?>" class="btn btn-outline-secondary">Visualizar</a><a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Adicionar</a></p>
                   </div>
                   <!-- /.text-->
-                  <div class="ribbon sale">
-                    <div class="theribbon">MAIS VENDIDOS</div>
-                    <div class="ribbon-background"></div>
-                  </div>
-                  <!-- /.ribbon-->
-                  <div class="ribbon new">
-                    <div class="theribbon">NOVIDADE</div>
-                    <div class="ribbon-background"></div>
-                  </div>
-                  <!-- /.ribbon-->
-                  <div class="ribbon gift">
-                    <div class="theribbon">PROMOÇÃO</div>
-                    <div class="ribbon-background"></div>
-                  </div>
-                  <!-- /.ribbon-->
-                </div>
-                <!-- /.product            -->
+                  <?php
+                  if ($pro->mais_vendido) { ?>
+                    <div class="ribbon sale">
+                      <div class="theribbon">MAIS VENDIDOS</div>
+                      <div class="ribbon-background"></div>
+                    </div>
+                  <?php }
+                  if ($pro->novidade) { ?>
+                    <div class="ribbon new">
+                      <div class="theribbon">NOVIDADE</div>
+                      <div class="ribbon-background"></div>
+                    </div>
+                  <?php }
+                  if ($pro->promocao) { ?>
+                    <div class="ribbon gift">
+                      <div class="theribbon">PROMOÇÃO</div>
+                      <div class="ribbon-background"></div>
+                    </div> <!-- /.ribbon-->
+                  <?php } ?> <!-- /.ribbon-->
+                </div><!-- /.product            -->
               </div>
             <?php } ?>
             <!-- /.products-->

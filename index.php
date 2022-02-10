@@ -53,7 +53,7 @@
                 <div class="text">
                   <h3><a href="./produto.php?produto_id=<?= $pro->id ?>"><?= $pro->nome; ?></a></h3>
                   <p class="price">
-                    <del><?= $pro->preco_antigo > 0 ? 'R$' . formataMoeda($pro->preco_antigo) . '<br>' : ''; ?></del> R$<?= formataMoeda($pro->preco_ven); ?>
+                    <del><?= $pro->preco_antigo > 0 ? 'R$' . formataMoeda($pro->preco_antigo) . '<br>' : '<br>'; ?></del> R$<?= formataMoeda($pro->preco_ven); ?>
                   </p>
                 </div> <!-- /.text-->
                 <?php
