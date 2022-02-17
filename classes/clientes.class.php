@@ -38,9 +38,10 @@ class Clientes
         }
     }
 
-    public function pegaLogin($rEmail,$rSenha) {
+    public function pegaLogin($rEmail, $rSenha)
+    {
         try {
-            $rSql = "SELECT id,email,senha,nome FROM cliente WHERE email='".strtolower(trim($rEmail))."' AND senha='".md5($rSenha)."'";
+            $rSql = "SELECT id,email,senha,nome FROM cliente WHERE email='" . strtolower(trim($rEmail)) . "' AND senha='" . md5($rSenha) . "'";
             $stm = $this->pdo->prepare($rSql);
             $stm->execute();
             $dados = $stm->fetch(PDO::FETCH_OBJ);
@@ -50,9 +51,10 @@ class Clientes
         }
     }
 
-    public function pegaCliente($rID) {
+    public function pegaCliente($rID)
+    {
         try {
-            $rSql = "SELECT * FROM cliente WHERE id='".$rID."'";
+            $rSql = "SELECT * FROM cliente WHERE id='" . $rID . "'";
             $stm = $this->pdo->prepare($rSql);
             $stm->execute();
             $dados = $stm->fetch(PDO::FETCH_OBJ);
@@ -62,16 +64,25 @@ class Clientes
         }
     }
 
-    // id SERIAL, 
-    // nome VARCHAR(100), 
-    // endereco VARCHAR(100), 
-    // cep CHAR(9), 
-    // bairro VARCHAR(50), 
-    // numero VARCHAR(10), 
-    // cidade VARCHAR(100), 
-    // uf CHAR(2), 
-    // fone1 VARCHAR(14), 
-    public function atualizaCliente($rNome,$rEmail,$rEndereco,$rCEP,$rBairro,$rCgc, $rNumero, $rCidade,$rUF,$rFone1,$rId)
+    public function atualizaSenha($rSenha, $rId)
+    {
+        try {
+            $sql = "UPDATE cliente SET  senha=:senha WHERE id=:id ;";
+
+            $stm = $this->pdo->prepare($sql);
+            $stm->bindValue(':senha', md5($rSenha));
+            $stm->bindValue(':id', $rId);
+            $stm->execute();
+            if ($stm) {
+                Logger('Usuario:[' . $_SESSION['login'] . '] - ALTEROU SENHA DO CLIENTE - ID:[' . $rId . ']');
+            }
+            return $stm;
+        } catch (PDOException $erro) {
+            Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . '] - SQL:[' . $sql . ']');
+        }
+    }
+
+    public function atualizaCliente($rNome, $rEmail, $rEndereco, $rCEP, $rBairro, $rCgc, $rNumero, $rCidade, $rUF, $rFone1, $rId)
     {
         try {
             $sql = "UPDATE cliente SET 
@@ -97,7 +108,7 @@ class Clientes
             $stm->bindValue(':numero', $rNumero);
             $stm->bindValue(':cidade', $rCidade);
             $stm->bindValue(':uf', $rUF);
-            $stm->bindValue(':fone1', $rFone1);            
+            $stm->bindValue(':fone1', $rFone1);
             $stm->bindValue(':id', $rId);
             $stm->execute();
             if ($stm) {
@@ -108,8 +119,6 @@ class Clientes
             Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . '] - SQL:[' . $sql . ']');
         }
     }
-
-
 
     public function insert($rNome, $rCnpj, $rFone1, $rFone2, $rEmail, $rContato)
     {

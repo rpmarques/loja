@@ -1,23 +1,23 @@
 <?php
 require_once './header.php';
-if (isset($_POST['logar']) || isset($_POST['registrar'])){
+if (isset($_POST['logar']) || isset($_POST['registrar'])) {
   $wLogar = isset($_POST['logar']);
   $wRegistrar = isset($_POST['registrar']);
-  
+
   if ($wRegistrar) {
     $nome = $_POST['nome'];
     $senha = $_POST['senha'];
     $email = $_POST['email'];
-  
+
     if ($objClientes->criaConta($nome, $email, $senha)) {
-      abreModal("sucesso-modal");
+      abreModal("sucesso-modal-criar-conta");
     } else {
       abreModal("erro-modal");
     }
   }
   if ($wLogar) {
   }
-  }
+}
 ?>
 <div id="all">
   <div id="content">

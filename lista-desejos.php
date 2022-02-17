@@ -24,7 +24,7 @@ require_once './header.php';
                 <a href="./meus-pedidos.php" class="nav-link "><i class="fa fa-list"></i> Meus Pedidos</a>
                 <a href="./lista-desejos.php" class="nav-link active"><i class="fa fa-heart"></i> Lista de Desejos</a>
                 <a href="./minha-conta.php" class="nav-link "><i class="fa fa-user"></i> Minha Conta</a>
-                <a href="/.logout.php" class="nav-link"><i class="fa fa-sign-out"></i> Sair</a>
+                <a href="./logout.php" class="nav-link"><i class="fa fa-sign-out"></i> Sair</a>
               </ul>
             </div>
           </div>
@@ -84,7 +84,8 @@ require_once './header.php';
                       <div class="theribbon">PROMOÇÃO</div>
                       <div class="ribbon-background"></div>
                     </div> <!-- /.ribbon-->
-                  <?php } ?> <!-- /.ribbon-->
+                  <?php } ?>
+                  <!-- /.ribbon-->
                 </div><!-- /.product            -->
               </div>
             <?php } ?>

@@ -8,6 +8,15 @@ if ($cliente = $objClientes->pegaCliente($id)) {
   $gravaDados = isset($_POST['gravar_dados']);
   if ($gravaSenha) {
     Logger('VAMOS ALTERAR A SENHA');
+    $senha = $_POST['senha'];
+    if ($objClientes->atualizaSenha($senha, $id)) {
+      Logger("SENHA DO CLIENTE ID:[$id] ATUALZIADOS");
+      $cliente = $objClientes->pegaCliente($id);
+      abreModal("modal-senha-alterada");
+    } else {
+      Logger("ERRO AO ATUALIZAR DADOS DO CLINTE");
+      abreModal("erro-modal");
+    }
   }
   //DADOS DA CONTA
   if ($gravaDados) {
@@ -27,9 +36,10 @@ if ($cliente = $objClientes->pegaCliente($id)) {
     )) {
       Logger("DADOS DO CLIENTE ID:[$id] ATUALZIADOS");
       $cliente = $objClientes->pegaCliente($id);
-      abreModal("sucesso-dados-modal");
+      abreModal("sucesso-modal-dados_alterados");
     } else {
       Logger("ERRO AO ATUALIZAR DADOS DO CLINTE");
+      abreModal("erro-modal");
     }
   }
 }
@@ -62,7 +72,7 @@ if (empty($cliente)) {
                 <a href="./meus-pedidos.php" class="nav-link "><i class="fa fa-list"></i> Meus Pedidos</a>
                 <a href="./lista-desejos.php" class="nav-link"><i class="fa fa-heart"></i> Lista de Desejos</a>
                 <a href="./minha-conta.php" class="nav-link active"><i class="fa fa-user"></i> Minha Conta</a>
-                <a href="/.logout.php" class="nav-link"><i class="fa fa-sign-out"></i> Sair</a>
+                <a href="./logout.php" class="nav-link"><i class="fa fa-sign-out"></i> Sair</a>
               </ul>
             </div>
           </div> <!-- /.col-lg-3-->
@@ -74,14 +84,7 @@ if (empty($cliente)) {
             <p class="lead">Altere seus dados pessoais ou sua senha aqui.</p>
             <h3>Alterar a senha</h3>
             <form method="post" data-toggle="validator" id="formSenha">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="password_old">Senha antiga</label>
-                    <input id="password_old" type="password" class="form-control">
-                  </div>
-                </div>
-              </div>
+
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
