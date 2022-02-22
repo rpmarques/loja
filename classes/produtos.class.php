@@ -538,7 +538,6 @@ class Produtos
       }
    }
 
-
    public function pegaListaDesejo($rClienteId, $rProdutoID)
    {
       try {
@@ -567,5 +566,82 @@ class Produtos
       } catch (PDOException $erro) {
          Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
       }
+   }
+
+   public function insereMarca($rNome)
+   {
+      try {
+         $rSql = "INSERT INTO marca (nome) VALUES (:nome);";
+         $stm = $this->pdo->prepare($rSql);
+         $stm->bindValue(':nome', $rNome);
+         $stm->execute();
+         if ($stm) {
+            Logger('Usuario:[' . $_SESSION['login'] . '] - INSERIU MARCA ');
+         }
+         return $stm;
+      } catch (PDOException $erro) {
+         Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
+      }
+   }
+
+   public function listaMarcas()
+   {
+      try {
+         $rSql = "SELECT * FROM marca;";
+         $stm = $this->pdo->prepare($rSql);
+         $stm->execute();
+         $dados = $stm->fetchAll(PDO::FETCH_OBJ);
+         return $dados;
+      } catch (PDOException $erro) {
+         Logger('Usuario:[' . $_SESSION['login'] . '] - Arquivo:' . $erro->getFile() . ' Erro na linha:' . $erro->getLine() . ' - Mensagem:' . $erro->getMessage());
+      }
+   }
+
+   public function atualizaMarca($rNome, $rId)
+   {
+      try {
+         $sql = "UPDATE marca SET nome=:nome WHERE id=:id;";
+         $stm = $this->pdo->prepare($sql);
+         $stm->bindValue(':nome', $rNome);
+         $stm->bindValue(':id', $rId);
+         $stm->execute();
+         if ($stm) {
+            Logger('Usuario:[' . $_SESSION['login'] . '] - ALTEROU MARCA DE PRODUTO - ID:[' . $rId . ']');
+         }
+         return $stm;
+      } catch (PDOException $erro) {
+         Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . '] - SQL:[' . $sql . ']');
+      }
+   }
+
+   public function pegaMarca($rMarcaID)
+   {
+      try {
+         $rSql = "SELECT * FROM marca WHERE id=$rMarcaID ;";
+         $stm = $this->pdo->prepare($rSql);
+         $stm->execute();
+         $dados = $stm->fetch(PDO::FETCH_OBJ);
+         return $dados;
+      } catch (PDOException $erro) {
+         Logger('Usuario:[' . $_SESSION['login'] . '] - Arquivo:' . $erro->getFile() . ' Erro na linha:' . $erro->getLine() . ' - Mensagem:' . $erro->getMessage());
+      }
+   }
+
+   public function apagaMarca($rId)
+   {
+      if (!empty($rId)) :
+         try {
+            $rSql = "DELETE FROM marca WHERE id=:id";
+            $stm = $this->pdo->prepare($rSql);
+            $stm->bindValue(':id', $rId);
+            $stm->execute();
+            if ($stm) {
+               Logger('Usuario:[' . $_SESSION['login'] . '] - EXCLUIU MARCA - ID:[' . $rId . ']');
+            }
+            return $stm;
+         } catch (PDOException $erro) {
+            Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
+         }
+      endif;
    }
 }

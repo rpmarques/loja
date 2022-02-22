@@ -26,20 +26,7 @@
             <a href="./clienteListar.php" class="small-box-footer"> Listar <i class="fas fa-arrow-circle-right"></i> </a>
           </div>
         </div> <!-- ./col -->
-        <div class="col-lg-2 col-6">
-          <!-- small card -->
-          <div class="small-box bg-info">
-            <div class="inner">
-              <h3><?= $objFornecedores->contaFornecedores(); ?></h3>
-              <p>Fornecedores </p>
-            </div>
-            <div class="icon">
-              <i class="fas fa-shopping-cart"></i>
-            </div>
-            <a href="./fornecedorIncluir.php" class="small-box-footer"> Novo <i class="fas fa-plus-circle"></i> </a>
-            <a href="./fornecedorListar.php" class="small-box-footer"> Listar <i class="fas fa-arrow-circle-right"></i> </a>
-          </div>
-        </div><!-- ./col -->
+
       </div><!-- /.row -->
 
       <!-- Small Box (Stat card) -->

@@ -12,7 +12,7 @@ require_once './header.php';
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Listagem de Formas de Pagamento</h3>
+                            <h3 class="card-title">Listagem de Marcas</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -25,13 +25,13 @@ require_once './header.php';
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $formaPgto = $objFormaPgto->select();
-                                    foreach ($formaPgto as $fPgto) { ?>
+                                    $marcas = $objProdutos->listaMarcas();
+                                    foreach ($marcas as $marca) { ?>
                                         <tr>
-                                            <td><?= $fPgto->nome; ?></td>
+                                            <td><?= $marca->nome; ?></td>
                                             <td>
-                                                <a class="btn bg-gradient-primary btn-xs" href="./formaPgtoEditar.php?id=<?= base64_encode($fPgto->id) ?>"><i class="fa fa-edit"></i> Editar </a>
-                                                <a class="btn bg-gradient-danger btn-xs" href="./formaPgtoExcluir.php?id=<?= base64_encode($fPgto->id) ?>"><i class="fa fa-eraser"></i> Exluir </a>
+                                                <a class="btn bg-gradient-primary btn-xs" href="./marcaEditar.php?id=<?= base64_encode($marca->id) ?>"><i class="fa fa-edit"></i> Editar </a>
+                                                <a class="btn bg-gradient-danger btn-xs" href="./marcaExcluir.php?id=<?= base64_encode($marca->id) ?>"><i class="fa fa-eraser"></i> Exluir </a>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -39,7 +39,7 @@ require_once './header.php';
                             </table>
                         </div> <!-- /.card-body -->
                         <div class="card-footer">
-                            <a href="./formaPgtoIncluir.php" class="btn btn-primary btn-sm">Incluir Forma de Pagamento</a>
+                            <a href="./marcaIncluir.php" class="btn btn-primary btn-sm">Cadastrar Marca</a>
                         </div>
                     </div> <!-- /.card -->
                 </div> <!-- /.col -->

@@ -12,4 +12,15 @@ $(document).ready(function () {
     $('.cep').mask('00000-000');
 
     $('#formSenha').validator();
+
+    $('.cgc').blur(function () {
+        // O CPF ou CNPJ
+        var cpf_cnpj = $(this).val();
+        // Testa a validação
+        if (valida_cpf_cnpj(cpf_cnpj)) {
+            //alert('OK');
+        } else {
+            alert('CPF ou CNPJ inválido!');
+        }
+    });
 });

@@ -188,6 +188,3 @@ if (empty($cliente)) {
 <?php
 require_once './footer.php';
 ?>
-<script>
-  // just for the demos, avoids form submit
-</script>

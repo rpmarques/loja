@@ -2,17 +2,17 @@
 require_once './header.php';
 if ($_GET) {
   if (isset($_GET['id'])) {
-    $formaID = base64_decode($_GET['id']);
-    $formaPgto = $objFormaPgto->pegaFormaPgto($formaID);
+    $rMarcaID = base64_decode($_GET['id']);
+    $marca = $objProdutos->pegaMarca($rMarcaID);
   }
 }
 if ($_POST) {
   if (isset($_POST['id'])) {
     $nome = $_POST['nome'];
-    $formaID = $_POST['id'];
+    $rMarcaID = $_POST['id'];
 
-    $ret = $objFormaPgto->update($nome, $formaID);
-    $formaPgto = $objFormaPgto->pegaFormaPgto($formaID);
+    $ret = $objProdutos->atualizaMarca($nome, $rMarcaID);
+    $marca = $objProdutos->pegaMarca($rMarcaID);
   }
 }
 ?>
@@ -33,20 +33,20 @@ if ($_POST) {
               require_once './alertaErro.php.php';
             }
           }
-          if (!empty($formaPgto)) { ?>
+          if (!empty($marca)) { ?>
             <div class="card card-success">
               <div class="card-header">
                 <h3 class="card-title">Edição de Forma de Pagamento</h3>
               </div> <!-- /.card-header -->
               <!-- form start -->
               <form method="post">
-                <input type="hidden" value="<?= $formaPgto->id; ?>" name="id">
+                <input type="hidden" value="<?= $marca->id; ?>" name="id">
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Nome</label>
-                        <input type="text" class="form-control form-control-sm" name="nome" value="<?= $formaPgto->nome; ?>">
+                        <input type="text" class="form-control form-control-sm" name="nome" value="<?= $marca->nome; ?>">
                       </div>
                     </div>
                   </div>

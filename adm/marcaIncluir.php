@@ -3,7 +3,7 @@ require_once './header.php';
 if ($_POST) {
   if (isset($_POST['nome'])) {
     $nome = $_POST['nome'];
-    $ret = $objFormaPgto->insert($nome);
+    $ret = $objProdutos->insereMarca($nome);
   }
 }
 ?>
@@ -28,7 +28,7 @@ if ($_POST) {
           <!-- general form elements -->
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Cadastrar Forma de Pagamento</h3>
+              <h3 class="card-title">Cadastrar Marca</h3>
             </div> <!-- /.card-header -->
             <!-- form start -->
             <form method="post">

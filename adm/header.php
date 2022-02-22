@@ -1,18 +1,12 @@
 <?php
-require_once './classes/funcoes.class.php';
-require_once './classes/logger.class.php';
-require_once './classes/conexao.class.php';
-require_once './classes/usuarios.class.php';
-require_once './classes/clientes.class.php';
+require_once '../classes/funcoes.class.php';
+require_once '../classes/logger.class.php';
+require_once '../classes/conexao.class.php';
+require_once '../classes/usuarios.class.php';
+require_once '../classes/clientes.class.php';
 $objClientes = Clientes::getInstance(Conexao::getInstance());
-require_once './classes/fornecedores.class.php';
-$objFornecedores = Fornecedores::getInstance(Conexao::getInstance());
-require_once './classes/ctPag.class.php';
-$objContasPagar = CtPag::getInstance(Conexao::getInstance());
-require_once './classes/ctRec.class.php';
-$objContasReceber = CtRec::getInstance(Conexao::getInstance());
-require_once './classes/formaPgto.class.php';
-$objFormaPgto = formaPgto::getInstance(Conexao::getInstance());
+require_once '../classes/produtos.class.php';
+$objProdutos = Produtos::getInstance(Conexao::getInstance());
 session_start();
 if (!isset($_SESSION['login'])) {
   vaiPraPagina('index');
@@ -24,7 +18,7 @@ if (!isset($_SESSION['login'])) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Controle de Contas</title>
+  <title>Loja Virtual - Retaguarda</title>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->

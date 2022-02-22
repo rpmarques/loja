@@ -4,10 +4,10 @@
 // REPORTA TODOS OS ERROS E AVISOS
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
-require_once './classes/funcoes.class.php';
-require_once './classes/logger.class.php';
-require_once './classes/conexao.class.php';
-require_once './classes/usuarios.class.php';
+require_once '../classes/funcoes.class.php';
+require_once '../classes/logger.class.php';
+require_once '../classes/conexao.class.php';
+require_once '../classes/usuarios.class.php';
 $objUsuarios = Usuarios::getInstance(Conexao::getInstance());
 
 if (isset($_POST['email'])) {
@@ -31,7 +31,7 @@ if (isset($_POST['email'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Controle de Contas</title>
+    <title>Retaguarda LOJA</title>
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -47,7 +47,7 @@ if (isset($_POST['email'])) {
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a href="./index.php" class="h1"><b>Contas </b>1.00</a>
+                <a href="./index.php" class="h1"><b>Retaguarda </b>1.00</a>
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Faça seu login para acessar</p>
@@ -87,9 +87,9 @@ if (isset($_POST['email'])) {
                 <p class="mb-1">
                     <a href="./recuperarSenha.php">Recuperar Senha</a>
                 </p>
-                <p class="mb-0">
+                <!-- <p class="mb-0">
                     <a href="./registrar.php" class="text-center">Faça seu registro</a>
-                </p>
+                </p> -->
             </div> <!-- /.card-body -->
         </div> <!-- /.card -->
     </div> <!-- /.login-box -->
