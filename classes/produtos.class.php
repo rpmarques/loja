@@ -369,19 +369,6 @@ class Produtos
       }
    }
 
-   public function pegaCategoria($rID)
-   {
-      try {
-         $rSql = "SELECT * FROM categoria WHERE id='" . $rID . "'";
-         $stm = $this->pdo->prepare($rSql);
-         $stm->execute();
-         $dados = $stm->fetch(PDO::FETCH_OBJ);
-         return $dados;
-      } catch (PDOException $erro) {
-         Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . '] - SQL:[' . $rSql . ']');
-      }
-   }
-
    public function pegaSubCategoria($rID)
    {
       try {
@@ -567,7 +554,7 @@ class Produtos
          Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
       }
    }
-
+   //**   MARCAS **/
    public function insereMarca($rNome)
    {
       try {
@@ -644,4 +631,84 @@ class Produtos
          }
       endif;
    }
+   //**  FIM MARCAS **/
+
+   //**   CATEGORIAS **/
+   public function insereCategoria($rNome)
+   {
+      try {
+         $rSql = "INSERT INTO categoria (nome) VALUES (:nome);";
+         $stm = $this->pdo->prepare($rSql);
+         $stm->bindValue(':nome', $rNome);
+         $stm->execute();
+         if ($stm) {
+            Logger('Usuario:[' . $_SESSION['login'] . '] - INSERIU CATEGORIA ');
+         }
+         return $stm;
+      } catch (PDOException $erro) {
+         Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
+      }
+   }
+
+   public function listaCategorias()
+   {
+      try {
+         $rSql = "SELECT * FROM categoria;";
+         $stm = $this->pdo->prepare($rSql);
+         $stm->execute();
+         $dados = $stm->fetchAll(PDO::FETCH_OBJ);
+         return $dados;
+      } catch (PDOException $erro) {
+         Logger('Usuario:[' . $_SESSION['login'] . '] - Arquivo:' . $erro->getFile() . ' Erro na linha:' . $erro->getLine() . ' - Mensagem:' . $erro->getMessage());
+      }
+   }
+
+   public function atualizaCategoria($rNome, $rId)
+   {
+      try {
+         $sql = "UPDATE categoria SET nome=:nome WHERE id=:id;";
+         $stm = $this->pdo->prepare($sql);
+         $stm->bindValue(':nome', $rNome);
+         $stm->bindValue(':id', $rId);
+         $stm->execute();
+         if ($stm) {
+            Logger('Usuario:[' . $_SESSION['login'] . '] - ALTEROU CATEGORIA DE PRODUTO - ID:[' . $rId . ']');
+         }
+         return $stm;
+      } catch (PDOException $erro) {
+         Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . '] - SQL:[' . $sql . ']');
+      }
+   }
+
+   public function pegaCategoria($rId)
+   {
+      try {
+         $rSql = "SELECT * FROM categoria WHERE id=$rId ;";
+         $stm = $this->pdo->prepare($rSql);
+         $stm->execute();
+         $dados = $stm->fetch(PDO::FETCH_OBJ);
+         return $dados;
+      } catch (PDOException $erro) {
+         Logger('Usuario:[' . $_SESSION['login'] . '] - Arquivo:' . $erro->getFile() . ' Erro na linha:' . $erro->getLine() . ' - Mensagem:' . $erro->getMessage());
+      }
+   }
+
+   public function apagaCAtegoria($rId)
+   {
+      if (!empty($rId)) :
+         try {
+            $rSql = "DELETE FROM marca WHERE id=:id";
+            $stm = $this->pdo->prepare($rSql);
+            $stm->bindValue(':id', $rId);
+            $stm->execute();
+            if ($stm) {
+               Logger('Usuario:[' . $_SESSION['login'] . '] - EXCLUIU MARCA - ID:[' . $rId . ']');
+            }
+            return $stm;
+         } catch (PDOException $erro) {
+            Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
+         }
+      endif;
+   }
+   //**  FIM CATEGORIAS **/
 }
