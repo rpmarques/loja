@@ -369,19 +369,7 @@ class Produtos
       }
    }
 
-   public function pegaSubCategoria($rID)
-   {
-      try {
-         $rSql = "SELECT * FROM sub_categoria WHERE id='" . $rID . "'";
-         $stm = $this->pdo->prepare($rSql);
-         $stm->execute();
-         $dados = $stm->fetch(PDO::FETCH_OBJ);
-         return $dados;
-      } catch (PDOException $erro) {
-         Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . '] - SQL:[' . $rSql . ']');
-      }
-   }
-
+   
    public function pegaProduto($rID)
    {
       try {
@@ -702,7 +690,86 @@ class Produtos
             $stm->bindValue(':id', $rId);
             $stm->execute();
             if ($stm) {
-               Logger('Usuario:[' . $_SESSION['login'] . '] - EXCLUIU MARCA - ID:[' . $rId . ']');
+               Logger('Usuario:[' . $_SESSION['login'] . '] - EXCLUIU CATEGORIA - ID:[' . $rId . ']');
+            }
+            return $stm;
+         } catch (PDOException $erro) {
+            Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
+         }
+      endif;
+   }
+   //**  FIM CATEGORIAS **/
+
+   //**   SUB-CATEGORIAS **/
+   public function insereSubCategoria($rNome)
+   {
+      try {
+         $rSql = "INSERT INTO sub_categoria (nome) VALUES (:nome);";
+         $stm = $this->pdo->prepare($rSql);
+         $stm->bindValue(':nome', $rNome);
+         $stm->execute();
+         if ($stm) {
+            Logger('Usuario:[' . $_SESSION['login'] . '] - INSERIU SUB-CATEGORIA ');
+         }
+         return $stm;
+      } catch (PDOException $erro) {
+         Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
+      }
+   }
+
+   public function listaSubCategorias()
+   {
+      try {
+         $rSql = "SELECT * FROM sub_categoria;";
+         $stm = $this->pdo->prepare($rSql);
+         $stm->execute();
+         $dados = $stm->fetchAll(PDO::FETCH_OBJ);
+         return $dados;
+      } catch (PDOException $erro) {
+         Logger('Usuario:[' . $_SESSION['login'] . '] - Arquivo:' . $erro->getFile() . ' Erro na linha:' . $erro->getLine() . ' - Mensagem:' . $erro->getMessage());
+      }
+   }
+
+   public function atualizaSubCategoria($rNome, $rId)
+   {
+      try {
+         $sql = "UPDATE sub_categoria SET nome=:nome WHERE id=:id;";
+         $stm = $this->pdo->prepare($sql);
+         $stm->bindValue(':nome', $rNome);
+         $stm->bindValue(':id', $rId);
+         $stm->execute();
+         if ($stm) {
+            Logger('Usuario:[' . $_SESSION['login'] . '] - ALTEROU SUB-CATEGORIA - ID:[' . $rId . ']');
+         }
+         return $stm;
+      } catch (PDOException $erro) {
+         Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . '] - SQL:[' . $sql . ']');
+      }
+   }
+
+   public function pegaSubCategoria($rId)
+   {
+      try {
+         $rSql = "SELECT * FROM sub_categoria WHERE id=$rId ;";
+         $stm = $this->pdo->prepare($rSql);
+         $stm->execute();
+         $dados = $stm->fetch(PDO::FETCH_OBJ);
+         return $dados;
+      } catch (PDOException $erro) {
+         Logger('Usuario:[' . $_SESSION['login'] . '] - Arquivo:' . $erro->getFile() . ' Erro na linha:' . $erro->getLine() . ' - Mensagem:' . $erro->getMessage());
+      }
+   }
+
+   public function apagaSubCategoria($rId)
+   {
+      if (!empty($rId)) :
+         try {
+            $rSql = "DELETE FROM sub_categoria WHERE id=:id";
+            $stm = $this->pdo->prepare($rSql);
+            $stm->bindValue(':id', $rId);
+            $stm->execute();
+            if ($stm) {
+               Logger('Usuario:[' . $_SESSION['login'] . '] - EXCLUIU SUB-CATEGORIA - ID:[' . $rId . ']');
             }
             return $stm;
          } catch (PDOException $erro) {
