@@ -601,10 +601,10 @@ class Produtos
       }
    }
 
-   public function pegaMarca($rMarcaID)
+   public function pegaMarca($rID)
    {
       try {
-         $rSql = "SELECT * FROM marca WHERE id=$rMarcaID ;";
+         $rSql = "SELECT * FROM marca WHERE id=$rID ;";
          $stm = $this->pdo->prepare($rSql);
          $stm->execute();
          $dados = $stm->fetch(PDO::FETCH_OBJ);
@@ -693,11 +693,11 @@ class Produtos
       }
    }
 
-   public function apagaCAtegoria($rId)
+   public function apagaCategoria($rId)
    {
       if (!empty($rId)) :
          try {
-            $rSql = "DELETE FROM marca WHERE id=:id";
+            $rSql = "DELETE FROM categoria WHERE id=:id";
             $stm = $this->pdo->prepare($rSql);
             $stm->bindValue(':id', $rId);
             $stm->execute();

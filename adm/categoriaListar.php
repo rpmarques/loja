@@ -30,8 +30,8 @@ require_once './header.php';
                                         <tr>
                                             <td><?= $cat->nome; ?></td>
                                             <td>
-                                                <a class="btn bg-gradient-primary btn-xs" href="./catEditar.php?id=<?= base64_encode($cat->id) ?>"><i class="fa fa-edit"></i> Editar </a>
-                                                <a class="btn bg-gradient-danger btn-xs" href="./catExcluir.php?id=<?= base64_encode($cat->id) ?>"><i class="fa fa-eraser"></i> Exluir </a>
+                                                <a class="btn bg-gradient-primary btn-xs" href="./categoriaEditar.php?id=<?= base64_encode($cat->id) ?>"><i class="fa fa-edit"></i> Editar </a>
+                                                <a class="btn bg-gradient-danger btn-xs" href="./categoriaExcluir.php?id=<?= base64_encode($cat->id) ?>"><i class="fa fa-eraser"></i> Exluir </a>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -39,7 +39,7 @@ require_once './header.php';
                             </table>
                         </div> <!-- /.card-body -->
                         <div class="card-footer">
-                            <a href="./catIncluir.php" class="btn btn-primary btn-sm">Cadastrar Marca</a>
+                            <a href="./categoriaIncluir.php" class="btn btn-primary btn-sm">Cadastrar Categoria</a>
                         </div>
                     </div> <!-- /.card -->
                 </div> <!-- /.col -->
