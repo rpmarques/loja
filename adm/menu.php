@@ -82,12 +82,12 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="./ctRecIncluir.php" class="nav-link"> <i class="far fa-dot-circle nav-icon"></i>
+                            <a href="./subCategoriaIncluir.php" class="nav-link"> <i class="far fa-dot-circle nav-icon"></i>
                                 <p>Incluir</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./ctRecListar.php" class="nav-link"> <i class="far fa-dot-circle nav-icon"></i>
+                            <a href="./subCategoriaListar.php" class="nav-link"> <i class="far fa-dot-circle nav-icon"></i>
                                 <p>Listar</p>
                             </a>
                         </li>

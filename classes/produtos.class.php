@@ -717,7 +717,43 @@ class Produtos
       }
    }
 
-   public function listaSubCategorias()
+
+   public function listaSubCategorias($rCampos = "", $rWhere = "", $rLimit = "", $rLeft = "", $rOrderBy = "", $rGroupBy = "")
+   {
+      try {
+
+         if (empty($rCampos)) {
+            $rCampos = "*";
+         }
+         if (empty($rLeft)) {
+            $rLeft = "";
+         }
+         if (!empty($rOrderBy)) {
+            $rOrderBy = " ORDER BY $rOrderBy ";
+         }
+         if (!empty($rGroupBy)) {
+            $rGroupBy = " GROUP BY $rGroupBy";
+         }
+         if (!empty($rWhere)) {
+            $rWhere = " WHERE $rWhere";
+         }
+         if (!empty($rLimit)) {
+            $rLimit = " LIMIT $rLimit";
+         }
+
+         $rSql = "SELECT $rCampos FROM sub_categoria $rLeft $rWhere $rGroupBy $rOrderBy $rLimit";
+         $stm = $this->pdo->prepare($rSql);
+         $stm->execute();
+         $dados = $stm->fetchAll(PDO::FETCH_OBJ);
+         return $dados;
+      } catch (PDOException $erro) {
+         Logger('Usuario:[' . $_SESSION['login'] . '] - Arquivo:' . $erro->getFile() . ' Erro na linha:' . $erro->getLine() . ' - Mensagem:' . $erro->getMessage());
+      }
+   }
+
+
+
+   public function listaSubCategorias1()
    {
       try {
          $rSql = "SELECT * FROM sub_categoria;";
