@@ -19,15 +19,14 @@ require_once './header.php';
                             <table id="example1" class="table table-bordered table-striped table-sm">
                                 <thead>
                                     <tr>
-                                        <th>Nome</th>
-                                        <th>Categoria</th>
+                                        <th>Nome da Sub-Categoria</th>
+                                        <th>Nome da Categoria</th>
                                         <th>Ação</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    //listaSubCategorias($rCampos = "", $rWhere = "", $rLimit = "", $rLeft = "", $rOrderBy = "", $rGroupBy = "")
-                                    $subCategoria = $objProdutos->listaSubCategorias("sub_categoria.*,categoria.nome AS nomeCat","","","LEFT JOIN categoria ON categoria.id=sub_categoria.id");
+                                    $subCategoria = $objProdutos->listaSubCategorias("sub_categoria.*,categoria.nome AS nomeCat","","","LEFT JOIN categoria ON categoria.id=sub_categoria.categoria_id");
                                     foreach ($subCategoria as $sub) { ?>
                                         <tr>
                                             <td><?= $sub->nome; ?></td>
