@@ -15,15 +15,14 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="#" class="nav-link"> <i class="far fa-circle nav-icon"></i>
-                        <p>Level 2</p>
+                    <a href="./clienteIncluir.php" class="nav-link"> <i class="far fa-circle nav-icon"></i>
+                        <p>Incluir</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Level 2</p>
+                    <a href="./clienteListar.php" class="nav-link"> <i class="far fa-circle nav-icon"></i>
+                        <p>Listar</p>
                     </a>
                 </li>
             </ul>
@@ -36,7 +35,7 @@
                 <p> Produtos<i class="right fas fa-angle-left"></i> </p>
             </a>
             <ul class="nav nav-treeview">
-                <!-- CONTAS A PAGAR -->
+                <!-- PRODUTOS -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
@@ -54,7 +53,7 @@
                             </a>
                         </li>
                     </ul>
-                </li> <!-- CONTAS A PAGAR -->
+                </li> <!-- PRODUTOS -->
                 <!-- CATEGORIAS -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">

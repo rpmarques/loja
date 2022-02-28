@@ -835,7 +835,6 @@ class Produtos
          }
       endif;
    }
-
    
    //**  FIM SUB-CATEGORIAS **/
 }
