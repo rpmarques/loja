@@ -4,7 +4,7 @@ if ($_POST) {
   if (isset($_POST['nome'])) {
     $nome = $_POST['nome'];
     $categoriaID = $_POST['categoria_id'];
-    $ret = $objProdutos->insereSubCategoria($nome,$categoriaID);
+    $ret = $objProdutos->insereSubCategoria($nome, $categoriaID);
   }
 }
 ?>
@@ -35,7 +35,7 @@ if ($_POST) {
             <form method="post">
               <div class="card-body">
                 <div class="row">
-                <div class="col-md-6">
+                  <div class="col-md-6">
                     <div class="form-group">
                       <label>Categoria</label>
                       <?= $objProdutos->montaSelectCategoria('categoria_id'); ?>

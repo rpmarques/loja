@@ -741,7 +741,6 @@ class Produtos
       }
    }
 
-
    public function listaSubCategorias($rCampos = "", $rWhere = "", $rLimit = "", $rLeft = "", $rOrderBy = "", $rGroupBy = "")
    {
       try {
@@ -775,8 +774,6 @@ class Produtos
       }
    }
 
-
-
    public function listaSubCategorias1()
    {
       try {
@@ -790,12 +787,13 @@ class Produtos
       }
    }
 
-   public function atualizaSubCategoria($rNome, $rId)
+   public function atualizaSubCategoria($rNome,$rCategoriaID, $rId)
    {
       try {
-         $sql = "UPDATE sub_categoria SET nome=:nome WHERE id=:id;";
+         $sql = "UPDATE sub_categoria SET nome=:nome,categoria_id=:categoria_id WHERE id=:id;";
          $stm = $this->pdo->prepare($sql);
          $stm->bindValue(':nome', $rNome);
+         $stm->bindValue(':categoria_id', $rCategoriaID);
          $stm->bindValue(':id', $rId);
          $stm->execute();
          if ($stm) {
