@@ -1,11 +1,10 @@
 <?php
 require_once './header.php';
 if ($_GET) {
-  if (isset($_GET['id'])){
+  if (isset($_GET['id'])) {
     $clienteId = base64_decode($_GET['id']);
     $cliente = $objClientes->pegaCli($clienteId);
   }
-  
 }
 if ($_POST) {
   if (isset($_POST['id'])) {
@@ -42,7 +41,7 @@ if ($_POST) {
                 <input type="hidden" value="<?= $cliente->id; ?>" name="id">
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                       <div class="form-group">
                         <label>Nome</label>
                         <input type="text" class="form-control form-control-sm" name="nome" value="<?= $cliente->nome; ?>">
@@ -50,26 +49,20 @@ if ($_POST) {
                     </div>
                     <div class="col-md-3">
                       <div class="form-group">
-                        <label>CNPJ</label>
-                        <input type="text" class="form-control form-control-sm cnpj" name="cnpj" data-inputmask='"mask": "99.999.999/9999-99"' data-mask value="<?= $cliente->cnpj; ?>">
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="form-group">
-                        <label>CPF</label>
-                        <input class="form-control form-control-sm cpf" name="cpf" data-inputmask='"mask": "999.999.999-99"' data-mask value="<?= $cliente->cpf; ?>">
+                        <label>CNPJ / CPF</label>
+                        <input type="text" class="form-control form-control-sm cgc" name="cgc" value="<?= $cliente->cnpj; ?>">
                       </div>
                     </div>
                     <div class="col-md-3">
                       <div class="form-group">
                         <label>Fone 1</label>
-                        <input class="form-control form-control-sm fone" name="fone1" data-inputmask='"mask": "(99)-99999-9999"' data-mask value="<?= $cliente->fone1; ?>">
+                        <input class="form-control form-control-sm fone" name="fone1" value="<?= $cliente->fone1; ?>">
                       </div>
                     </div>
                     <div class="col-md-3">
                       <div class="form-group">
                         <label>Fone 2</label>
-                        <input class="form-control form-control-sm fone" name="fone2" data-inputmask='"mask": "(99)-99999-9999"' data-mask value="<?= $cliente->fone2; ?>">
+                        <input class="form-control form-control-sm fone" name="fone2" value="<?= $cliente->fone2; ?>">
                       </div>
                     </div>
                     <div class="col-md-6">

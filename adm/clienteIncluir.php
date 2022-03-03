@@ -3,13 +3,12 @@ require_once './header.php';
 if ($_POST) {
   if (isset($_POST['nome'])) {
     $nome = $_POST['nome'];
-    $cnpj = $_POST['cnpj'];
+    $cnpj = $_POST['cgc'];
     $fone1 = $_POST['fone1'];
     $fone2 = $_POST['fone2'];
     $email = $_POST['email'];
     $contato = '';
-    $cpf = $_POST['cpf'];
-    $ret = $objClientes->insert($nome, $cnpj, $fone1, $fone2, $email, $contato, $cpf);
+    $ret = $objClientes->insert($nome, $cnpj, $fone1, $fone2, $email, $contato);
   }
 }
 ?>
@@ -40,7 +39,7 @@ if ($_POST) {
             <form method="post">
               <div class="card-body">
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-8">
                     <div class="form-group">
                       <label>Nome</label>
                       <input type="text" class="form-control form-control-sm" name="nome">
@@ -48,26 +47,20 @@ if ($_POST) {
                   </div>
                   <div class="col-md-3">
                     <div class="form-group">
-                      <label>CNPJ</label>
-                      <input type="text" class="form-control form-control-sm cnpj" name="cnpj" data-inputmask='"mask": "99.999.999/9999-99"' data-mask>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <label>CPF</label>
-                      <input class="form-control form-control-sm cpf" name="cpf" data-inputmask='"mask": "999.999.999-99"' data-mask>
+                      <label>CNPJ / CPF</label>
+                      <input type="text" class="form-control form-control-sm cgc" name="cgc">
                     </div>
                   </div>
                   <div class="col-md-3">
                     <div class="form-group">
                       <label>Fone 1</label>
-                      <input class="form-control form-control-sm fone" name="fone1" data-inputmask='"mask": "(99)-99999-9999"' data-mask>
+                      <input class="form-control form-control-sm fone" name="fone1">
                     </div>
                   </div>
                   <div class="col-md-3">
                     <div class="form-group">
                       <label>Fone 2</label>
-                      <input class="form-control form-control-sm fone" name="fone2" data-inputmask='"mask": "(99)-99999-9999"' data-mask>
+                      <input class="form-control form-control-sm fone" name="fone2">
                     </div>
                   </div>
                   <div class="col-md-6">

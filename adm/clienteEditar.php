@@ -1,25 +1,31 @@
 <?php
 require_once './header.php';
 if ($_GET) {
-  if (isset($_GET['id'])){
+  if (isset($_GET['id'])) {
     $clienteId = base64_decode($_GET['id']);
-    $cliente = $objClientes->pegaCli($clienteId);
+    $cliente = $objClientes->pegaCliente($clienteId);
   }
-  
 }
 if ($_POST) {
-  if (isset($_POST['id'])) {
-    $nome=$_POST['nome'];
-    $cnpj = $_POST['cnpj'];
-    $fone1 = $_POST['fone1'];
-    $fone2 = $_POST['fone2'];
-    $email= $_POST['email'];
-    $rContato = '';
-    $clienteId = $_POST['id'];
-    $cpf= $_POST['cpf'];
 
-    $ret = $objClientes->update($nome, $cnpj, $fone1, $fone2, $email, $rContato, $clienteId, $cpf);
-    $cliente = $objClientes->pegaCli($clienteId);
+
+
+
+  if (isset($_POST['id'])) {
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $endereco = $_POST['endereco'];
+    $cep = $_POST['cep'];
+    $bairro = $_POST['bairro'];
+    $cgc = $_POST['cgc'];
+    $numero = $_POST['numero'];
+    $cidade = $_POST['cidade'];
+    $uf = $_POST['uf'];
+    $fone1 = $_POST['fone1'];
+    $id = $_POST['id'];
+
+    $ret = $objClientes->atualizaCliente($nome, $email, $endereco, $cep, $bairro, $cgc, $numero, $cidade, $uf, $fone1, $id);
+    $cliente = $objClientes->pegaCliente($id);
   }
 }
 ?>
@@ -50,7 +56,7 @@ if ($_POST) {
                 <input type="hidden" value="<?= $cliente->id; ?>" name="id">
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                       <div class="form-group">
                         <label>Nome</label>
                         <input type="text" class="form-control form-control-sm" name="nome" value="<?= $cliente->nome; ?>">
@@ -58,26 +64,14 @@ if ($_POST) {
                     </div>
                     <div class="col-md-3">
                       <div class="form-group">
-                        <label>CNPJ</label>
-                        <input type="text" class="form-control form-control-sm cnpj" name="cnpj" data-inputmask='"mask": "99.999.999/9999-99"' data-mask value="<?= $cliente->cnpj; ?>">
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="form-group">
-                        <label>CPF</label>
-                        <input class="form-control form-control-sm cpf" name="cpf" data-inputmask='"mask": "999.999.999-99"' data-mask value="<?= $cliente->cpf; ?>">
+                        <label>CNPJ / CPF</label>
+                        <input type="text" class="form-control form-control-sm cgc" name="cgc" value="<?= $cliente->cgc; ?>">
                       </div>
                     </div>
                     <div class="col-md-3">
                       <div class="form-group">
                         <label>Fone 1</label>
-                        <input class="form-control form-control-sm fone" name="fone1" data-inputmask='"mask": "(99)-99999-9999"' data-mask value="<?= $cliente->fone1; ?>">
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="form-group">
-                        <label>Fone 2</label>
-                        <input class="form-control form-control-sm fone" name="fone2" data-inputmask='"mask": "(99)-99999-9999"' data-mask value="<?= $cliente->fone2; ?>">
+                        <input class="form-control form-control-sm fone" name="fone1" value="<?= $cliente->fone1; ?>">
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -86,6 +80,47 @@ if ($_POST) {
                         <input class="form-control form-control-sm " name="email" type="email" value="<?= $cliente->email; ?>">
                       </div>
                     </div>
+                    <hr>
+                    <div class="col-md-12">
+                      <hr>
+                    </div>
+                    <div class="col-md-7">
+                      <div class="form-group">
+                        <label>Endereço</label>
+                        <input type="text" class="form-control form-control-sm" name="endereco" value="<?= $cliente->endereco; ?>">
+                      </div>
+                    </div>
+                    <div class="col-md-1">
+                      <div class="form-group">
+                        <label>Número</label>
+                        <input type="text" class="form-control form-control-sm" name="numero" value="<?= $cliente->numero; ?>">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label>Bairro</label>
+                        <input type="text" class="form-control form-control-sm" name="bairro" value="<?= $cliente->bairro; ?>">
+                      </div>
+                    </div>
+                    <div class="col-md-1">
+                      <div class="form-group">
+                        <label>CEP</label>
+                        <input type="text" class="form-control form-control-sm" name="cep" value="<?= $cliente->cep; ?>">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>Cidade</label>
+                        <input type="text" class="form-control form-control-sm" name="cidade" value="<?= $cliente->cidade; ?>">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label>UF</label>
+                        <?= selectEstados('uf', $cliente->uf); ?>
+                      </div>
+                    </div>
+
                   </div>
                 </div> <!-- /.card-body -->
                 <div class="card-footer">
@@ -93,10 +128,8 @@ if ($_POST) {
                 </div>
               </form>
             </div> <!-- /.card -->
-          <?php }
-          ?>
+          <?php } ?>
           <!-- general form elements -->
-
         </div>
         <!--/.col  -->
       </div> <!-- /.row -->

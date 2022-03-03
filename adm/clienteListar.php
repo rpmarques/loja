@@ -21,7 +21,7 @@ require_once './header.php';
                                     <tr>
                                         <th>Nome</th>
                                         <th>Fone 1</th>
-                                        <th>Fone 2</th>
+                                        <th>CNPJ / CPF</th>
                                         <th>Email</th>
                                         <th>Ação</th>
                                     </tr>
@@ -31,13 +31,15 @@ require_once './header.php';
                                     $clientes = $objClientes->select();
                                     foreach ($clientes as $cli) { ?>
                                         <tr>
-                                            <td><?=$cli->nome;?></td>
-                                            <td><?=$cli->fone1;?></td>
-                                            <td><?=$cli->fone2;?></td>
-                                            <td><?=$cli->email;?></td>
+                                            <td><?= $cli->nome; ?></td>
+                                            <td><?= $cli->fone1; ?></td>
+                                            <td><?= $cli->cgc; ?></td>
+                                            <td><?= $cli->email; ?></td>
                                             <td>
-                                                <a class="btn bg-gradient-primary btn-xs" href="./clienteEditar.php?id=<?=base64_encode($cli->id) ?>"><i class="fa fa-edit"></i> Editar </a> 
-                                                <a class="btn bg-gradient-danger btn-xs"  href="./clienteExcluir.php?id=<?=base64_encode($cli->id)?>"><i class="fa fa-eraser"></i> Exluir </a>
+                                                <a class="btn bg-gradient-primary btn-xs" href="./clienteEditar.php?id=<?= base64_encode($cli->id) ?>"><i class="fa fa-edit"></i> Editar </a>
+                                                <a class="btn bg-gradient-danger btn-xs" href="./clienteExcluir.php?id=<?= base64_encode($cli->id) ?>"><i class="fa fa-eraser"></i> Ver Pedidos </a>
+                                                <a class="btn bg-gradient-danger btn-xs" href="./clienteExcluir.php?id=<?= base64_encode($cli->id) ?>"><i class="fa fa-eraser"></i> Resetar Senha </a>
+                                                <a class="btn bg-gradient-danger btn-xs" href="./clienteExcluir.php?id=<?= base64_encode($cli->id) ?>"><i class="fa fa-eraser"></i> Excluir </a>
                                             </td>
                                         </tr>
                                     <?php } ?>
