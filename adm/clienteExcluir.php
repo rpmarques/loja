@@ -3,14 +3,14 @@ require_once './header.php';
 if ($_GET) {
   if (isset($_GET['id'])) {
     $clienteId = base64_decode($_GET['id']);
-    $cliente = $objClientes->pegaCli($clienteId);
+    $cliente = $objClientes->pegaCliente($clienteId);
   }
 }
 if ($_POST) {
   if (isset($_POST['id'])) {
     $clienteId = $_POST['id'];
     $ret = $objClientes->delete($clienteId);
-    $cliente = $objClientes->pegaCli($clienteId);
+    $cliente = $objClientes->pegaCliente($clienteId);
   }
 }
 ?>
@@ -50,7 +50,7 @@ if ($_POST) {
                     <div class="col-md-3">
                       <div class="form-group">
                         <label>CNPJ / CPF</label>
-                        <input type="text" class="form-control form-control-sm cgc" name="cgc" value="<?= $cliente->cnpj; ?>">
+                        <input type="text" class="form-control form-control-sm cgc" name="cgc" value="<?= $cliente->cgc; ?>">
                       </div>
                     </div>
                     <div class="col-md-3">
@@ -59,18 +59,53 @@ if ($_POST) {
                         <input class="form-control form-control-sm fone" name="fone1" value="<?= $cliente->fone1; ?>">
                       </div>
                     </div>
-                    <div class="col-md-3">
-                      <div class="form-group">
-                        <label>Fone 2</label>
-                        <input class="form-control form-control-sm fone" name="fone2" value="<?= $cliente->fone2; ?>">
-                      </div>
-                    </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Email</label>
                         <input class="form-control form-control-sm " name="email" type="email" value="<?= $cliente->email; ?>">
                       </div>
                     </div>
+                    <hr>
+                    <div class="col-md-12">
+                      <hr>
+                    </div>
+                    <div class="col-md-7">
+                      <div class="form-group">
+                        <label>Endereço</label>
+                        <input type="text" class="form-control form-control-sm" name="endereco" value="<?= $cliente->endereco; ?>">
+                      </div>
+                    </div>
+                    <div class="col-md-1">
+                      <div class="form-group">
+                        <label>Número</label>
+                        <input type="text" class="form-control form-control-sm" name="numero" value="<?= $cliente->numero; ?>">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label>Bairro</label>
+                        <input type="text" class="form-control form-control-sm" name="bairro" value="<?= $cliente->bairro; ?>">
+                      </div>
+                    </div>
+                    <div class="col-md-1">
+                      <div class="form-group">
+                        <label>CEP</label>
+                        <input type="text" class="form-control form-control-sm" name="cep" value="<?= $cliente->cep; ?>">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>Cidade</label>
+                        <input type="text" class="form-control form-control-sm" name="cidade" value="<?= $cliente->cidade; ?>">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label>UF</label>
+                        <?= selectEstados('uf', $cliente->uf); ?>
+                      </div>
+                    </div>
+
                   </div>
                 </div> <!-- /.card-body -->
                 <div class="card-footer">

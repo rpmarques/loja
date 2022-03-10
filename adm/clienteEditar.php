@@ -7,10 +7,6 @@ if ($_GET) {
   }
 }
 if ($_POST) {
-
-
-
-
   if (isset($_POST['id'])) {
     $nome = $_POST['nome'];
     $email = $_POST['email'];

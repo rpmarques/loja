@@ -146,12 +146,12 @@ class Clientes
     {
         if (!empty($rId)) :
             try {
-                $sql = "DELETE FROM fornecedores WHERE id=:id";
+                $sql = "DELETE FROM cliente WHERE id=:id";
                 $stm = $this->pdo->prepare($sql);
                 $stm->bindValue(':id', $rId);
                 $stm->execute();
                 if ($stm) {
-                    Logger('Usuario:[' . $_SESSION['login'] . '] - EXCLUIU FORNECEDOR - ID:[' . $rId . ']');
+                    Logger('Usuario:[' . $_SESSION['login'] . '] - EXCLUIU CLIENTE - ID:[' . $rId . ']');
                 }
                 return $stm;
             } catch (PDOException $erro) {

@@ -7,11 +7,14 @@ require_once './classes/produtos.class.php';
 $objProdutos = Produtos::getInstance(Conexao::getInstance());
 require_once './classes/clientes.class.php';
 $objClientes = Clientes::getInstance(Conexao::getInstance());
+require_once './classes/empresa.class.php';
+$objEmpresa = Empresa::getInstance(Conexao::getInstance());
+$empresa = $objEmpresa->pegaEmpresa();
 session_start();
 $_SESSION['login'] = "site";
 $_SESSION['mensagem'] = "";
 require_once './verificaLogin.php';
-
+// ISSO AQUI É PRA MONTAR A TRILHA DE MIGALHAS
 if (isset($_GET['categoria_id'])) {
   $categoria = $objProdutos->pegaCategoria($_GET['categoria_id']);
   $subCategoriaNome = '';
@@ -27,7 +30,7 @@ if (isset($_GET['categoria_id'])) {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Loja: [NOME DO BUTECO]</title>
+  <title>Loja: [<?= $empresa->nome_fantasia; ?>]</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="all,follow">

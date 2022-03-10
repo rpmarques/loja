@@ -30,7 +30,7 @@
        <!-- /.col-lg-3-->
        <div class="col-lg-3 col-md-6">
          <h4 class="mb-3">Onde nos encontrar</h4>
-         <p><strong>NOME.</strong><br>Nome da rua<br>Bairro<br>Sala 13<br>Brasil<br><strong>Santana do Livramento</strong></p>
+         <p><strong><?= $empresa->nome_fantasia; ?></strong><br><?= $empresa->endereco; ?><br><?= $empresa->bairro; ?><br><?= $empresa->complemento; ?><br>Brasil<br><strong><?= $empresa->cidade; ?></strong></p>
          <!-- <a href="./contato.php">Entre em contato</a> -->
          <hr class="d-block d-md-none">
        </div>
