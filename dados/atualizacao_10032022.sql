@@ -1,3 +1,33 @@
 -- ALTERAÇÃO ESTRUTUDA EMPRESA
 ALTER TABLE `empresa` DROP COLUMN `cidade_id`;
 ALTER TABLE `empresa` ADD COLUMN `cidade` VARCHAR(50) DEFAULT NULL;
+-- PEDIDOS CABEÇA
+ALTER TABLE `pedidos` ADD COLUMN `datac` DATE DEFAULT NULL;
+ALTER TABLE `pedidos` ADD COLUMN `codcli` INTEGER DEFAULT NULL;
+ALTER TABLE `pedidos` ADD COLUMN `chave` CHAR(26) DEFAULT NULL;
+ALTER TABLE `pedidos` CHANGE COLUMN `codcli` `cliente_id` INTEGER(11) DEFAULT NULL;
+ALTER TABLE `pedidos` ADD COLUMN `cupom_id` INTEGER DEFAULT NULL;
+ALTER TABLE `pedidos` ADD COLUMN `total_produtos` FLOAT(9,2) DEFAULT NULL;
+ALTER TABLE `pedidos` ADD COLUMN `desconto` FLOAT(9,2) DEFAULT NULL;
+ALTER TABLE `pedidos` ADD COLUMN `total_pedido` FLOAT(9,2) DEFAULT NULL;
+-- PEDIDOS ITENS
+ALTER TABLE `pedidos_itens` ADD COLUMN `chave` CHAR(26) DEFAULT NULL;
+ALTER TABLE `pedidos_itens` ADD COLUMN `produto_id` INTEGER DEFAULT NULL;
+ALTER TABLE `pedidos_itens` ADD COLUMN `valor_unitario` DECIMAL(11,2) DEFAULT NULL;
+ALTER TABLE `pedidos_itens` ADD COLUMN `valor_unitario` FLOAT(9,2) DEFAULT NULL;
+ALTER TABLE `pedidos_itens` ADD COLUMN `qtde` FLOAT(9,2) DEFAULT NULL;
+ALTER TABLE `pedidos_itens` ADD COLUMN `desconto_unitario` FLOAT(9,2) DEFAULT NULL;
+ALTER TABLE `pedidos_itens` ADD COLUMN `datac` DATE DEFAULT NULL;
+--CUPOM DE DESCONTO
+CREATE TABLE `cupom_desconto` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `cupom` VARCHAR(20) DEFAULT NULL,
+  `data_ini` DATE DEFAULT NULL,
+  `data_fim` DATE DEFAULT NULL,
+  `valor` FLOAT(9,2) DEFAULT NULL,
+  `tipo_desconto` CHAR DEFAULT NULL COMMENT 'P=>percentual\r\nV=>valor',
+  `hora_ini` TIME DEFAULT '00:00:00',
+  `hora_fim` TIME DEFAULT '00:00:00',
+  `descricao` VARCHAR(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ;
