@@ -10,10 +10,13 @@ $objClientes = Clientes::getInstance(Conexao::getInstance());
 require_once './classes/empresa.class.php';
 $objEmpresa = Empresa::getInstance(Conexao::getInstance());
 $empresa = $objEmpresa->pegaEmpresa();
+require_once './classes/pedidos.class.php';
+$objPedidos = Pedidos::getInstance(Conexao::getInstance());
 session_start();
 $_SESSION['login'] = "site";
 $_SESSION['mensagem'] = "";
 require_once './verificaLogin.php';
+require_once './verificaCarrinho.php';
 // ISSO AQUI É PRA MONTAR A TRILHA DE MIGALHAS
 if (isset($_GET['categoria_id'])) {
   $categoria = $objProdutos->pegaCategoria($_GET['categoria_id']);

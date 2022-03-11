@@ -24,3 +24,7 @@
 [15:49:23][::1]-> SELECT id,nome,preco_ven,preco_antigo,mais_vendido,promocao,novidade FROM produto     ORDER BY  id DESC   LIMIT 10 
 [15:49:24][::1]-> SELECT id,nome,preco_ven,preco_antigo,mais_vendido,promocao,novidade FROM produto     ORDER BY  id DESC   LIMIT 10 
 [15:49:25][::1]-> SELECT id,nome,preco_ven,preco_antigo,mais_vendido,promocao,novidade FROM produto     ORDER BY  id DESC   LIMIT 10 
+[22:22:46][::1]-> SELECT id,nome,preco_ven,preco_antigo,mais_vendido,promocao,novidade FROM produto     ORDER BY  id DESC   LIMIT 10 
+[22:22:49][::1]-> SELECT produto.* FROM produto   WHERE  produto.categoria_id=1  AND produto.sub_categoria_id=1 
+[22:22:54][::1]-> SELECT produto.* FROM produto 
+[22:26:19][::1]-> SELECT produto.* FROM produto 

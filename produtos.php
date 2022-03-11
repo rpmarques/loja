@@ -95,7 +95,13 @@ if ($_GET) {
                     <p class="price">
                       <del><?= $itemPro->preco_antigo > 0 ? 'R$' . formataMoeda($itemPro->preco_antigo) : ''; ?></del> R$<?= formataMoeda($itemPro->preco_ven); ?>
                     </p>
-                    <p class="buttons"><a href="./produto.php?produto_id=<?= $itemPro->id ?>" class="btn btn-outline-secondary">Visualizar</a><a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Adicionar</a></p>
+                    <form method="post">
+                      <p class="buttons">
+                        <a href="./produto.php?produto_id=<?= $itemPro->id ?>" class="btn btn-outline-secondary">Visualizar</a>
+                        <input type="hidden" name="produto_id" value="<?= $itemPro->id ?>">
+                        <button type="submit" name="addCarrinho" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Adicionar</button>
+                      </p>
+                    </form>
                   </div> <!-- /.text-->
                   <!-- /.text-->
                   <?php
