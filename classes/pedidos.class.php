@@ -27,9 +27,9 @@ class Pedidos
             $stm->bindValue(':chave', $rChave);
             $stm->bindValue(':datac', date('Y-m-d'));
             $stm->execute();
-            LoggerSQL('Usuario:[' . LOGIN . '] FUNÇÃO:[pedidos.criaPedido]- Tentando executar comandoSQL:[' . $rSql . ']');
+            LoggerSQL('Usuario:[' . $_SESSION['login'] . '] FUNÇÃO:[pedidos.criaPedido]- Tentando executar comandoSQL:[' . $rSql . ']');
             if ($stm) {
-                LoggerSQL('Usuario:[' . LOGIN . '] - CRIOU PEDIDO CHAVE:[' . $rChave . ']');
+                LoggerSQL('Usuario:[' . $_SESSION['login'] . '] - CRIOU PEDIDO CHAVE:[' . $rChave . ']');
             }
             LoggerSQL($rSql);
             return $stm;
@@ -43,21 +43,21 @@ class Pedidos
         try {
             //PEGA O CÓDIGO DO PRODUTO E ACHA O PRODUTO
             $objProdutos = Produtos::getInstance(Conexao::getInstance());
-            Logger('Vamos procurar o produto');
+            LoggerCarrinho('Vamos procurar o produto');
 
             if ($produto = $objProdutos->pegaProduto($rCodPro)) {
-                Logger('Achamos o produto, vamos adicionar no carrinho_itens');
-                $rSql = "INSERT INTO carrinho_itens (chave,produto_id,datac,qtde,valor_bruto,nome_pro) VALUES (:chave,:produto_id,:datac,:qtde,:valor_bruto,:nome_pro);";
+                LoggerCarrinho('Achamos o produto, vamos adicionar no carrinho_itens');
+                $rSql = "INSERT INTO pedidos_itens (chave,produto_id,datac,qtde,valor_unitario,nome_produto) VALUES (:chave,:produto_id,:datac,:qtde,:valor_unitario,:nome_produto);";
                 $stm = $this->pdo->prepare($rSql);
                 $stm->bindValue(':chave', $rChave);
                 $stm->bindValue(':datac', date('Y-m-d'));
                 $stm->bindValue(':produto_id', $rCodPro);
-                $stm->bindValue(':valor_bruto', $produto->preco);
+                $stm->bindValue(':valor_unitario', $produto->preco_ven);
                 $stm->bindValue(':qtde', $rQtde);
-                $stm->bindValue(':nome_pro', $produto->nome);
+                $stm->bindValue(':nome_produto', $produto->nome);
                 $stm->execute();
                 if ($stm) {
-                    LoggerSQL('Usuario:[' . LOGIN . '] - tentando executar sql:[' . $rSql . ']');
+                    LoggerSQL('Usuario:[' . $_SESSION['login'] . '] - tentando executar sql:[' . $rSql . ']');
                 }
                 LoggerSQL($rSql);
                 return $stm;
@@ -67,27 +67,63 @@ class Pedidos
         }
     }
 
-    public function insert($rNome, $rCnpj, $rFone1, $rFone2, $rEmail, $rContato)
+    public function pegaCabecaCarrinho($rChave)
     {
         try {
-            $rSql = "INSERT INTO fornecedores (nome,cnpj,fone1,fone2,email,contato ) VALUES (:nome,:cnpj,:fone1,:fone2,:email,:contato);";
+            $rSql = "SELECT * FROM pedidos_itens  WHERE chave='$rChave'";
             $stm = $this->pdo->prepare($rSql);
-            $stm->bindValue(':nome', $rNome);
-            $stm->bindValue(':cnpj', $rCnpj);
-            $stm->bindValue(':fone1', $rFone1);
-            $stm->bindValue(':fone2', $rFone2);
-            $stm->bindValue(':email', strtolower($rEmail));
-            $stm->bindValue(':contato', $rContato);
-
             $stm->execute();
-            if ($stm) {
-                Logger('USUARIO:[' . $_SESSION['login'] . '] - INSERIU FORNECEDOR');
-            }
-            return $stm;
+            $dados = $stm->fetchall(PDO::FETCH_OBJ);
+            LoggerSQL($rSql);
+            return $dados;
         } catch (PDOException $erro) {
-            Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
+            LoggerSQL('NOME DO ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
         }
     }
+
+    public function pegaItemCarrinho($rChave, $rProdutoID)
+    {
+        //SE EU NÃO INFORMAR PRODUTO, TRAZ TODOS OS PRODUTOS DO CARRINHO
+        try {
+            if (empty($rProdutoID)) {
+                $rSql = "SELECT * from pedidos_itens WHERE chave='$rChave' ";
+            } else {
+                $rSql = "SELECT * from pedidos_itens WHERE chave='$rChave' AND produto_id='$rProdutoID'";
+            }
+            $stm = $this->pdo->prepare($rSql);
+            $stm->execute();
+            if (empty($rProdutoID)) {
+                $dados = $stm->fetchall(PDO::FETCH_OBJ);
+            } else {
+                $dados = $stm->fetch(PDO::FETCH_OBJ);
+            }
+            LoggerSQL($rSql);
+            return $dados;
+        } catch (PDOException $erro) {
+            LoggerSQL('NOME DO ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
+        }
+    }
+
+    public function atualizaQTDE($rID, $rQtde)
+    {
+        try {
+            $rSql = "UPDATE pedidos_itens SET qtde=:qtde WHERE id=:id";
+            $stm = $this->pdo->prepare($rSql);
+            $stm->bindValue(':id', intval($rID));
+            $stm->bindValue(':qtde', $rQtde);
+            $stm->execute();
+            if ($stm) {
+                LoggerSQL('Usuario:[' . $_SESSION['login'] . '] - ALTEROU QTDE CARRINHO - ID:[' . $rID . '] QTDE NOVA:[' . $rQtde . ']');
+            }
+            LoggerSQL($rSql);
+            return $stm;
+        } catch (PDOException $erro) {
+            $this->pdo->rollBack();
+            LoggerSQL('NOME DO ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
+        }
+    }
+
+
 
     public function delete($rId)
     {

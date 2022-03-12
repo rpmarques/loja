@@ -369,7 +369,7 @@ class Produtos
       }
    }
 
-   
+
    public function pegaProduto($rID)
    {
       try {
@@ -386,7 +386,7 @@ class Produtos
    public function montaSelect($rNome = 'categoria_id', $rSelecionado = null)
    {
       try {
-         $objCategorias = Categorias::getInstance(Conexao::getInstance());
+         $objCategorias = Produtos::getInstance(Conexao::getInstance());
          $dados = $objCategorias->select();
          $select = '';
          $select = '<select class="select2" name="' . $rNome . '" id="' . $rNome . '" data-placeholder="Escolha uma categoria..."  style="width: 100%;">'
@@ -408,7 +408,7 @@ class Produtos
    public function montaSelect2($rNome = 'categoria_id', $rSelecionado = null)
    {
       try {
-         $objCategorias = Categorias::getInstance(Conexao::getInstance());
+         $objCategorias = Produtos::getInstance(Conexao::getInstance());
          $dados = $objCategorias->select(" ORDER BY nome");
          $select = '';
          $select = '<select class="select2" name="' . $rNome . '" id="' . $rNome . '" data-placeholder="Escolha uma categoria..." style="width: 100%;">'
@@ -724,7 +724,7 @@ class Produtos
    //**  FIM CATEGORIAS **/
 
    //**   SUB-CATEGORIAS **/
-   public function insereSubCategoria($rNome,$rCategoriaID)
+   public function insereSubCategoria($rNome, $rCategoriaID)
    {
       try {
          $rSql = "INSERT INTO sub_categoria (nome,categoria_id) VALUES (:nome,:categoria_id);";
@@ -787,7 +787,7 @@ class Produtos
       }
    }
 
-   public function atualizaSubCategoria($rNome,$rCategoriaID, $rId)
+   public function atualizaSubCategoria($rNome, $rCategoriaID, $rId)
    {
       try {
          $sql = "UPDATE sub_categoria SET nome=:nome,categoria_id=:categoria_id WHERE id=:id;";
@@ -835,6 +835,6 @@ class Produtos
          }
       endif;
    }
-   
+
    //**  FIM SUB-CATEGORIAS **/
 }
