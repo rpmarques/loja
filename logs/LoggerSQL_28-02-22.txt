@@ -1,3 +1,0 @@
-[21:32:57][::1]-> SELECT id,nome,preco_ven,preco_antigo,mais_vendido,promocao,novidade FROM produto     ORDER BY  id DESC   LIMIT 10 
-[21:33:20][::1]-> SELECT id,nome,preco_ven,preco_antigo,mais_vendido,promocao,novidade FROM produto     ORDER BY  id DESC   LIMIT 10 
-[21:56:07][::1]-> SELECT id,nome,preco_ven,preco_antigo,mais_vendido,promocao,novidade FROM produto     ORDER BY  id DESC   LIMIT 10 
