@@ -65,3 +65,141 @@
 [15:54:56][::1]-> UPDATE pedidos_itens SET qtde=:qtde WHERE id=:id 
 [15:54:56][::1]-> UPDATE pedidos SET pedidos.total_produtos = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; UPDATE pedidos SET pedidos.total_pedido = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; 
 [15:54:56][::1]-> SELECT produto.* FROM produto   WHERE  produto.categoria_id=1  AND produto.sub_categoria_id=2 
+[20:58:20][::1]-> SELECT id,nome,preco_ven,preco_antigo,mais_vendido,promocao,novidade FROM produto     ORDER BY  id DESC   LIMIT 10 
+[20:58:23][::1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=8     LIMIT 3 
+[20:58:23][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[20:58:25][::1]-> Usuario:[site] FUNÇÃO:[pedidos.criaPedido]- Tentando executar comandoSQL:[INSERT INTO pedidos (datac,chave)  VALUES ( :datac,:chave);] 
+[20:58:25][::1]-> Usuario:[site] - CRIOU PEDIDO CHAVE:[2mnndal18asjoq0mprm8dc58og] 
+[20:58:25][::1]-> INSERT INTO pedidos (datac,chave)  VALUES ( :datac,:chave); 
+[20:58:25][::1]-> Usuario:[site] - tentando executar sql:[INSERT INTO pedidos_itens (chave,produto_id,datac,qtde,valor_unitario,nome_produto) VALUES (:chave,:produto_id,:datac,:qtde,:valor_unitario,:nome_produto);] 
+[20:58:25][::1]-> INSERT INTO pedidos_itens (chave,produto_id,datac,qtde,valor_unitario,nome_produto) VALUES (:chave,:produto_id,:datac,:qtde,:valor_unitario,:nome_produto); 
+[20:58:25][::1]-> UPDATE pedidos SET pedidos.total_produtos = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; UPDATE pedidos SET pedidos.total_pedido = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; 
+[20:58:25][::1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=8     LIMIT 3 
+[20:58:25][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[20:58:27][::1]-> SELECT * from pedidos_itens WHERE chave='2mnndal18asjoq0mprm8dc58og' AND produto_id='5' 
+[20:58:27][::1]-> Usuario:[site] - ALTEROU QTDE CARRINHO - ID:[18] QTDE NOVA:[2] 
+[20:58:27][::1]-> UPDATE pedidos_itens SET qtde=:qtde WHERE id=:id 
+[20:58:27][::1]-> UPDATE pedidos SET pedidos.total_produtos = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; UPDATE pedidos SET pedidos.total_pedido = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; 
+[20:58:27][::1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=8     LIMIT 3 
+[20:58:27][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[20:58:32][::1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=1     LIMIT 3 
+[20:58:32][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[20:58:33][::1]-> SELECT * from pedidos_itens WHERE chave='2mnndal18asjoq0mprm8dc58og' AND produto_id='7' 
+[20:58:34][::1]-> Usuario:[site] - tentando executar sql:[INSERT INTO pedidos_itens (chave,produto_id,datac,qtde,valor_unitario,nome_produto) VALUES (:chave,:produto_id,:datac,:qtde,:valor_unitario,:nome_produto);] 
+[20:58:34][::1]-> INSERT INTO pedidos_itens (chave,produto_id,datac,qtde,valor_unitario,nome_produto) VALUES (:chave,:produto_id,:datac,:qtde,:valor_unitario,:nome_produto); 
+[20:58:34][::1]-> UPDATE pedidos SET pedidos.total_produtos = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; UPDATE pedidos SET pedidos.total_pedido = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; 
+[20:58:34][::1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=1     LIMIT 3 
+[20:58:34][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[20:59:09][::1]-> SELECT * from pedidos_itens WHERE chave='2mnndal18asjoq0mprm8dc58og' AND produto_id='7' 
+[20:59:09][::1]-> Usuario:[site] - ALTEROU QTDE CARRINHO - ID:[19] QTDE NOVA:[2] 
+[20:59:09][::1]-> UPDATE pedidos_itens SET qtde=:qtde WHERE id=:id 
+[20:59:10][::1]-> UPDATE pedidos SET pedidos.total_produtos = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; UPDATE pedidos SET pedidos.total_pedido = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; 
+[20:59:10][::1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=1     LIMIT 3 
+[20:59:10][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[20:59:16][::1]-> SELECT id,nome,preco_ven,preco_antigo,mais_vendido,promocao,novidade FROM produto     ORDER BY  id DESC   LIMIT 10 
+[20:59:19][::1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=7     LIMIT 3 
+[20:59:19][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[20:59:20][::1]-> Usuario:[site] FUNÇÃO:[pedidos.criaPedido]- Tentando executar comandoSQL:[INSERT INTO pedidos (datac,chave)  VALUES ( :datac,:chave);] 
+[20:59:20][::1]-> Usuario:[site] - CRIOU PEDIDO CHAVE:[rbf2sljb8iujj3ie5nqadp0j37] 
+[20:59:20][::1]-> INSERT INTO pedidos (datac,chave)  VALUES ( :datac,:chave); 
+[20:59:21][::1]-> Usuario:[site] - tentando executar sql:[INSERT INTO pedidos_itens (chave,produto_id,datac,qtde,valor_unitario,nome_produto) VALUES (:chave,:produto_id,:datac,:qtde,:valor_unitario,:nome_produto);] 
+[20:59:21][::1]-> INSERT INTO pedidos_itens (chave,produto_id,datac,qtde,valor_unitario,nome_produto) VALUES (:chave,:produto_id,:datac,:qtde,:valor_unitario,:nome_produto); 
+[20:59:21][::1]-> UPDATE pedidos SET pedidos.total_produtos = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; UPDATE pedidos SET pedidos.total_pedido = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; 
+[20:59:21][::1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=7     LIMIT 3 
+[20:59:21][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[20:59:26][::1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=1     LIMIT 3 
+[20:59:26][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[20:59:29][::1]-> SELECT * from pedidos_itens WHERE chave='rbf2sljb8iujj3ie5nqadp0j37' AND produto_id='6' 
+[20:59:29][::1]-> Usuario:[site] - tentando executar sql:[INSERT INTO pedidos_itens (chave,produto_id,datac,qtde,valor_unitario,nome_produto) VALUES (:chave,:produto_id,:datac,:qtde,:valor_unitario,:nome_produto);] 
+[20:59:29][::1]-> INSERT INTO pedidos_itens (chave,produto_id,datac,qtde,valor_unitario,nome_produto) VALUES (:chave,:produto_id,:datac,:qtde,:valor_unitario,:nome_produto); 
+[20:59:29][::1]-> UPDATE pedidos SET pedidos.total_produtos = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; UPDATE pedidos SET pedidos.total_pedido = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; 
+[20:59:29][::1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=1     LIMIT 3 
+[20:59:29][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[21:00:29][::1]-> SELECT * from pedidos_itens WHERE chave='rbf2sljb8iujj3ie5nqadp0j37' AND produto_id='6' 
+[21:00:29][::1]-> Usuario:[site] - ALTEROU QTDE CARRINHO - ID:[21] QTDE NOVA:[2] 
+[21:00:29][::1]-> UPDATE pedidos_itens SET qtde=:qtde WHERE id=:id 
+[21:00:29][::1]-> UPDATE pedidos SET pedidos.total_produtos = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; UPDATE pedidos SET pedidos.total_pedido = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; 
+[21:00:29][::1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=1     LIMIT 3 
+[21:00:29][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[21:00:42][::1]-> SELECT id,nome,preco_ven,preco_antigo,mais_vendido,promocao,novidade FROM produto     ORDER BY  id DESC   LIMIT 10 
+[21:00:51][::1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=2     LIMIT 3 
+[21:00:51][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[21:00:52][::1]-> Usuario:[site] FUNÇÃO:[pedidos.criaPedido]- Tentando executar comandoSQL:[INSERT INTO pedidos (datac,chave)  VALUES ( :datac,:chave);] 
+[21:00:52][::1]-> Usuario:[site] - CRIOU PEDIDO CHAVE:[3dh69ie1uflvsvpgph43pv8jc4] 
+[21:00:52][::1]-> INSERT INTO pedidos (datac,chave)  VALUES ( :datac,:chave); 
+[21:00:52][::1]-> Usuario:[site] - tentando executar sql:[INSERT INTO pedidos_itens (chave,produto_id,datac,qtde,valor_unitario,nome_produto) VALUES (:chave,:produto_id,:datac,:qtde,:valor_unitario,:nome_produto);] 
+[21:00:52][::1]-> INSERT INTO pedidos_itens (chave,produto_id,datac,qtde,valor_unitario,nome_produto) VALUES (:chave,:produto_id,:datac,:qtde,:valor_unitario,:nome_produto); 
+[21:00:52][::1]-> UPDATE pedidos SET pedidos.total_produtos = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; UPDATE pedidos SET pedidos.total_pedido = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; 
+[21:00:52][::1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=2     LIMIT 3 
+[21:00:52][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[21:00:59][::1]-> Usuario:[site] - SETOU CLIENTE NO CARRINHO - ID:[3dh69ie1uflvsvpgph43pv8jc4] 
+[21:00:59][::1]-> UPDATE pedidos set cliente_id=:cliente_id WHERE chave=:chave 
+[21:00:59][::1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=2     LIMIT 3 
+[21:00:59][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[21:01:06][::1]-> SELECT produto.* FROM produto   WHERE  produto.categoria_id=1  AND produto.sub_categoria_id=1 
+[21:01:08][::1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=1     LIMIT 3 
+[21:01:08][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[21:02:55][::1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=1     LIMIT 3 
+[21:02:55][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[21:02:57][::1]-> SELECT * from pedidos_itens WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' AND produto_id='1' 
+[21:02:57][::1]-> Usuario:[site] - tentando executar sql:[INSERT INTO pedidos_itens (chave,produto_id,datac,qtde,valor_unitario,nome_produto) VALUES (:chave,:produto_id,:datac,:qtde,:valor_unitario,:nome_produto);] 
+[21:02:57][::1]-> INSERT INTO pedidos_itens (chave,produto_id,datac,qtde,valor_unitario,nome_produto) VALUES (:chave,:produto_id,:datac,:qtde,:valor_unitario,:nome_produto); 
+[21:02:57][::1]-> UPDATE pedidos SET pedidos.total_produtos = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; UPDATE pedidos SET pedidos.total_pedido = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; 
+[21:02:58][::1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=1     LIMIT 3 
+[21:02:58][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[21:03:02][::1]-> SELECT produto.* FROM produto   WHERE  produto.categoria_id=1  AND produto.sub_categoria_id=15 
+[21:03:04][::1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=1     LIMIT 3 
+[21:03:04][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[21:03:06][::1]-> SELECT * from pedidos_itens WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' AND produto_id='6' 
+[21:03:06][::1]-> Usuario:[site] - tentando executar sql:[INSERT INTO pedidos_itens (chave,produto_id,datac,qtde,valor_unitario,nome_produto) VALUES (:chave,:produto_id,:datac,:qtde,:valor_unitario,:nome_produto);] 
+[21:03:06][::1]-> INSERT INTO pedidos_itens (chave,produto_id,datac,qtde,valor_unitario,nome_produto) VALUES (:chave,:produto_id,:datac,:qtde,:valor_unitario,:nome_produto); 
+[21:03:06][::1]-> UPDATE pedidos SET pedidos.total_produtos = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; UPDATE pedidos SET pedidos.total_pedido = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; 
+[21:03:06][::1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=1     LIMIT 3 
+[21:03:06][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[21:37:31][::1]-> SELECT * FROM pedidos_itens  WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[21:37:56][::1]-> SELECT * FROM pedidos  WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[21:38:58][::1]-> SELECT * FROM pedidos  WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[21:40:08][::1]-> SELECT * FROM pedidos  WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[21:40:53][::1]-> SELECT * FROM pedidos  WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[21:54:19][::1]-> SELECT * FROM pedidos  WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[21:54:32][::1]-> SELECT * FROM pedidos  WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[21:54:32][::1]-> SELECT * from pedidos_itens WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[21:56:33][::1]-> SELECT * FROM pedidos  WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[21:56:33][::1]-> SELECT * from pedidos_itens WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[21:56:40][::1]-> SELECT produto.* FROM produto   WHERE  produto.categoria_id=1  AND produto.sub_categoria_id=12 
+[21:56:42][::1]-> SELECT * from pedidos_itens WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' AND produto_id='7' 
+[21:56:42][::1]-> Usuario:[site] - tentando executar sql:[INSERT INTO pedidos_itens (chave,produto_id,datac,qtde,valor_unitario,nome_produto) VALUES (:chave,:produto_id,:datac,:qtde,:valor_unitario,:nome_produto);] 
+[21:56:42][::1]-> INSERT INTO pedidos_itens (chave,produto_id,datac,qtde,valor_unitario,nome_produto) VALUES (:chave,:produto_id,:datac,:qtde,:valor_unitario,:nome_produto); 
+[21:56:42][::1]-> UPDATE pedidos SET pedidos.total_produtos = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; UPDATE pedidos SET pedidos.total_pedido = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; 
+[21:56:42][::1]-> SELECT produto.* FROM produto   WHERE  produto.categoria_id=1  AND produto.sub_categoria_id=12 
+[21:56:43][::1]-> SELECT * FROM pedidos  WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[21:56:43][::1]-> SELECT * from pedidos_itens WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[21:59:22][::1]-> SELECT * FROM pedidos  WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[21:59:22][::1]-> SELECT * from pedidos_itens WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[21:59:59][::1]-> SELECT * FROM pedidos  WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[21:59:59][::1]-> SELECT * from pedidos_itens WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[22:00:36][::1]-> SELECT * FROM pedidos  WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[22:00:36][::1]-> SELECT * from pedidos_itens WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[22:00:58][::1]-> SELECT * FROM pedidos  WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[22:00:58][::1]-> SELECT * from pedidos_itens WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[22:02:18][::1]-> SELECT * FROM pedidos  WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[22:02:18][::1]-> SELECT * from pedidos_itens WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[22:02:26][::1]-> SELECT id,nome,preco_ven,preco_antigo,mais_vendido,promocao,novidade FROM produto     ORDER BY  id DESC   LIMIT 10 
+[22:02:29][::1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=2     LIMIT 3 
+[22:02:29][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[22:02:31][::1]-> SELECT * from pedidos_itens WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' AND produto_id='3' 
+[22:02:31][::1]-> Usuario:[site] - ALTEROU QTDE CARRINHO - ID:[22] QTDE NOVA:[2] 
+[22:02:31][::1]-> UPDATE pedidos_itens SET qtde=:qtde WHERE id=:id 
+[22:02:31][::1]-> UPDATE pedidos SET pedidos.total_produtos = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; UPDATE pedidos SET pedidos.total_pedido = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; 
+[22:02:31][::1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=2     LIMIT 3 
+[22:02:31][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[22:02:33][::1]-> SELECT * FROM pedidos  WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[22:02:33][::1]-> SELECT * from pedidos_itens WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[22:04:06][::1]-> SELECT * FROM pedidos  WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[22:04:06][::1]-> SELECT * from pedidos_itens WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[22:24:46][::1]-> SELECT * FROM pedidos  WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[22:24:46][::1]-> SELECT * from pedidos_itens WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[22:26:11][::1]-> SELECT * FROM pedidos  WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[22:26:11][::1]-> SELECT * from pedidos_itens WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[22:26:41][::1]-> SELECT * FROM pedidos  WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 
+[22:26:41][::1]-> SELECT * from pedidos_itens WHERE chave='3dh69ie1uflvsvpgph43pv8jc4' 

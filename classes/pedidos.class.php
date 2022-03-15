@@ -70,10 +70,10 @@ class Pedidos
     public function pegaCabecaCarrinho($rChave)
     {
         try {
-            $rSql = "SELECT * FROM pedidos_itens  WHERE chave='$rChave'";
+            $rSql = "SELECT * FROM pedidos  WHERE chave='$rChave'";
             $stm = $this->pdo->prepare($rSql);
             $stm->execute();
-            $dados = $stm->fetchall(PDO::FETCH_OBJ);
+            $dados = $stm->fetch(PDO::FETCH_OBJ);
             LoggerSQL($rSql);
             return $dados;
         } catch (PDOException $erro) {
@@ -81,7 +81,7 @@ class Pedidos
         }
     }
 
-    public function pegaItemCarrinho($rChave, $rProdutoID)
+    public function pegaItemCarrinho($rChave, $rProdutoID = '')
     {
         //SE EU NÃO INFORMAR PRODUTO, TRAZ TODOS OS PRODUTOS DO CARRINHO
         try {
@@ -157,7 +157,18 @@ class Pedidos
         }
     }
 
-
+    public function contaItens($rChave = '')
+    {
+        try {
+            $rSql = "SELECT COUNT(id) AS total FROM pedidos_itens WHERE chave='$rChave'";
+            $stm = $this->pdo->prepare($rSql);
+            $stm->execute();
+            $dados = $stm->fetch(PDO::FETCH_OBJ);
+            return $dados->total;
+        } catch (PDOException $erro) {
+            Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
+        }
+    }
 
     public function delete($rId)
     {

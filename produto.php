@@ -97,22 +97,19 @@ if ($_POST) {
                   <p class="goToDescription"><a href="#details" class="scroll-to">Clique aqui para mais detalhes</a></p>
                   <p class="price"><?= 'R$' . formataMoeda($produto->preco_ven); ?></p>
                   <p class="text-center buttons">
-                  <form method="post">
                     <input type="hidden" name="produto_id" value="<?= $produto->id ?>">
                     <button type="submit" name="addCarrinho" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Adicionar</button>
-                  </form>
-
-                  <?php if (isset($_SESSION['cliente_id'])) {
-                    Logger("VAMOS PROCURAR SE NA LISTA DE DESEJO");
-                    $ret = $objProdutos->pegaListaDesejo($_SESSION['cliente_id'], $produto->id);
-                    if (!empty($ret)) {
-                      Logger("VAMOS PROCURAR SE NA LISTA DE DESEJO - ACHAMOS"); ?>
-                      <button type="submit" name="remover_lista" class="btn btn-outline-primary"><i class="fa fa-heart"></i> Remover da lista</button>
-                    <?php } else { ?>
-                      <button type="submit" name="adicionar_lista" class="btn btn-outline-primary"><i class="fa fa-heart"></i> Adicionar na lista</button>
-                    <?php } ?>
-                  <?php } //if (isset($_SESSION['cliente_id'])) :
-                  ?>
+                    <?php if (isset($_SESSION['cliente_id'])) {
+                      Logger("VAMOS PROCURAR SE NA LISTA DE DESEJO");
+                      $ret = $objProdutos->pegaListaDesejo($_SESSION['cliente_id'], $produto->id);
+                      if (!empty($ret)) {
+                        Logger("VAMOS PROCURAR SE NA LISTA DE DESEJO - ACHAMOS"); ?>
+                        <button type="submit" name="remover_lista" class="btn btn-outline-primary"><i class="fa fa-heart"></i> Remover da lista</button>
+                      <?php } else { ?>
+                        <button type="submit" name="adicionar_lista" class="btn btn-outline-primary"><i class="fa fa-heart"></i> Adicionar na lista</button>
+                      <?php } ?>
+                    <?php } //if (isset($_SESSION['cliente_id'])) :
+                    ?>
                   </p>
                 </div>
               </form>
