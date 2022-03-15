@@ -123,6 +123,40 @@ class Pedidos
         }
     }
 
+    public function atualziaCliente($rClienteID, $rChave)
+    {
+        try {
+            $rSql = "UPDATE pedidos set cliente_id=:cliente_id WHERE chave=:chave";
+            $stm = $this->pdo->prepare($rSql);
+            $stm->bindValue(':cliente_id', $rClienteID);
+            $stm->bindValue(':chave', $rChave);
+            $stm->execute();
+            if ($stm) {
+                LoggerSQL('Usuario:[' . $_SESSION['login'] . '] - SETOU CLIENTE NO CARRINHO - ID:[' . $rChave . '] ');
+            }
+            LoggerSQL($rSql);
+        } catch (PDOException $erro) {
+            LoggerSQL('NOME DO ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
+        }
+    }
+
+    public function somaTotais($rChave)
+    {
+        try {
+            $rSql = "UPDATE pedidos SET pedidos.total_produtos = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave;";
+            $rSql = $rSql . " UPDATE pedidos SET pedidos.total_pedido = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave;";
+            $stm = $this->pdo->prepare($rSql);
+            $stm->bindValue(':chave', $rChave);
+            $stm->execute();
+            if ($stm) {
+                Logger('Usuario:[' . $_SESSION['login'] . '] - CALCULOU TOTAIS DO PEDIDO ID:[' . $rChave . '] ');
+            }
+            LoggerSQL($rSql);
+        } catch (PDOException $erro) {
+            LoggerSQL('NOME DO ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
+        }
+    }
+
 
 
     public function delete($rId)
