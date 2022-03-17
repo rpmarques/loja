@@ -1,5 +1,7 @@
 <?php
 require_once './header.php';
+
+//SETAR CLIENTE NO PEDIDO
 //pegar os itens do pedido
 //pegar a cabeça do pedido
 ?>
@@ -62,12 +64,13 @@ require_once './header.php';
                   <?php foreach ($itensPedido as $item) { ?>
                     <tbody>
                       <tr>
-                        <td><a href="#"><img src="https://via.placeholder.com/50x50" alt="Black Blouse Armani"></a></td>
-                        <td><a href="#"><?= $item->nome_produto ?></a></td>
+                        <?php $foto = $objProdutos->pegaFotos($item->produto_id, true) ?>
+                        <td><a href="#"><img src="./img/pro/<?= $foto->foto_1 ?>" alt="Black Blouse Armani"></a></td>
+                        <td><a href="./produto.php?produto_id=<?= $item->produto_id ?>"><?= $item->nome_produto ?></a></td>
                         <td><?= $item->qtde ?></td>
-                        <td><?= formataMoeda($item->valor_unitario) ?></td>
-                        <td><?= formataMoeda($item->desconto_unitario) ?></td>
-                        <td><?= formataMoeda(($item->qtde * $item->valor_unitario) - $item->desconto_unitario) ?></td>
+                        <td><?= "R$" . formataMoeda($item->valor_unitario) ?></td>
+                        <td><?= "R$" . formataMoeda($item->desconto_unitario) ?></td>
+                        <td><?= "R$" . formataMoeda(($item->qtde * $item->valor_unitario) - $item->desconto_unitario) ?></td>
                       </tr>
                     </tbody>
                   <?php } // FIM foreach ($itensPedido as $item) 
@@ -75,19 +78,19 @@ require_once './header.php';
                   <tfoot>
                     <tr>
                       <th colspan="5" class="text-right">Sub Total</th>
-                      <th><?= formataMoeda($pedido->total_produtos); ?></th>
-                    </tr>
-                    <tr>
-                      <th colspan="5" class="text-right">Frete</th>
-                      <th>R$10.00</th>
+                      <th><?= "R$" . formataMoeda($pedido->total_produtos); ?></th>
                     </tr>
                     <!-- <tr>
-                        <th colspan="5" class="text-right">Tax</th>
-                        <th>R$0.00</th>
-                      </tr> -->
+                      <th colspan="5" class="text-right">Frete</th>
+                      <th>R$10.00</th>
+                    </tr> -->
+                    <tr>
+                      <th colspan="5" class="text-right">Desconto</th>
+                      <th>R$<?= "R$" . formataMoeda($pedido->desconto); ?></th>
+                    </tr>
                     <tr>
                       <th colspan="5" class="text-right">Total</th>
-                      <th><?= formataMoeda($pedido->total_pedido); ?></th>
+                      <th><?= "R$" . formataMoeda($pedido->total_pedido); ?></th>
                     </tr>
                   </tfoot>
                 </table>
@@ -96,23 +99,20 @@ require_once './header.php';
             </div> <!-- /.table-responsive-->
             <div class="row addresses">
               <div class="col-lg-6">
+                <?php $cliente = $objClientes->pegaCliente($pedido->cliente_id); ?>
                 <h2>Endereço de Cobrança</h2>
-                <p>Nome<br>
-                  Endereço<br>
-                  Baiiro<br>
-                  Número<br>
-                  Brasil<br>
-                  Cidade-UF
+                <p><?= $cliente->endereco . ", " . $cliente->numero; ?><br>
+                  <?= $cliente->bairro; ?><br>
+                  <?= $cliente->cidade . "-" . $cliente->uf;; ?><br>
+                  <!-- Brasil<br> -->
                 </p>
               </div>
               <div class="col-lg-6">
                 <h2>Endereço de Entrega</h2>
-                <p>Nome<br>
-                  Endereço<br>
-                  Baiiro<br>
-                  Número<br>
-                  Brasil<br>
-                  Cidade-UF
+                <p><?= $cliente->endereco . ", " . $cliente->numero; ?><br>
+                  <?= $cliente->bairro; ?><br>
+                  <?= $cliente->cidade . "-" . $cliente->uf;; ?><br>
+                  <!-- Brasil<br> -->
                 </p>
               </div>
             </div>

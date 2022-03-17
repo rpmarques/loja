@@ -15,8 +15,8 @@ $objPedidos = Pedidos::getInstance(Conexao::getInstance());
 session_start();
 $_SESSION['login'] = "site";
 $_SESSION['mensagem'] = "";
-require_once './verificaLogin.php';
 require_once './verificaCarrinho.php';
+require_once './verificaLogin.php';
 // ISSO AQUI É PRA MONTAR A TRILHA DE MIGALHAS
 if (isset($_GET['categoria_id'])) {
   $categoria = $objProdutos->pegaCategoria($_GET['categoria_id']);
@@ -121,7 +121,7 @@ if (isset($_GET['categoria_id'])) {
             //PEGAR QTDE DE ITENS DO PEDIDO
             $itensPedido = $objPedidos->contaItens(session_id());
             if ($itensPedido > 0) { ?>
-              <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block"><a href="./pedido.php" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span><?= $itensPedido; ?> Itens </span></a></div>
+              <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block"><a href="./carrinho.php" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span><?= $itensPedido; ?> Itens </span></a></div>
             <?php } ?>
           </div>
         </div>
