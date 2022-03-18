@@ -1,9 +1,5 @@
 <?php
 require_once './header.php';
-
-//SETAR CLIENTE NO PEDIDO
-//pegar os itens do pedido
-//pegar a cabeça do pedido
 ?>
 <div id="all">
   <div id="content">
@@ -40,9 +36,7 @@ require_once './header.php';
         </div>
         <div id="customer-order" class="col-lg-9">
           <div class="box">
-            <?php
-            $pedido = $objPedidos->pegaCabecaCarrinho(session_id());
-            ?>
+            <?php $pedido = $objPedidos->pegaCabecaCarrinho(session_id()); ?>
             <h1>Pedido Nro.: <?= $pedido->id; ?></h1>
             <p class="lead">O Pedido Nro.:<?= $pedido->id; ?> foi incluido dia <strong><?= formataData($pedido->datac); ?></strong> e atualmente esta <strong>sendo preparado</strong>.</p>
             <p class="text-muted">Se você tiver alguma dúvida, sinta-se à vontade, nosso centro de atendimento ao cliente está trabalhando para você 24 horas por dia, 7 dias por semana.</p>

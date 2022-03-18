@@ -3029,3 +3029,8 @@ code {
 .dropdown-item.disabled, .dropdown-item:disabled {
   color: #6c757d;
 }
+/*ESTILO PRO BOTÃO PRA EXCLUIR ITEM DO CARRINHO*/
+.botao_carrinho {
+  border:none;
+  background-color: transparent;
+}
