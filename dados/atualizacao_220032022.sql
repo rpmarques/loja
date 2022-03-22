@@ -1,0 +1,2 @@
+ALTER TABLE `pedidos` ADD COLUMN `cupom_desconto_id` INTEGER DEFAULT NULL;
+ALTER TABLE `cupom_desconto` ADD COLUMN `qtde` INTEGER DEFAULT NULL;

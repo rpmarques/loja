@@ -84,3 +84,32 @@
     </div>
   </div>
 </div>
+
+<!-- MODAL DE CUPOM NÃO PERMITIDO -->
+<div id="cupom-fora-do-prazo-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true" class="modal fade">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Atenção</h5>
+        <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+      </div>
+      <div class="modal-body">
+        <p class="text-center text-danger"><b>Cupom fora do prazo, veirifque</b></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODAL DE CUPOM NÃO PERMITIDO -->
+<div id="cupom-nao-cadastrado-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true" class="modal fade">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Atenção</h5>
+        <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+      </div>
+      <div class="modal-body">
+        <p class="text-center text-danger"><b>Não existe este cupom no sistema</b></p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,38 @@ if (isset($_SESSION['cliente_id'])) {
     LoggerCarrinho("CLIENTE GRAVADO NO PEDIDO");
   }
 }
+$pedido = $objPedidos->pegaCabecaCarrinho(session_id());
+if ($_POST) {
+  //APLICAR CUPOM
+  if (isset($_POST['cupom_desconto'])) {
+    $wCupomDesconto = $_POST['cupom_desconto'];
+    LoggerCarrinho("VAMOS PROCURAR O CUPOM DE DESCONTO :[$wCupomDesconto]");
+    $cupom = $objCupom->pegaCupom($wCupomDesconto);
+    if (!empty($cupom)) {
+      LoggerCarrinho("MARAVILHA, TEMOS O CUPOM :[$wCupomDesconto], AGORA VAMOS SABER SE ESTA DENTRO DO PERÍODO PERMITIDO");
+      //VALIDAÇÃO DO CUPOM DE DESCONTO
+      if (date("Y-m-d", strtotime("now")) >= $cupom->data_ini && (date("Y-m-d", strtotime("now")) <= $cupom->data_fim)) {
+        LoggerCarrinho(" CUPOM :[$wCupomDesconto], ESTA DENTRO DO PERÍODO, VAMOS VAMOS DESCOBRIR O TIPO DE DESCONTO");
+        if ($cupom->tipo_desconto === 'V') {
+          LoggerCarrinho(" CUPOM :[$wCupomDesconto], ESTA USANDO DESCONTO EM VALORES");
+        } else {
+          LoggerCarrinho(" CUPOM :[$wCupomDesconto], ESTA USANDO DESCONTO EM %");
+        }
+        $retDesconto = $objPedidos->aplicaDescontoTotal($_SESSION['carrinho_id'], $cupom->tipo_desconto, $cupom->valor, $cupom->id);
+        escreve("CUPOM VÁLIDO");
+      } else {
+        LoggerCarrinho(" CUPOM :[$wCupomDesconto], QUE PENA, FORA DO PERÍODO DO DESCONTO");
+        abreModal("cupom-fora-do-prazo-modal");
+      }
+    } else {
+      LoggerCarrinho(" NÃO EXISTE ESTE CUPOM NO SISTEMA :[$wCupomDesconto]");
+      abreModal("cupom-nao-cadastrado-modal");
+    }
+  }
+  //ATUALIZAR PEDIDO
+  //APAGAR ITEM DO PEDIDO
+}
+$pedido = $objPedidos->pegaCabecaCarrinho(session_id());
 ?>
 <div id="all">
   <div id="content">
@@ -24,7 +56,7 @@ if (isset($_SESSION['cliente_id'])) {
             <form method="post" action="">
               <h1>Carrinho de compras</h1>
               <?php
-              $pedido = $objPedidos->pegaCabecaCarrinho(session_id());
+
               $itensPedido = $objPedidos->contaItens(session_id());
               ?>
               <p class="text-muted">No momento, você tem <?= $itensPedido ?> item(s) em seu carrsinho.</p>
@@ -53,7 +85,7 @@ if (isset($_SESSION['cliente_id'])) {
                           <td><?= "R$" . formataMoeda($item->valor_unitario) ?></td>
                           <td><?= "R$" . formataMoeda($item->desconto_unitario) ?></td>
                           <td><?= "R$" . formataMoeda(($item->qtde * $item->valor_unitario) - $item->desconto_unitario) ?></td>
-                          <td><button type="submit" class="botao_carrinho"><i class="fa fa-trash-o"></i></button></td>
+                          <td><button type="submit" class="botao_carrinho" name="excluir_item" value="<?= $item->id; ?>"><i class="fa fa-trash-o"></i></button></td>
                         </tr>
                       </tbody>
                   <?php } //FIM foreach ($itensPedido as $item)
@@ -71,7 +103,7 @@ if (isset($_SESSION['cliente_id'])) {
               <div class="box-footer d-flex justify-content-between flex-column flex-lg-row">
                 <div class="left"><a href="./produtos.php" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i> Continue comprando</a></div>
                 <div class="right">
-                  <button class="btn btn-outline-secondary"><i class="fa fa-refresh"></i> Atualizar carrinho</button>
+                  <button type="submit" class="btn btn-outline-secondary"><i class="fa fa-refresh"></i> Atualizar carrinho</button>
                   <button type="submit" class="btn btn-primary">Finalizar Pedido <i class="fa fa-chevron-right"></i></button>
                 </div>
               </div>
@@ -145,18 +177,23 @@ if (isset($_SESSION['cliente_id'])) {
               </table>
             </div>
           </div>
-          <div class="box">
-            <div class="box-header">
-              <h4 class="mb-0">Cupom de Desconto</h4>
+          <?php
+          if (empty($pedido->cupom_desconto_id)) { ?>
+            <div class="box">
+              <div class="box-header">
+                <h4 class="mb-0">Cupom de Desconto</h4>
+              </div>
+              <p class="text-muted">Se você tiver um código de desconto, insira-o na caixa abaixo.</p>
+              <form method="post">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="cupom_desconto"><span class="input-group-append">
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-gift"></i></button></span>
+                </div> <!-- /input-group-->
+              </form>
             </div>
-            <p class="text-muted">Se você tiver um código de desconto, insira-o na caixa abaixo.</p>
-            <form>
-              <div class="input-group">
-                <input type="text" class="form-control"><span class="input-group-append">
-                  <button type="button" class="btn btn-primary"><i class="fa fa-gift"></i></button></span>
-              </div> <!-- /input-group-->
-            </form>
-          </div>
+          <?php }
+          ?>
+
         </div> <!-- /.col-md-3-->
       </div>
     </div>

@@ -12,6 +12,8 @@ $objEmpresa = Empresa::getInstance(Conexao::getInstance());
 $empresa = $objEmpresa->pegaEmpresa();
 require_once './classes/pedidos.class.php';
 $objPedidos = Pedidos::getInstance(Conexao::getInstance());
+require_once './classes/cupons.class.php';
+$objCupom = Cupons::getInstance(Conexao::getInstance());
 session_start();
 $_SESSION['login'] = "site";
 $_SESSION['mensagem'] = "";
