@@ -1,0 +1,22 @@
+[12:53:42][::1]-> SELECT id,nome,preco_ven,preco_antigo,mais_vendido,promocao,novidade FROM produto     ORDER BY  id DESC   LIMIT 10 
+[12:55:10][::1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=1     LIMIT 3 
+[12:55:10][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[12:55:12][::1]-> Usuario:[site] FUNÇÃO:[pedidos.criaPedido]- Tentando executar comandoSQL:[INSERT INTO pedidos (datac,chave)  VALUES ( :datac,:chave);] 
+[12:55:12][::1]-> Usuario:[site] - CRIOU PEDIDO CHAVE:[bl7aoncajf5hpn8e2l1g314k5p] 
+[12:55:12][::1]-> INSERT INTO pedidos (datac,chave)  VALUES ( :datac,:chave); 
+[12:55:12][::1]-> Usuario:[site] - tentando executar sql:[INSERT INTO pedidos_itens (chave,produto_id,datac,qtde,valor_unitario,nome_produto) VALUES (:chave,:produto_id,:datac,:qtde,:valor_unitario,:nome_produto);] 
+[12:55:12][::1]-> INSERT INTO pedidos_itens (chave,produto_id,datac,qtde,valor_unitario,nome_produto) VALUES (:chave,:produto_id,:datac,:qtde,:valor_unitario,:nome_produto); 
+[12:55:12][::1]-> UPDATE pedidos SET pedidos.total_produtos = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; UPDATE pedidos SET pedidos.total_pedido = (SELECT SUM(pedidos_itens.qtde * pedidos_itens.valor_unitario) FROM pedidos_itens WHERE pedidos_itens.chave=pedidos.chave) WHERE pedidos.chave=:chave; 
+[12:55:12][::1]-> SELECT id,nome,preco_ven FROM produto   WHERE  categoria_id=1     LIMIT 3 
+[12:55:12][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[12:55:14][::1]-> SELECT * FROM pedidos  WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[12:55:14][::1]-> SELECT * FROM pedidos  WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[12:55:14][::1]-> SELECT * from pedidos_itens WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[12:55:14][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[12:55:43][::1]-> SELECT * FROM pedidos  WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[12:55:43][::1]-> SELECT * FROM pedidos  WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[12:55:43][::1]-> UPDATE pedidos set desconto=:desconto, total_pedido = total_pedido - :desconto,cupom_desconto_id=:cupom_desconto_id,
+                        cupom_desconto_id=:cupom_desconto_id WHERE chave=:chave;UPDATE pedidos_itens SET desconto_unitario=5.4 WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' ; 
+[12:55:43][::1]-> SELECT * FROM pedidos  WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[12:55:43][::1]-> SELECT * from pedidos_itens WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[12:55:43][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 

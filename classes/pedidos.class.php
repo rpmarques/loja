@@ -144,27 +144,28 @@ class Pedidos
     {
         try {
             //APLICAR DESCONTO
+            $objPedidos = Pedidos::getInstance(Conexao::getInstance());
+            $pedido = $objPedidos->pegaCabecaCarrinho(session_id());
+            $itens = $objPedidos->contaItens($rChave);
+            Logger("VAMOS SABER SE É DESCONTO EM R$ OU %");
             if (strtoupper($rTipoDesconto) === "V") {
-                //ACERTO O TOTAL DO PEDIDO
-                $rSql = "UPDATE pedidos set desconto=:desconto, total_pedido = total_pedido - :desconto,cupom_desconto_id=:cupom_desconto_id,cupom_desconto_id=:cupom_desconto_id
-                 WHERE chave=:chave;";
-                //ACERTO ITENS DO PEDIDO;
-                //PEGO O DESCONTO E RATEIO ENTRE OS ITENS
-                $objPedidos = Pedidos::getInstance(Conexao::getInstance());
-                $itens = $objPedidos->contaItens($rChave);
+                Logger("DESCONTO EM R$");
                 $descontoItem = $rValorCupom / $itens;
-                $rSql = $rSql . "UPDATE pedidos_itens SET desconto_unitario=$descontoItem WHERE chave='$rChave' ;";
             } else {
-                //$rValorCupomAux = $rValorCupom 
+                Logger("DESCONTO EM %");
+                $rValorCupom = ($rValorCupom / 100) * $pedido->total_produtos;
+                $descontoItem = $rValorCupom / $itens;
             }
-
+            $rSql = "UPDATE pedidos set desconto=:desconto, total_pedido = total_pedido - :desconto,cupom_desconto_id=:cupom_desconto_id,
+                        cupom_desconto_id=:cupom_desconto_id WHERE chave=:chave;";
+            $rSql = $rSql . "UPDATE pedidos_itens SET desconto_unitario=$descontoItem WHERE chave='$rChave' ;";
             $stm = $this->pdo->prepare($rSql);
             $stm->bindValue(':cupom_desconto_id', $rCupomID);
             $stm->bindValue(':desconto', $rValorCupom);
             $stm->bindValue(':chave', $rChave);
             $stm->execute();
             if ($stm) {
-                LoggerCarrinho('Usuario:[' . $_SESSION['login'] . '] - APLICOU DESCONTO DE R$' . $rValorCupom . ' - ID DO PEDIDO:[' . $rChave . '] / ID DO CUPOM:[' . $rCupomID . ']');
+                LoggerCarrinho('Usuario:[' . $_SESSION['login'] . '] - APLICOU DESCONTO DE ' . $rValorCupom . ' [' . strtoupper($rTipoDesconto) . ']- ID DO PEDIDO:[' . $rChave . '] / ID DO CUPOM:[' . $rCupomID . ']');
             }
             LoggerSQL($rSql);
         } catch (PDOException $erro) {
