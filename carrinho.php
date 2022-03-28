@@ -32,6 +32,9 @@ if ($_POST) {
       LoggerCarrinho(" NÃO EXISTE ESTE CUPOM NO SISTEMA :[$wCupomDesconto]");
       abreModal("cupom-nao-cadastrado-modal");
     }
+  } //FIM if (isset($_POST['cupom_desconto'])) {
+  if (isset($_POST['excluir_item'])) {
+    escreve("VAMOS EXCUIR O ITEM:[] DO PEDIDO:[]");
   }
   //ATUALIZAR PEDIDO
   //APAGAR ITEM DO PEDIDO
@@ -55,10 +58,7 @@ $pedido = $objPedidos->pegaCabecaCarrinho(session_id());
           <div class="box">
             <form method="post" action="">
               <h1>Carrinho de compras</h1>
-              <?php
-
-              $itensPedido = $objPedidos->contaItens(session_id());
-              ?>
+              <?php $itensPedido = $objPedidos->contaItens(session_id()); ?>
               <p class="text-muted">No momento, você tem <?= $itensPedido ?> item(s) em seu carrsinho.</p>
               <div class="table-responsive">
                 <table class="table">
@@ -85,7 +85,9 @@ $pedido = $objPedidos->pegaCabecaCarrinho(session_id());
                           <td><?= "R$" . formataMoeda($item->valor_unitario) ?></td>
                           <td><?= "R$" . formataMoeda($item->desconto_unitario) ?></td>
                           <td><?= "R$" . formataMoeda(($item->qtde * $item->valor_unitario) - $item->desconto_unitario) ?></td>
-                          <td><button type="submit" class="botao_carrinho" name="excluir_item" value="<?= $item->id; ?>"><i class="fa fa-trash-o"></i></button></td>
+                          <form action="" method="post">
+                            <td><button type="submit" class="botao_carrinho" name="excluir_item" value="<?= $item->id; ?>"><i class="fa fa-trash-o"></i></button></td>
+                          </form>
                         </tr>
                       </tbody>
                   <?php } //FIM foreach ($itensPedido as $item)

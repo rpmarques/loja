@@ -20,3 +20,31 @@
 [12:55:43][::1]-> SELECT * FROM pedidos  WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
 [12:55:43][::1]-> SELECT * from pedidos_itens WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
 [12:55:43][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[13:16:49][::1]-> SELECT * FROM pedidos  WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[13:16:49][::1]-> SELECT * FROM pedidos  WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[13:16:49][::1]-> SELECT * from pedidos_itens WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[13:16:49][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[13:16:50][::1]-> SELECT * FROM pedidos  WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[13:16:50][::1]-> SELECT * FROM pedidos  WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[13:16:50][::1]-> SELECT * from pedidos_itens WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[13:16:50][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[13:16:52][::1]-> SELECT * FROM pedidos  WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[13:16:52][::1]-> SELECT * FROM pedidos  WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[13:16:52][::1]-> SELECT * from pedidos_itens WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[13:16:52][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[13:16:54][::1]-> SELECT * FROM pedidos  WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[13:16:54][::1]-> SELECT * FROM pedidos  WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[13:16:54][::1]-> SELECT * from pedidos_itens WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[13:16:54][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[13:16:55][::1]-> SELECT * FROM pedidos  WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[13:16:55][::1]-> SELECT * FROM pedidos  WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[13:16:55][::1]-> SELECT * from pedidos_itens WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[13:16:55][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[13:17:07][::1]-> SELECT * FROM pedidos  WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[13:17:07][::1]-> SELECT * FROM pedidos  WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[13:17:07][::1]-> SELECT * from pedidos_itens WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[13:17:07][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 
+[13:17:09][::1]-> SELECT * FROM pedidos  WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[13:17:09][::1]-> SELECT * FROM pedidos  WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[13:17:09][::1]-> SELECT * from pedidos_itens WHERE chave='bl7aoncajf5hpn8e2l1g314k5p' 
+[13:17:09][::1]-> SELECT id,nome,preco_ven FROM produto     ORDER BY id DESC   LIMIT 3 

@@ -1,1 +1,0 @@
-ALTER TABLE `pedidos_itens` ADD COLUMN `nome_produto` VARCHAR(50) DEFAULT NULL;
