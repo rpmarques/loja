@@ -47,7 +47,7 @@ class Pedidos
 
             if ($produto = $objProdutos->pegaProduto($rCodPro)) {
                 LoggerCarrinho('Achamos o produto, vamos adicionar no carrinho_itens');
-                $rSql = "INSERT INTO pedidos_itens (chave,produto_id,datac,qtde,valor_unitario,nome_produto) VALUES (:chave,:produto_id,:datac,:qtde,:valor_unitario,:nome_produto);";
+                $rSql = "INSERT INTO pedidos_itens (chave,produto_id,datac,qtde,valor_unitario,nome_produto,nro_item) VALUES (:chave,:produto_id,:datac,:qtde,:valor_unitario,:nome_produto,:nro_item);";
                 $stm = $this->pdo->prepare($rSql);
                 $stm->bindValue(':chave', $rChave);
                 $stm->bindValue(':datac', date('Y-m-d'));
@@ -55,6 +55,15 @@ class Pedidos
                 $stm->bindValue(':valor_unitario', $produto->preco_ven);
                 $stm->bindValue(':qtde', $rQtde);
                 $stm->bindValue(':nome_produto', $produto->nome);
+                //CONTA ITENS E SOMA+1
+                $objPedidos = Pedidos::getInstance(conexao::getInstance());
+                $itens = $objPedidos->contaItens($rChave);
+                if ($itens === 0) {
+                    $stm->bindValue(':nro_item', intval("1"));
+                } else {
+                    $itens++;
+                    $stm->bindValue(':nro_item', intval($itens));
+                }
                 $stm->execute();
                 if ($stm) {
                     LoggerSQL('Usuario:[' . $_SESSION['login'] . '] - tentando executar sql:[' . $rSql . ']');
@@ -197,7 +206,8 @@ class Pedidos
             $stm = $this->pdo->prepare($rSql);
             $stm->execute();
             $dados = $stm->fetch(PDO::FETCH_OBJ);
-            return $dados->total;
+            $ret = intval($dados->total);
+            return $ret;
         } catch (PDOException $erro) {
             Logger('USUARIO:[' . $_SESSION['login'] . '] - ARQUIVO:[' . $erro->getFile() . '] - LINHA:[' . $erro->getLine() . '] - Mensagem:[' . $erro->getMessage() . ']');
         }

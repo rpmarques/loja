@@ -33,11 +33,13 @@ if ($_POST) {
       abreModal("cupom-nao-cadastrado-modal");
     }
   } //FIM if (isset($_POST['cupom_desconto'])) {
+  //APAGAR ITEM DO PEDIDO
+  //DEPOIS QUE APAGAR O ITEM RECALCULAR O DESCONTO
   if (isset($_POST['excluir_item'])) {
     escreve("VAMOS EXCUIR O ITEM:[] DO PEDIDO:[]");
   }
   //ATUALIZAR PEDIDO
-  //APAGAR ITEM DO PEDIDO
+
 }
 $pedido = $objPedidos->pegaCabecaCarrinho(session_id());
 ?>
@@ -58,8 +60,8 @@ $pedido = $objPedidos->pegaCabecaCarrinho(session_id());
           <div class="box">
             <form method="post" action="">
               <h1>Carrinho de compras</h1>
-              <?php $itensPedido = $objPedidos->contaItens(session_id()); ?>
-              <p class="text-muted">No momento, você tem <?= $itensPedido ?> item(s) em seu carrsinho.</p>
+              <?php $nroItensPedido = $objPedidos->contaItens(session_id()); ?>
+              <p class="text-muted">No momento, você tem <?= $nroItensPedido ?> item(s) em seu carrsinho.</p>
               <div class="table-responsive">
                 <table class="table">
                   <?php
