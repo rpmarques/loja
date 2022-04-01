@@ -6,6 +6,7 @@ if (isset($_SESSION['cliente_id'])) {
   }
 }
 $pedido = $objPedidos->pegaCabecaCarrinho(session_id());
+$itensPedido = $objPedidos->pegaItemCarrinho(session_id());
 if ($_POST) {
   //APLICAR CUPOM
   if (isset($_POST['cupom_desconto'])) {
@@ -23,7 +24,8 @@ if ($_POST) {
           LoggerCarrinho(" CUPOM :[$wCupomDesconto], ESTA USANDO DESCONTO EM %");
         }
         $retDesconto = $objPedidos->aplicaDescontoTotal($_SESSION['carrinho_id'], $cupom->tipo_desconto, $cupom->valor, $cupom->id);
-        escreve("CUPOM VÁLIDO");
+
+        //escreve("CUPOM VÁLIDO");
       } else {
         LoggerCarrinho(" CUPOM :[$wCupomDesconto], QUE PENA, FORA DO PERÍODO DO DESCONTO");
         abreModal("cupom-fora-do-prazo-modal");
@@ -36,12 +38,28 @@ if ($_POST) {
   //APAGAR ITEM DO PEDIDO
   //DEPOIS QUE APAGAR O ITEM RECALCULAR O DESCONTO
   if (isset($_POST['excluir_item'])) {
-    escreve("VAMOS EXCUIR O ITEM:[] DO PEDIDO:[]");
+    $item = $_POST['excluir_item'];
+    LoggerCarrinho(" VAMOS TENTAR EXCLUIR O ITEM:[$item] DO PEDIDO CHAVE:[$pedido->chave]");
+    if ($retApagaItem = $objPedidos->apagaItem($pedido->chave, $item)) {
+      LoggerCarrinho("MARAVILHA, EXCLUIMOS O ITEM:[$item] DO PEDIDO CHAVE:[$pedido->chave]");
+      //ITEM EXCLUIDO 
+      // $pedido = $objPedidos->pegaCabecaCarrinho(session_id());
+      // $itensPedido = $objPedidos->pegaItemCarrinho(session_id());
+      //SE TIVER CUPOM, VAMOS RECALCULAR O DESCONTO
+      if ($pedido->cupom_desconto_id) {
+        escreve("temos cupom, vamos recalcular");
+      }
+      $objPedidos->somaTotais($pedido->chave);
+      AtualizaPagina();
+    } else {
+      escreve("epa, epa, epa....errou");
+    }
   }
   //ATUALIZAR PEDIDO
-
 }
 $pedido = $objPedidos->pegaCabecaCarrinho(session_id());
+$itensPedido = $objPedidos->pegaItemCarrinho(session_id());
+
 ?>
 <div id="all">
   <div id="content">
@@ -61,11 +79,10 @@ $pedido = $objPedidos->pegaCabecaCarrinho(session_id());
             <form method="post" action="">
               <h1>Carrinho de compras</h1>
               <?php $nroItensPedido = $objPedidos->contaItens(session_id()); ?>
-              <p class="text-muted">No momento, você tem <?= $nroItensPedido ?> item(s) em seu carrsinho.</p>
+              <p class="text-muted">No momento, você tem <?= $nroItensPedido ?> item(s) em seu carrinho.</p>
               <div class="table-responsive">
                 <table class="table">
                   <?php
-                  $itensPedido = $objPedidos->pegaItemCarrinho(session_id());
                   if (!empty($itensPedido)) { ?>
                     <thead>
                       <tr>
@@ -162,7 +179,7 @@ $pedido = $objPedidos->pegaCabecaCarrinho(session_id());
               <table class="table">
                 <tbody>
                   <tr>
-                    <td>Sub Total</td>
+                    <td>Total Produtos</td>
                     <th><?= "R$" . formataMoeda($pedido->total_produtos); ?></th>
                   </tr>
                   <!-- <tr>

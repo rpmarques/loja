@@ -121,9 +121,8 @@ if (isset($_GET['categoria_id'])) {
             <div id="search-not-mobile" class="navbar-collapse collapse"></div><a data-toggle="collapse" href="#search" class="btn navbar-btn btn-primary d-none d-lg-inline-block"><span class="sr-only">Toggle search</span><i class="fa fa-search"></i></a>
             <?php
             //PEGAR QTDE DE ITENS DO PEDIDO
-            $itensPedido = $objPedidos->contaItens(session_id());
-            if ($itensPedido > 0) { ?>
-              <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block"><a href="./carrinho.php" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span><?= $itensPedido; ?> Itens </span></a></div>
+            if ($objPedidos->contaItens(session_id()) > 0) { ?>
+              <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block"><a href="./carrinho.php" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span><?= $objPedidos->contaItens(session_id()); ?> Itens </span></a></div>
             <?php } ?>
           </div>
         </div>

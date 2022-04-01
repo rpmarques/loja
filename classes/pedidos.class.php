@@ -213,6 +213,21 @@ class Pedidos
         }
     }
 
+    public function apagaItem($rChave, $rID)
+    {
+        if (!empty($rChave) && !empty($rID)) {
+            $rSql = "DELETE FROM pedidos_itens WHERE chave=:chave AND id=:id";
+            $stm = $this->pdo->prepare($rSql);
+            $stm->bindValue(':id', $rID);
+            $stm->bindValue(':chave', $rChave);
+            $stm->execute();
+            if ($stm) {
+                Logger('Usuario:[' . $_SESSION['login'] . '] - EXCLUIU ID:[' . $rID . '] DO PEDIDO CHAVE:[' . $rChave . ']');
+            }
+            return $stm;
+        }
+    }
+
     public function delete($rId)
     {
         if (!empty($rId)) :
