@@ -24,8 +24,7 @@ if ($_POST) {
           LoggerCarrinho(" CUPOM :[$wCupomDesconto], ESTA USANDO DESCONTO EM %");
         }
         $retDesconto = $objPedidos->aplicaDescontoTotal($_SESSION['carrinho_id'], $cupom->tipo_desconto, $cupom->valor, $cupom->id);
-
-        //escreve("CUPOM VÁLIDO");
+        AtualizaPagina();
       } else {
         LoggerCarrinho(" CUPOM :[$wCupomDesconto], QUE PENA, FORA DO PERÍODO DO DESCONTO");
         abreModal("cupom-fora-do-prazo-modal");
@@ -43,22 +42,26 @@ if ($_POST) {
     if ($retApagaItem = $objPedidos->apagaItem($pedido->chave, $item)) {
       LoggerCarrinho("MARAVILHA, EXCLUIMOS O ITEM:[$item] DO PEDIDO CHAVE:[$pedido->chave]");
       //ITEM EXCLUIDO 
-      // $pedido = $objPedidos->pegaCabecaCarrinho(session_id());
-      // $itensPedido = $objPedidos->pegaItemCarrinho(session_id());
       //SE TIVER CUPOM, VAMOS RECALCULAR O DESCONTO
+      LoggerCarrinho("VAMOS VER SE TEM CUPOM PRA RECALCULAR O VALOR");
       if ($pedido->cupom_desconto_id) {
+        LoggerCarrinho("TEMOS CUPOM NO PEDIDO, VAMOS RECALCULAR");
         escreve("temos cupom, vamos recalcular");
+        $cupom = $objCupom->pegaCupomPorID($pedido->cupom_desconto_id);
+        $retDesconto = $objPedidos->aplicaDescontoTotal($_SESSION['carrinho_id'], $cupom->tipo_desconto, $cupom->valor, $cupom->id);
+        // aplicaDescontoTotal($rChave, $rTipoDesconto, $rValorCupom, $rCupomID)
+      } else {
+        LoggerCarrinho("NÃO TEMOS CUPMO NESTE PEDIDO");
       }
       $objPedidos->somaTotais($pedido->chave);
-      AtualizaPagina();
+      //
     } else {
       escreve("epa, epa, epa....errou");
     }
   }
   //ATUALIZAR PEDIDO
 }
-$pedido = $objPedidos->pegaCabecaCarrinho(session_id());
-$itensPedido = $objPedidos->pegaItemCarrinho(session_id());
+//AtualizaPagina();
 
 ?>
 <div id="all">
@@ -212,9 +215,7 @@ $itensPedido = $objPedidos->pegaItemCarrinho(session_id());
                 </div> <!-- /input-group-->
               </form>
             </div>
-          <?php }
-          ?>
-
+          <?php } ?>
         </div> <!-- /.col-md-3-->
       </div>
     </div>
